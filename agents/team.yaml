@@ -1,13 +1,7 @@
 version: 1
 owner_role: CEO-Owner
-coordination_role: OPS-01
+coordination_role: GitHub-Actions-Coordinator
 members:
-  - id: OPS-01
-    name: Orbit Coordinator
-    job: Read the current day, assign bounded tasks, verify acceptance tests, retry failures, and produce the owner queue.
-    primary_model: Manus
-    reviewer: CEO-Owner
-    permissions: [github_read_write, task_ledger, metrics_write]
   - id: B2B-01
     name: Signal Scout
     job: Research one ICP, recurring pains, buying signals, competitors, and cited evidence.
@@ -41,7 +35,7 @@ members:
   - id: B2B-06
     name: Client Success Desk
     job: Run discovery, proposals, onboarding, QA, delivery evidence, referrals, and renewal drafts.
-    primary_model: Claude-Review
+    primary_model: Manus-Delivery
     reviewer: CEO-Owner
     permissions: [github_read_write, crm_read_write, calendar_draft_only]
   - id: CONTENT-01

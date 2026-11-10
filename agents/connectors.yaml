@@ -5,11 +5,10 @@ core:
   - Secret manager
   - Email delivery provider
 roles:
-  OPS-01: [GitHub, Secret-manager, Email-transactional]
   B2B-01: [GitHub, Web-research, Google-Drive-read]
   B2B-02: [GitHub, Google-Drive, Calendar-read]
   B2B-03: [GitHub, Google-Drive, Sheets]
-  B2B-04: [GitHub, n8n-or-Make, Sheets, Test-webhook]
+  B2B-04: [GitHub, n8n-or-Make-alternative, Sheets, Test-webhook]
   B2B-05: [GitHub, CRM-read, Email-draft-only, Calendar-read]
   B2B-06: [GitHub, CRM-read-write, Calendar-draft-only, Email-draft-only, Payment-read-only]
   CONTENT-01: [GitHub, Web-research, YouTube-read, Search-analytics-read]

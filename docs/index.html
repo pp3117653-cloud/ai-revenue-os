@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Saksham's AI Revenue OS CEO dashboard" />
+  <title>Saksham | AI Revenue OS</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">CEO CONTROL CENTER</p>
+        <h1>AI Revenue OS</h1>
+        <p class="subtitle">Saksham · B2B automation + content products</p>
+      </div>
+      <div class="status"><span class="dot"></span><span>Local-first / approval-gated</span></div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow accent">OPERATING DAY <span id="dayNumber">1</span> / 60</p>
+          <h2>Give the team a clear next move.</h2>
+          <p class="hero-copy">Choose a named operator, write one bounded task, and open a GitHub Issue with the correct role already attached. The dashboard never sends outreach, publishes, charges, or changes client systems automatically.</p>
+        </div>
+        <div class="hero-actions">
+          <button class="primary" id="newTaskBtn">+ Create task</button>
+          <a class="secondary" id="repoLink" href="#" target="_blank" rel="noreferrer">Open repository</a>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Revenue metrics">
+        <article><span>Cash collected</span><strong id="cashMetric">₹0</strong><small>Target ₹100,000+</small></article>
+        <article><span>Open tasks</span><strong id="openMetric">0</strong><small>Across all roles</small></article>
+        <article><span>Approval queue</span><strong id="approvalMetric">0</strong><small>Needs CEO review</small></article>
+        <article><span>Pipeline</span><strong id="pipelineMetric">₹0</strong><small>Unpaid opportunities</small></article>
+      </section>
+
+      <section class="workspace">
+        <div class="panel roster-panel">
+          <div class="panel-head"><div><p class="eyebrow">THE CREW</p><h3>Named operators</h3></div><span class="count" id="roleCount">0</span></div>
+          <div id="roster" class="roster"></div>
+        </div>
+        <div class="panel task-panel">
+          <div class="panel-head"><div><p class="eyebrow">TASK INBOX</p><h3>Current work</h3></div><select id="statusFilter"><option value="all">All statuses</option><option value="open">Open</option><option value="review">Review</option><option value="blocked">Blocked</option><option value="accepted">Accepted</option></select></div>
+          <div id="taskList" class="task-list"></div>
+        </div>
+      </section>
+
+      <section class="lower-grid">
+        <div class="panel timeline-panel"><div class="panel-head"><div><p class="eyebrow">60-DAY TRACK</p><h3>Milestones</h3></div></div><div id="milestones" class="milestones"></div></div>
+        <div class="panel policy-panel"><div class="panel-head"><div><p class="eyebrow">CEO GATE</p><h3>Always approve these</h3></div></div><ul><li>Cold outreach and email sends</li><li>Social publishing and public claims</li><li>Client access and production changes</li><li>Payments, refunds, contracts, and deletion</li></ul><p class="muted">All other work stays bounded, logged, and reviewable in GitHub.</p></div>
+      </section>
+    </main>
+    <footer>Built in the repository · GitHub Issues are the task ledger · Zero-cost-first stack</footer>
+  </div>
+  <dialog id="taskDialog"><form method="dialog" id="taskForm"><div class="dialog-head"><div><p class="eyebrow">NEW WORK PACKET</p><h3>Assign a bounded task</h3></div><button class="icon-btn" value="cancel" aria-label="Close">×</button></div><label>Operator<select id="taskOwner" required></select></label><label>Task title<input id="taskTitle" required maxlength="90" placeholder="Example: Draft D1 account capability matrix" /></label><label>Definition of done<textarea id="taskBody" required rows="5" placeholder="What must be delivered? Include evidence and acceptance tests."></textarea></label><label class="check"><input type="checkbox" id="approvalRequired" /> Requires my approval before external action</label><div class="dialog-actions"><button class="secondary" value="cancel">Cancel</button><button class="primary" id="createIssueBtn" value="default">Open GitHub Issue draft</button></div><p class="muted tiny">The button opens a prefilled GitHub Issue. You review and submit it on GitHub.</p></form></dialog>
+  <script src="./app.js"></script>
+</body>
+</html>
