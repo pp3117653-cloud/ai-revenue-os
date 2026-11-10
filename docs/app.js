@@ -1,10 +1,10 @@
 const REPO = 'pp3117653-cloud/ai-revenue-os';
 const roles = [
- ['B2B-01','Signal Scout','Google AI · research'],['B2B-02','Offer Forge','Claude · strategy'],['B2B-03','Flow Architect','Claude · architecture'],['B2B-04','Demo Builder','Manus · build'],['B2B-05','Pipeline Scout','Google AI · pipeline'],['B2B-06','Client Success Desk','Manus · delivery'],['CONTENT-01','Audience Miner','Google AI · research'],['CONTENT-02','Editorial Pilot','Claude · editorial'],['CONTENT-03','Longform Foundry','Claude · writing'],['CONTENT-04','Visual Spark','MiniMax · media'],['CONTENT-05','Product Workshop','Manus · products'],['CONTENT-06','Distribution Analyst','Manus · analytics']
+ ['B2B-01','Signal Scout','Google-1 · research'],['B2B-02','Offer Forge','Claude-1 · strategy'],['B2B-03','Flow Architect','Claude-2 · architecture'],['B2B-04','Demo Builder','Manus-1 · build'],['B2B-05','Pipeline Scout','Google-2 · pipeline'],['B2B-06','Client Success Desk','Manus-2 · delivery'],['CONTENT-01','Audience Miner','Google-3 · research'],['CONTENT-02','Editorial and Longform Lead','Claude-3 · editorial'],['CONTENT-03','Motion Code Lab','Claude-4 · coded video'],['CONTENT-04','Thumbnail and Visual QA','MiniMax-1 · visual QA'],['CONTENT-05','Product Workshop','Manus-3 · products'],['CONTENT-06','Distribution Analyst','Manus-4 · analytics']
 ].map(([id,name,model])=>({id,name,model}));
 const tasks = JSON.parse(localStorage.getItem('aiRevenueTasks') || '[]');
 const demoTasks = [
- {id:'D1-OPS-01',title:'Create the Day 1 account capability matrix',owner:'OPS-01',status:'open',day:1,approval:false},
+ {id:'D1-B2B-01',title:'Research five candidate B2B ICPs with cited evidence',owner:'B2B-01',status:'open',day:1,approval:false},
  {id:'D1-B2B-01',title:'Research five candidate B2B ICPs with cited evidence',owner:'B2B-01',status:'open',day:1,approval:false},
  {id:'D1-CONTENT-01',title:'Research five content themes with audience questions',owner:'CONTENT-01',status:'review',day:1,approval:false},
  {id:'D10-B2B-05',title:'Draft ten personalized outreach messages for review',owner:'B2B-05',status:'blocked',day:10,approval:true}
