@@ -50,19 +50,19 @@ Best work: workflow architecture, technical reasoning, data boundaries, security
 
 Schedule: **09:25 and 21:25 Asia/Kolkata**
 
-### Claude-3 — Editorial Lead
+### Claude-3 — Editorial and Longform Lead
 
-Assigned role: **Editorial Pilot — CONTENT-02**
+Assigned role: **Editorial and Longform Lead — CONTENT-02**
 
-Best work: content strategy, editorial calendar, hooks, formats, calls to action, repurposing, and quality direction.
+Best work: content strategy, editorial calendar, long-form drafts, hooks, formats, scripts, calls to action, repurposing, and quality direction.
 
 Schedule: **09:50 and 21:50 Asia/Kolkata**
 
-### Claude-4 — Longform and Product Copy
+### Claude-4 — Motion Code Lab
 
-Assigned role: **Longform Foundry — CONTENT-03**
+Assigned role: **Motion Code Lab — CONTENT-03**
 
-Best work: articles, newsletters, scripts, lessons, product explanations, and original educational writing.
+Best work: real code-generated videos using HTML/CSS/JavaScript, Canvas, SVG, captions, scene timing, render instructions, and video QA metadata. It does not use a video-generation model.
 
 Schedule: **09:55 and 21:55 Asia/Kolkata**
 
@@ -102,17 +102,17 @@ Schedule: **10:10 and 22:10 Asia/Kolkata**
 
 ## MiniMax — 1 account
 
-### MiniMax-1 — Visual Producer
+### MiniMax-1 — Thumbnail and Visual QA
 
-Assigned role: **Visual Spark — CONTENT-04**
+Assigned role: **Thumbnail and Visual QA — CONTENT-04**
 
-Best work: thumbnails, diagrams, carousel drafts, short-video drafts, visual explanations, alt text, and media variations.
+Best work: thumbnails, poster frames, diagrams, alt text, visual packaging, and QA. It does not generate the actual video.
 
 Schedule: **10:00 and 22:00 Asia/Kolkata**
 
 ## Why this split is optimal
 
-Google accounts handle broad research and information gathering. Claude accounts handle strategy, architecture, editorial judgment, and long-form reasoning. Manus accounts handle repository execution, delivery operations, product assembly, and analytics. MiniMax is reserved for visual and video production.
+Google accounts handle broad research and information gathering. Claude accounts handle strategy, architecture, editorial judgment, long-form writing, and code-generated motion. Manus accounts handle repository execution, delivery operations, product assembly, and analytics. MiniMax is limited to thumbnails and visual QA; it does not generate the actual videos.
 
 The GitHub Actions workflow is the coordinator. It is not counted as an additional AI account. Every account must read only its assigned issues, update evidence, and stop after a bounded run. External actions remain CEO-approved.
 

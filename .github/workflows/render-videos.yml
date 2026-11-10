@@ -1,0 +1,61 @@
+name: Render approved coded videos
+
+on:
+  workflow_dispatch:
+    inputs:
+      video_id:
+        description: 'Folder name under content/video/src'
+        required: true
+        type: string
+      duration_seconds:
+        description: 'Render duration'
+        required: true
+        default: '30'
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install browser renderer and FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg xvfb
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Validate animation source
+        run: |
+          test -f "content/video/src/${{ inputs.video_id }}/index.html"
+          test -f "content/video/src/${{ inputs.video_id }}/README.md"
+      - name: Render animation to frames
+        run: |
+          mkdir -p "content/video/renders/${{ inputs.video_id }}"
+          node scripts/render-video.mjs "${{ inputs.video_id }}" "${{ inputs.duration_seconds }}" "30"
+      - name: Encode MP4
+        run: |
+          ffmpeg -y -framerate 30 -i "content/video/renders/${{ inputs.video_id }}/frames/frame-%06d.png" \
+            -c:v libx264 -pix_fmt yuv420p -movflags +faststart \
+            "content/video/renders/${{ inputs.video_id }}/${{ inputs.video_id }}.mp4"
+          rm -rf "content/video/renders/${{ inputs.video_id }}/frames"
+      - name: Write render manifest
+        run: |
+          cat > "content/video/renders/${{ inputs.video_id }}/render-manifest.txt" <<EOF
+          video_id=${{ inputs.video_id }}
+          duration_seconds=${{ inputs.duration_seconds }}
+          fps=30
+          output=content/video/renders/${{ inputs.video_id }}/${{ inputs.video_id }}.mp4
+          publish_status=not_published
+          ceo_approval_required=yes
+          EOF
+      - name: Upload render artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: coded-video-${{ inputs.video_id }}
+          path: content/video/renders/${{ inputs.video_id }}/

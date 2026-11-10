@@ -13,10 +13,10 @@ roles:
   B2B-06: [GitHub, CRM-read-write, Calendar-draft-only, Email-draft-only, Payment-read-only]
   CONTENT-01: [GitHub, Web-research, YouTube-read, Search-analytics-read]
   CONTENT-02: [GitHub, Google-Drive, Content-calendar]
-  CONTENT-03: [GitHub, Google-Drive, Plagiarism-or-citation-review]
-  CONTENT-04: [GitHub, Media-storage, MiniMax-if-permitted]
+  CONTENT-03: [GitHub, Google-Drive, Browser-renderer, FFmpeg, Plagiarism-or-citation-review]
+  CONTENT-04: [GitHub, Media-storage, MiniMax-if-permitted, Thumbnail-QA]
   CONTENT-05: [GitHub, Checkout-draft, File-storage]
-  CONTENT-06: [GitHub, YouTube-analytics, Instagram-professional-publish-draft, Website-analytics]
+  CONTENT-06: [GitHub, YouTube-analytics, Instagram-professional-publish-draft, Website-analytics, Video-storage]
 forbidden_by_default:
   - shared social passwords
   - full mailbox deletion
