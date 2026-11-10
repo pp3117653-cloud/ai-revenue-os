@@ -1,28 +1,22 @@
 # Credentials needed before activation
 
-Do not send passwords, API keys, OAuth codes, recovery codes, or credit-card details in chat. Add them through the connector authorization screens or GitHub encrypted secrets.
+Do not send passwords, API keys, OAuth codes, recovery codes, or payment-card details in chat. Add secrets only through GitHub Actions Secrets/Environments or the provider's official OAuth authorization screen. Never commit secrets or tokens to this repository.
 
-## Required from the owner
+This system has eight active AI accounts. For the current exact platform requirements, publishing/outreach boundaries, and secret names, see [`briefs/automation-credentials.md`](automation-credentials.md).
 
-1. Private GitHub repository URL, owner/org name, and default branch.
-2. GitHub authorization with repository read/write, Issues/Pull Requests, Actions, and Secrets access only for this repository.
-3. The 12 AI account identities mapped to the names in `agents/team.yaml`.
-4. Confirmation that each plan permits the intended commercial and automated use; do not use account rotation to bypass limits.
-5. A sender email address and domain you control, plus authenticated SPF/DKIM/DMARC through your email provider.
-6. Business legal name, postal address, privacy contact, and unsubscribe destination for outreach emails.
-7. CRM/workspace choice and account authorization.
-8. Calendar and booking account authorization.
-9. Website/domain and analytics account authorization.
-10. Payment/checkout account authorization; keep charges and refunds behind human approval.
-11. Instagram professional account and Meta app authorization only if eligible; YouTube channel authorization; any other social accounts you explicitly want connected.
-12. Target country/regions and industries so compliance, language, and outreach rules can be scoped.
+## Core setup
 
-## Never put in the repository
+1. GitHub access to this repository with Actions enabled. Existing Actions use GitHub's generated `GITHUB_TOKEN`; do not create a broad personal access token unless a specific integration requires it.
+2. Confirm each of the eight connected AI accounts maps to one role in `agents/team.yaml`. A GitHub connection alone does not necessarily let Actions invoke that AI account; choose provider-native schedules or supported provider API invocation.
+3. For YouTube publishing, complete owner OAuth to the intended YouTube channel and store only the scoped OAuth credentials in GitHub Actions secrets.
+4. For Instagram publishing, use an Instagram professional account, Meta app authorization, publish permission, and media reachable to Meta at publish time.
+5. For automated emails, choose an email provider, verify your sender domain, and configure SPF/DKIM/DMARC as required.
+6. For Instagram inbound messaging, deploy a public HTTPS webhook endpoint and request the messaging permission. Do not automate cold outbound DMs.
 
-Passwords, raw API keys, OAuth refresh tokens, recovery codes, payment card data, client personal data, scraped personal-data lists, or unredacted customer exports.
+## Secret handling
 
-## GitHub secrets suggested names
+Keep live credentials in repository/environment Actions secrets, not source files, commit history, Issues, or this checklist. Use test/private publishing first. Limit tokens to the required scopes, separate test and production environments, rotate/revoke credentials if exposed, and keep payments under Saksham's direct control.
 
-`DIGEST_EMAIL_TO`, `EMAIL_PROVIDER_TOKEN`, `CRM_TOKEN`, `CALENDAR_TOKEN`, `ANALYTICS_TOKEN`, `CHECKOUT_TOKEN`, `SOCIAL_PUBLISH_TOKEN`, and `WEBHOOK_SIGNING_SECRET`.
+## Not yet implemented in workflows
 
-Use environment-scoped secrets and separate draft/test credentials from production credentials.
+The scheduled coordinator currently creates checkpoint Issues; it does not invoke all eight AI providers. The video workflow is manually dispatched and produces a downloadable artifact; it does not publish. The daily digest email step is a placeholder. Publishing, inbound lead capture, email outreach, and CRM automation require implementation in addition to OAuth/API credentials. Do not enable external sends or public posts until the end-to-end test and approval policy are complete.
