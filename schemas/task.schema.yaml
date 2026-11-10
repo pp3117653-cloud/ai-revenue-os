@@ -1,0 +1,17 @@
+id: D17-B2B-001
+cycle_day: 17
+owner: B2B-05
+reviewer: B2B-06
+objective: One bounded outcome
+evidence_inputs: []
+constraints: []
+acceptance_tests: []
+output_paths: []
+model_role: research|reasoning|build|review|media|orchestration
+max_runtime_minutes: 45
+max_retries: 2
+requires_human_approval: false
+status: open|in_progress|review|accepted|blocked|failed
+blocked_reason: null
+started_at: null
+completed_at: null

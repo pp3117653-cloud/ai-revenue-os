@@ -1,0 +1,31 @@
+name: AI Revenue OS Coordinator
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 3,15 * * *'
+      # UTC: 09:15 and 21:15 Asia/Kolkata
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  checkpoint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate repository and current cycle
+        run: |
+          test -f agents/team.yaml
+          test -f schemas/task.schema.yaml
+          test -f briefs/approval-policy.md
+          echo "Coordinator checkpoint: $(date -u)"
+      - name: Create coordinator issue
+        run: |
+          gh issue create --title "Coordinator checkpoint $(date -u +%F-%H%M)" \
+            --body "Read the current backlog, verify bounded tasks, update status, and escalate blocked or approval-required work. Do not send, publish, charge, or mutate client production without approval." \
+            --label "coordinator" || true
+        env:
+          GH_TOKEN: ${{ github.token }}

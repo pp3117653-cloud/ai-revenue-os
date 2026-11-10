@@ -1,0 +1,26 @@
+name: AI Revenue OS Daily Digest
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '45 3 * * *'
+      # UTC: 09:15 Asia/Kolkata
+
+permissions:
+  contents: read
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build digest input
+        run: |
+          mkdir -p reports
+          printf 'AI Revenue OS — %s\n\n' "$(date -u +%F)" > reports/digest-latest.txt
+          printf 'Completed, blocked, failed/retried, approvals, revenue, pipeline, content, products, incidents, next priorities.\n' >> reports/digest-latest.txt
+          find reports metrics -maxdepth 2 -type f -mtime -1 -print >> reports/digest-latest.txt
+      - name: Deliver digest through approved email connector
+        run: |
+          echo "Configure the approved transactional email connector here. Do not put a mailbox password in this workflow."

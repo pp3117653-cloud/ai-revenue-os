@@ -1,0 +1,27 @@
+version: 1
+principle: Give each role only the integrations it needs. OAuth authorization is still required for every account.
+core:
+  - GitHub
+  - Secret manager
+  - Email delivery provider
+roles:
+  OPS-01: [GitHub, Secret-manager, Email-transactional]
+  B2B-01: [GitHub, Web-research, Google-Drive-read]
+  B2B-02: [GitHub, Google-Drive, Calendar-read]
+  B2B-03: [GitHub, Google-Drive, Sheets]
+  B2B-04: [GitHub, n8n-or-Make, Sheets, Test-webhook]
+  B2B-05: [GitHub, CRM-read, Email-draft-only, Calendar-read]
+  B2B-06: [GitHub, CRM-read-write, Calendar-draft-only, Email-draft-only, Payment-read-only]
+  CONTENT-01: [GitHub, Web-research, YouTube-read, Search-analytics-read]
+  CONTENT-02: [GitHub, Google-Drive, Content-calendar]
+  CONTENT-03: [GitHub, Google-Drive, Plagiarism-or-citation-review]
+  CONTENT-04: [GitHub, Media-storage, MiniMax-if-permitted]
+  CONTENT-05: [GitHub, Checkout-draft, File-storage]
+  CONTENT-06: [GitHub, YouTube-analytics, Instagram-professional-publish-draft, Website-analytics]
+forbidden_by_default:
+  - shared social passwords
+  - full mailbox deletion
+  - payment charges or refunds
+  - client production admin
+  - bulk outreach sender
+  - repository administrator access
