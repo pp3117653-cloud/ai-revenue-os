@@ -184,6 +184,12 @@ BLOCKERS=Video work is still blocked: no approved video brief exists under conte
          introduced this run. Separately, content/brand/brand-rules.md is still a PROPOSAL that
          Saksham has not ratified, so the 1200x1200 product-cover format and the 24px doc-figure
          floor are working standards for internal QA rather than approved policy.
+         NEW THIS RUN — the twelve corrected binary PNG exports are committed locally only
+         (commit 11ce392). The GitHub connector's file-write path is text-only: it base64-encodes
+         whatever string it is given, so a PNG pushed through it lands as base64 text, not as a PNG.
+         The .png files on the main branch are therefore still the broken base64 text described
+         below and must not be used. Landing the corrected binaries needs a credentialed
+         `git push` (a PAT or SSH key for pp3117653-cloud), or an owner-side copy.
 
 APPROVALS=1) Saksham — ratify content/brand/brand-rules.md, including the product-cover format and
              the 24px doc-figure floor added this run.
@@ -242,6 +248,23 @@ The SVGs themselves were unaffected and needed no change.
 label rendered 525px wide, so it ran from x 1347 to x 1873 and crossed the 1860 safe boundary by
 13px — and spilled out of its own badge pill on both sides. Caught by `outside_text_safe` on the
 first harness run, fixed by widening and shifting the badge to x 1290–1860, then re-measured.
+
+## Repository state after this run
+
+| Where | What | State |
+|---|---|---|
+| Local commit `11ce392` | every new and changed file, including the twelve corrected binary PNGs | committed |
+| Branch `main`, commit `d98c2ec` | the thirteen text files: three SVG masters, the harness, the spec, the rights register, brand rules, alt-text guide, QA checklist, both usage notes, the QA report and this checkpoint | pushed |
+| Branch `main`, commit `aab5d45` | removal of the connector write-test file | pushed |
+| Branch `main` `.png` files | the six D1-morning rasters | **still base64 text — broken, do not use** |
+
+`git push` over HTTPS fails in this environment (`could not read Username for 'https://github.com'`)
+because no PAT or SSH key is configured for `pp3117653-cloud`. The GitHub connector's file-write
+path is text-only and base64-encodes any string it is given, so it cannot carry a binary PNG
+either — a PNG pushed through it lands as base64 text, which is precisely the defect this run
+found. **The corrected binaries need a credentialed `git push` from the owner side.** The SVG
+masters are lossless and are the source of truth for every asset, so the kit is usable on the
+branch as it stands; only the flat raster exports are outstanding.
 
 ## Scope guard
 
