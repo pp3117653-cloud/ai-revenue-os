@@ -1,8 +1,9 @@
-version: 2
+version: 3
 owner_role: CEO-Owner
 coordination_role: GitHub-Actions-Coordinator
 active_ai_accounts: 8
 providers: [Google-AI, Manus, MiniMax]
+video_animation_code_author: GA-03
 members:
   - id: GA-01
     name: Market and Offer Scout
@@ -13,29 +14,29 @@ members:
     reviewer: CEO-Owner
     permissions: [github_read_write, web_research, docs_write]
   - id: GA-02
-    name: Pipeline Scout
+    name: Pipeline and Audience Researcher
     account: Google-2
     schedule: ["09:25", "21:25"]
     timezone: Asia/Kolkata
-    job: Research relevant prospects using permitted sources, score fit, maintain source and suppression records, and draft personalized outreach for CEO review only.
+    job: Research relevant prospects and audience demand using permitted sources; score fit, maintain source and suppression records, and draft outreach for CEO review only.
     reviewer: MN-02
     permissions: [github_read_write, web_research, crm_read, outreach_draft_only]
   - id: GA-03
-    name: Audience and Editorial Desk
+    name: Gemini Argon Motion Code Lab
     account: Google-3
     schedule: ["09:35", "21:35"]
     timezone: Asia/Kolkata
-    job: Research audience demand, own the content calendar, and draft long-form copy, scripts, hooks, briefs, and calls to action with citations.
+    job: The only AI account authorized to author or modify animation source code for code-generated videos. Create deterministic HTML/CSS/JavaScript/SVG/Canvas animation from an approved brief; write captions, metadata, and render instructions. Do not own unrelated content writing or publish.
     reviewer: MN-04
-    permissions: [github_read_write, web_research, content_write]
+    permissions: [github_read_write, content_write, animation_code_write]
   - id: MN-01
     name: Automation and Demo Builder
     account: Manus-1
     schedule: ["09:45", "21:45"]
     timezone: Asia/Kolkata
-    job: Design safe automation architectures, build synthetic-data demos and tests, and write deterministic HTML/CSS/JavaScript/SVG/Canvas animation source for code-generated videos.
+    job: Design safe B2B automation architectures and build synthetic-data demos, tests, and implementation documentation. May inspect or render approved animation source but must not author or modify animation source code.
     reviewer: MN-02
-    permissions: [github_read_write, docs_write, sandbox_build, animation_code_write]
+    permissions: [github_read_write, docs_write, sandbox_build, browser_render_only]
   - id: MN-02
     name: Client Success Desk
     account: Manus-2
@@ -45,19 +46,19 @@ members:
     reviewer: CEO-Owner
     permissions: [github_read_write, crm_read_write, calendar_draft_only]
   - id: MN-03
-    name: Product Workshop
+    name: Editorial and Product Workshop
     account: Manus-3
     schedule: ["10:05", "22:05"]
     timezone: Asia/Kolkata
-    job: Build validated templates, SOPs, mini-courses, digital products, sales-page drafts, delivery assets, and support FAQs.
+    job: Own non-video editorial calendars and long-form drafts; turn validated knowledge into templates, SOPs, mini-courses, digital products, sales-page drafts, delivery assets, and support FAQs. Do not write or modify animation source code.
     reviewer: GA-01
-    permissions: [github_read_write, product_write]
+    permissions: [github_read_write, content_write, product_write]
   - id: MN-04
     name: Distribution Analyst
     account: Manus-4
     schedule: ["10:15", "22:15"]
     timezone: Asia/Kolkata
-    job: Package approved content for channels, prepare publishing drafts, read analytics, track tests, and recommend stop/continue/improve decisions.
+    job: Package approved content for channels, prepare publishing drafts, read analytics, track tests, and recommend stop/continue/improve decisions. Do not write or modify animation source code.
     reviewer: CEO-Owner
     permissions: [github_read_write, analytics_read, publish_draft_only]
   - id: MM-01
@@ -65,6 +66,6 @@ members:
     account: MiniMax-1
     schedule: ["10:25", "22:25"]
     timezone: Asia/Kolkata
-    job: Create or review thumbnails, poster frames, diagrams, alt text, visual packaging, asset-rights notes, and QA for coded videos.
+    job: Create or review thumbnails, poster frames, diagrams, alt text, visual packaging, asset-rights notes, and QA for videos. Do not write or modify animation source code.
     reviewer: MN-04
     permissions: [github_read_write, media_create, visual_qa]

@@ -1,29 +1,26 @@
 # Code-generated video pipeline
-## Content workflow
-The actual video is created from animation code, not a video-generation model.
-1. Audience and Editorial Desk (Google-3) finds a useful topic, researches it, and creates the sourced, CEO-approved brief, script, timing, and call to action.
-2. **Automation and Demo Builder (Manus-1)** writes deterministic HTML/CSS/JavaScript using Canvas, SVG, or DOM animation. This is the former Motion Code Lab responsibility, reassigned to Manus-1.
-3. Manus-1 also tests the source with synthetic/local assets. Keep code review and render QA as explicit checklist steps.
-4. GitHub Actions renders the approved animation to MP4 using the repository's browser renderer and FFmpeg workflow.
-5. Thumbnail and Visual QA (MiniMax-1) creates or reviews thumbnails, cover frames, alt text, and visual packaging; it does not generate the underlying animation.
-6. Distribution Analyst (Manus-4) prepares Instagram Reels and YouTube upload drafts.
-7. Saksham approves the final MP4, title, caption, thumbnail, and platform settings.
-8. Only then may the authorized publishing connector upload to Instagram and YouTube.
+The actual video is created as animation code, not by a video-generation model. **Google-3 / GA-03 is the exclusive code author.** No other AI account may author or modify the animation source.
+
+## Workflow
+1. GA-02 (Google-2) researches audience demand and provides cited evidence.
+2. MN-03 (Manus-3) drafts a script and a complete video brief. Saksham approves the brief before coding begins.
+3. **GA-03 (Google-3 Gemini Argon Motion Code Lab) writes and owns all animation source code** in HTML/CSS/JavaScript using Canvas, SVG, or DOM animation. It creates captions, metadata, source/rights notes, and render instructions.
+4. MN-01 (Manus-1) may read-only review/test the source and run the render workflow. It must not edit or author animation source. GitHub Actions renders the approved code to MP4 using a browser renderer and FFmpeg.
+5. MM-01 (MiniMax-1) creates/reviews thumbnails, poster frames, alt text, and visual packaging only.
+6. MN-04 (Manus-4) prepares Instagram and YouTube upload drafts.
+7. Saksham approves the final MP4, title, caption, thumbnail, and platform settings before any upload.
 
 ## Repository paths
 - `content/video/briefs/`: approved video briefs and scripts.
-- `content/video/src/`: animation source code.
+- `content/video/src/`: source written only by GA-03.
 - `content/video/assets/`: rights-cleared local assets.
 - `content/video/renders/`: generated MP4 files and poster frames.
 - `content/video/qa/`: render checks, captions, duration, aspect ratio, and approval records.
 
 ## Accepted technical formats
-Use self-contained HTML/CSS/JavaScript whenever possible. Prefer SVG or Canvas for deterministic scenes. Use local fonts or system fonts. Keep external network dependencies out of render jobs unless explicitly approved. Every video must have a fixed duration, width, height, frame rate, narration/caption plan, and reproducible render command.
+Use self-contained HTML/CSS/JavaScript whenever possible. Prefer SVG or Canvas for deterministic scenes. Use local/system fonts and avoid unapproved network dependencies. Every video needs fixed duration, dimensions, frame rate, narration/caption plan, and reproducible render command.
 
-Recommended initial formats:
-- Instagram Reel: vertical 1080×1920, 9:16, MP4/H.264, with burned-in captions when appropriate.
-- YouTube Short: vertical 1080×1920, 9:16, MP4/H.264.
-- YouTube landscape: 1920×1080, 16:9, MP4/H.264.
+Recommended formats: Instagram Reel and YouTube Short at vertical 1080×1920, 9:16, MP4/H.264; YouTube landscape at 1920×1080, 16:9, MP4/H.264.
 
-## Non-negotiable gates
-No generated video is considered finished until the repository contains source code, render command, output file, poster frame, caption text, source/rights notes, QA result, and CEO approval record. Never claim a video was uploaded unless the platform returns a confirmed upload/publish result. Never upload automatically without approval.
+## Gates
+A video is not finished until the source, render command, MP4, poster frame, caption text, source/rights notes, QA result, and CEO approval record exist. Do not claim upload without platform confirmation. Never upload automatically.

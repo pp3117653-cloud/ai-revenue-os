@@ -1,16 +1,16 @@
 # Backlog
-Create one task file per day and active role using `schemas/task.schema.yaml`. The coordinator refreshes the current day from this directory. Tasks must be finite and evidence-based. The active role IDs and account owners are defined in `agents/team.yaml`.
+Create one task file per day and active role using `schemas/task.schema.yaml`. The coordinator refreshes the current day. Tasks must be finite and evidence-based. Role IDs and owners are defined in `agents/team.yaml`.
 
 ## D1–D10 initial task ownership
-- D1: CEO-Owner confirms repository and approval policy; all eight roles validate their role file and access.
-- D2: CEO-Owner completes account/plan capability audit; each of the eight roles reports its available functions and schedule status.
-- D3: GA-01 and GA-03 research candidate markets and themes.
-- D4: GA-01 selects a research-backed ICP and offer hypothesis; GA-03 selects a content theme and video brief direction.
-- D5: GA-01 conducts permitted research; GA-03 collects audience questions and drafts a sourced editorial outline.
-- D6: GA-01 refines the offer; MN-01 drafts workflow architecture and data boundaries.
-- D7: MN-03 drafts a digital product; GA-03 defines its buyer problem and content promise.
-- D8: MN-01 builds a synthetic-data demo and tests it; MN-02 reviews delivery and onboarding implications.
-- D9: GA-03 drafts landing copy and a sourced animation brief; MN-02 drafts discovery/onboarding; MN-01 creates animation code only for an approved brief.
-- D10: GA-03 maintains the calendar; GA-02 prepares outreach drafts; CEO approval is required before any send. MN-04 prepares publishing drafts; CEO approval is required before publication.
+- D1: CEO-Owner confirms repository and approval policy; all eight roles validate role files and access.
+- D2: CEO-Owner completes account/plan capability audit; all eight roles report available functions and schedule status.
+- D3: GA-01 researches B2B markets; GA-02 researches prospect and audience demand.
+- D4: GA-01 selects a research-backed ICP and offer hypothesis; MN-03 selects editorial theme and product tie-in.
+- D5: GA-01 validates business research; GA-02 collects audience questions/content demand; MN-03 drafts a sourced editorial outline.
+- D6: GA-01 refines offer; MN-01 drafts automation architecture and data boundaries.
+- D7: MN-03 drafts long-form content and a digital product using validated research.
+- D8: MN-01 builds/tests a synthetic-data B2B demo; MN-02 reviews delivery and onboarding implications.
+- D9: MN-03 prepares a sourced video script/brief; Saksham approves it; only GA-03 writes animation source. MN-04 prepares distribution drafts.
+- D10: MN-03 maintains the content calendar; GA-02 prepares outreach drafts; MN-04 prepares publishing drafts. CEO approval is required before sending or publishing.
 
-The complete D1–D60 plan remains in the parent roadmap file. Copy each day into a structured task file before enabling that day. The former Claude-owned editorial, offer strategy, architecture, and coded-video duties have been absorbed by the active roles above; do not assign tasks to the retired IDs.
+For every approved video, assign animation-source writing only to **GA-03 / Google-3**. Never assign source-code writing to Manus, Google-1, Google-2, or MiniMax.

@@ -3,13 +3,13 @@ A checkpointed operating system run by **8 AI accounts** across two revenue trac
 1. B2B automation services.
 2. Content creation and digital-product sales.
 
-The active team is 3 Google AI accounts, 4 Manus accounts, and 1 MiniMax account. Claude accounts have been removed; their strategy, editorial, technical architecture, and coded-video responsibilities are reassigned in `agents/team.yaml` and `agents/account-map.md`.
+The active team is 3 Google AI accounts, 4 Manus accounts, and 1 MiniMax account. Claude accounts are removed. **Google-3 / GA-03 is the only account that may author or modify animation source code.** Manus may render, but not edit, the approved source.
 
 ## Operating rule
 Agents do not run forever. Every task has an owner, reviewer, timebox, acceptance tests, retry limit, and blocked state. External side effects require the approval policy in `briefs/approval-policy.md`.
 
 ## Start order
-1. Keep this GitHub repository private or intentionally public.
+1. Keep this repository private or intentionally public.
 2. Add repository secrets listed in `briefs/credentials.md`; never commit credentials.
 3. Connect the eight AI accounts to the roles in `agents/team.yaml`.
 4. Connect only the role-specific integrations in `agents/connectors.yaml`.
@@ -18,7 +18,7 @@ Agents do not run forever. Every task has an owner, reviewer, timebox, acceptanc
 7. Start with D1. Do not enable outbound sending or auto-publishing until the approval gates pass.
 
 ## Repository layout
-- `agents/`: fixed names, responsibilities, account assignment, schedules, and connector assignments. See `agents/legacy-role-migration.md` before reassigning existing issues.
+- `agents/`: fixed names, responsibilities, account assignment, schedules, connector assignments, and legacy-role migration.
 - `backlog/`: day-by-day tasks.
 - `briefs/`: offer, ICP, policies, prompts, and connection instructions.
 - `research/`: cited research and experiments.
@@ -29,4 +29,4 @@ Agents do not run forever. Every task has an owner, reviewer, timebox, acceptanc
 - `.github/workflows/`: coordinator, video renderer, and daily digest schedules.
 
 ## Human approvals
-CEO approval is required for cold outreach, publishing, client access, payments/refunds, contracts, claims about client outcomes, deletion, and any task involving uncertain privacy or copyright rights.
+CEO approval is required for cold outreach, publishing, client access, payments/refunds, contracts, claims about client outcomes, deletion, and uncertain privacy or copyright actions.

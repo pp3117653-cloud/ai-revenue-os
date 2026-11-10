@@ -1,19 +1,18 @@
-version: 2
+version: 3
 principle: Give each role only the integrations it needs. OAuth authorization is required for every account.
-core:
-  - GitHub
-  - Secret manager
-  - Email delivery provider
+core: [GitHub, Secret-manager, Email-delivery-provider]
 roles:
   GA-01: [GitHub, Web-research, Google-Drive-read, Google-Drive-draft]
-  GA-02: [GitHub, Web-research, CRM-read, Email-draft-only, Calendar-read]
-  GA-03: [GitHub, Web-research, YouTube-read, Search-analytics-read, Google-Drive-draft]
-  MN-01: [GitHub, Google-Drive, Sheets, n8n-or-Make-alternative, Test-webhook, Browser-renderer, FFmpeg]
+  GA-02: [GitHub, Web-research, CRM-read, Email-draft-only, Calendar-read, YouTube-read, Search-analytics-read]
+  GA-03: [GitHub, Google-Drive, Content-briefs, Animation-code-author]
+  MN-01: [GitHub, Google-Drive, Sheets, n8n-or-Make-alternative, Test-webhook, Browser-renderer, FFmpeg, Video-source-read-only]
   MN-02: [GitHub, CRM-read-write, Calendar-draft-only, Email-draft-only, Payment-read-only]
-  MN-03: [GitHub, Checkout-draft, File-storage]
+  MN-03: [GitHub, Google-Drive, Content-calendar, Product-write, File-storage]
   MN-04: [GitHub, YouTube-analytics, Instagram-professional-publish-draft, Website-analytics, Video-storage]
   MM-01: [GitHub, Media-storage, MiniMax-if-permitted, Thumbnail-QA]
+video_animation_code_author: GA-03
 forbidden_by_default:
+  - animation_source_write_for_any_account_except_GA-03
   - shared social passwords
   - full mailbox deletion
   - payment charges or refunds
