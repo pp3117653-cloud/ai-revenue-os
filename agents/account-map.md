@@ -1,128 +1,62 @@
 # Final account assignment map
-
 Owner: Saksham
 Repository: https://github.com/pp3117653-cloud/ai-revenue-os
 Timezone: Asia/Kolkata
 
-Use account labels below in your own password manager. Do not share credentials between accounts.
+This operating system uses **8 AI accounts total**: 3 Google AI, 4 Manus, and 1 MiniMax. Claude accounts and their separate schedules are removed. Former strategy, editorial, architecture, and coded-video responsibilities are reassigned below.
+
+Use these labels in your own password manager. Never share credentials between accounts.
 
 ## Google AI — 3 accounts
 
-### Google-1 — B2B Intelligence
+### Google-1 — Market and Offer Scout (GA-01)
+Owns ICP and market research, recurring pains, buying signals, competitors, cited evidence, offer positioning, scope, pricing hypotheses, proof plans, and objections.
 
-Assigned role: **Signal Scout — B2B-01**
+Schedule: **09:15 and 21:15 Asia/Kolkata**.
 
-Best work: ICP research, market research, competitor scanning, buying signals, cited source collection, and business-pain analysis.
+### Google-2 — Pipeline Scout (GA-02)
+Owns permitted prospect research, fit scoring, public business contact/source records, suppression checks, and personalized outreach drafts. It never sends outreach.
 
-Schedule: **09:15 and 21:15 Asia/Kolkata**
+Schedule: **09:25 and 21:25 Asia/Kolkata**.
 
-### Google-2 — Growth Intelligence
+### Google-3 — Audience and Editorial Desk (GA-03)
+Owns audience and search-demand research, content themes/calendar, long-form drafts, scripts, video briefs, hooks, and calls to action. Factual claims require sources or explicit labeling as opinion/example/hypothesis.
 
-Assigned role: **Pipeline Scout — B2B-05**
-
-Best work: relevant-business research, fit scoring, public business information, permitted prospect research, and outreach drafts. It must never send outreach automatically.
-
-Schedule: **09:35 and 21:35 Asia/Kolkata**
-
-### Google-3 — Audience Intelligence
-
-Assigned role: **Audience Miner — CONTENT-01**
-
-Best work: audience questions, search-demand research, content gaps, source collection, and topic opportunities.
-
-Schedule: **09:45 and 21:45 Asia/Kolkata**
-
-## Claude — 4 accounts
-
-### Claude-1 — Commercial Strategist
-
-Assigned role: **Offer Forge — B2B-02**
-
-Best work: positioning, offer design, pricing hypotheses, objections, proposals, and sales strategy.
-
-Schedule: **09:20 and 21:20 Asia/Kolkata**
-
-### Claude-2 — Systems Architect
-
-Assigned role: **Flow Architect — B2B-03**
-
-Best work: workflow architecture, technical reasoning, data boundaries, security, failure handling, rollback, and implementation specifications.
-
-Schedule: **09:25 and 21:25 Asia/Kolkata**
-
-### Claude-3 — Editorial and Longform Lead
-
-Assigned role: **Editorial and Longform Lead — CONTENT-02**
-
-Best work: content strategy, editorial calendar, long-form drafts, hooks, formats, scripts, calls to action, repurposing, and quality direction.
-
-Schedule: **09:50 and 21:50 Asia/Kolkata**
-
-### Claude-4 — Motion Code Lab
-
-Assigned role: **Motion Code Lab — CONTENT-03**
-
-Best work: real code-generated videos using HTML/CSS/JavaScript, Canvas, SVG, captions, scene timing, render instructions, and video QA metadata. It does not use a video-generation model.
-
-Schedule: **09:55 and 21:55 Asia/Kolkata**
+Schedule: **09:35 and 21:35 Asia/Kolkata**.
 
 ## Manus — 4 accounts
 
-### Manus-1 — Prototype Engineer
+### Manus-1 — Automation and Demo Builder (MN-01)
+Owns safe workflow architecture, synthetic-data demos, tests, implementation documentation, and the former Motion Code Lab work: deterministic HTML/CSS/JavaScript/SVG/Canvas animation source, captions, metadata, render instructions, and video QA records. GitHub Actions renders code-generated videos. This role does not use a video-generation model and does not publish.
 
-Assigned role: **Demo Builder — B2B-04**
+Schedule: **09:45 and 21:45 Asia/Kolkata**.
 
-Best work: repository work, synthetic-data demos, tests, reusable templates, connector setup drafts, and implementation checklists.
+### Manus-2 — Client Success Desk (MN-02)
+Owns discovery preparation, proposals, onboarding, delivery QA, handoff documents, renewal/referral drafts, and review of B2B lead records.
 
-Schedule: **09:30 and 21:30 Asia/Kolkata**
+Schedule: **09:55 and 21:55 Asia/Kolkata**.
 
-### Manus-2 — Client Delivery Manager
+### Manus-3 — Product Workshop (MN-03)
+Owns digital product templates, SOPs, checklists, mini-courses, sales-page drafts, delivery instructions, and support FAQs.
 
-Assigned role: **Client Success Desk — B2B-06**
+Schedule: **10:05 and 22:05 Asia/Kolkata**.
 
-Best work: discovery preparation, proposals, onboarding, delivery QA, handoff documentation, renewals, and referral drafts.
+### Manus-4 — Distribution Analyst (MN-04)
+Owns platform packaging, publishing drafts, analytics summaries, experiment tracking, and distribution recommendations. All publishing remains CEO-approved.
 
-Schedule: **09:40 and 21:40 Asia/Kolkata**
-
-### Manus-3 — Product Builder
-
-Assigned role: **Product Workshop — CONTENT-05**
-
-Best work: templates, SOPs, checklists, mini-courses, product packaging, support FAQs, and digital-product delivery assets.
-
-Schedule: **10:05 and 22:05 Asia/Kolkata**
-
-### Manus-4 — Distribution and Operations Analyst
-
-Assigned role: **Distribution Analyst — CONTENT-06**
-
-Best work: metrics, dashboards, publishing drafts, platform-specific packaging, experiment tracking, and stop/continue/improve decisions.
-
-Schedule: **10:10 and 22:10 Asia/Kolkata**
+Schedule: **10:15 and 22:15 Asia/Kolkata**.
 
 ## MiniMax — 1 account
 
-### MiniMax-1 — Thumbnail and Visual QA
+### MiniMax-1 — Thumbnail and Visual QA (MM-01)
+Owns thumbnails, poster frames, diagrams, alt text, visual packaging, rights notes, and QA. It supports but does not generate the underlying code-animated video or publish it.
 
-Assigned role: **Thumbnail and Visual QA — CONTENT-04**
+Schedule: **10:25 and 22:25 Asia/Kolkata**.
 
-Best work: thumbnails, poster frames, diagrams, alt text, visual packaging, and QA. It does not generate the actual video.
+## Operating safeguards
 
-Schedule: **10:00 and 22:00 Asia/Kolkata**
-
-## Why this split is optimal
-
-Google accounts handle broad research and information gathering. Claude accounts handle strategy, architecture, editorial judgment, long-form writing, and code-generated motion. Manus accounts handle repository execution, delivery operations, product assembly, and analytics. MiniMax is limited to thumbnails and visual QA; it does not generate the actual videos.
-
-The GitHub Actions workflow is the coordinator. It is not counted as an additional AI account. Every account must read only its assigned issues, update evidence, and stop after a bounded run. External actions remain CEO-approved.
+All eight accounts work in bounded runs of at most 45 minutes, retry a task no more than twice, save a checkpoint, and stop. If blocked, they record the exact reason rather than looping. GitHub Actions is the coordinator, not an additional AI account. External actions remain CEO-approved, including outreach, publishing, client production access, contracts, and payments.
 
 ## Connection order
 
-Connect accounts in this order:
-
-1. Google-1, Google-2, Google-3.
-2. Claude-1, Claude-2, Claude-3, Claude-4.
-3. Manus-1, Manus-2, Manus-3, Manus-4.
-4. MiniMax-1.
-
-After each account is connected, paste its matching master prompt, create its matching schedule, and run one read-only dry run. Do not activate the next stage until all 12 dry runs pass.
+Connect Google-1 through Google-3, then Manus-1 through Manus-4, then MiniMax-1. For each account, use the matching prompt in `briefs/master-prompts.md`, create its assigned recurring schedule, and run a read-only dry run. Enable external-action connectors only after all eight dry runs pass and the owner explicitly approves.

@@ -1,76 +1,70 @@
-version: 1
+version: 2
 owner_role: CEO-Owner
 coordination_role: GitHub-Actions-Coordinator
+active_ai_accounts: 8
+providers: [Google-AI, Manus, MiniMax]
 members:
-  - id: B2B-01
-    name: Signal Scout
-    job: Research one ICP, recurring pains, buying signals, competitors, and cited evidence.
-    primary_model: Google-1
-    reviewer: B2B-02
-    permissions: [github_read_write, web_research]
-  - id: B2B-02
-    name: Offer Forge
-    job: Convert evidence into one offer, scope, price, proof plan, and objection map.
-    primary_model: Claude-1
-    reviewer: B2B-06
-    permissions: [github_read_write, web_research]
-  - id: B2B-03
-    name: Flow Architect
-    job: Design automation workflows, data boundaries, failure handling, security, and handoff docs.
-    primary_model: Claude-2
-    reviewer: B2B-04
-    permissions: [github_read_write, docs_write]
-  - id: B2B-04
-    name: Demo Builder
-    job: Build synthetic-data demos, reusable templates, tests, and implementation checklists.
-    primary_model: Manus-1
-    reviewer: B2B-03
-    permissions: [github_read_write, sandbox_build]
-  - id: B2B-05
+  - id: GA-01
+    name: Market and Offer Scout
+    account: Google-1
+    schedule: ["09:15", "21:15"]
+    timezone: Asia/Kolkata
+    job: Research ICPs, pains, buying signals, competitors, and evidence; turn validated findings into a narrow offer, pricing hypothesis, scope, proof plan, and objection map.
+    reviewer: CEO-Owner
+    permissions: [github_read_write, web_research, docs_write]
+  - id: GA-02
     name: Pipeline Scout
-    job: Find permissioned/relevant prospects, score fit, draft compliant outreach, and maintain suppression records.
-    primary_model: Google-2
-    reviewer: B2B-06
-    permissions: [github_read_write, crm_read, outreach_draft_only]
-  - id: B2B-06
+    account: Google-2
+    schedule: ["09:25", "21:25"]
+    timezone: Asia/Kolkata
+    job: Research relevant prospects using permitted sources, score fit, maintain source and suppression records, and draft personalized outreach for CEO review only.
+    reviewer: MN-02
+    permissions: [github_read_write, web_research, crm_read, outreach_draft_only]
+  - id: GA-03
+    name: Audience and Editorial Desk
+    account: Google-3
+    schedule: ["09:35", "21:35"]
+    timezone: Asia/Kolkata
+    job: Research audience demand, own the content calendar, and draft long-form copy, scripts, hooks, briefs, and calls to action with citations.
+    reviewer: MN-04
+    permissions: [github_read_write, web_research, content_write]
+  - id: MN-01
+    name: Automation and Demo Builder
+    account: Manus-1
+    schedule: ["09:45", "21:45"]
+    timezone: Asia/Kolkata
+    job: Design safe automation architectures, build synthetic-data demos and tests, and write deterministic HTML/CSS/JavaScript/SVG/Canvas animation source for code-generated videos.
+    reviewer: MN-02
+    permissions: [github_read_write, docs_write, sandbox_build, animation_code_write]
+  - id: MN-02
     name: Client Success Desk
-    job: Run discovery, proposals, onboarding, QA, delivery evidence, referrals, and renewal drafts.
-    primary_model: Manus-2
+    account: Manus-2
+    schedule: ["09:55", "21:55"]
+    timezone: Asia/Kolkata
+    job: Prepare discovery, proposals, onboarding, delivery QA, handoff, renewals, referral drafts, and review of B2B pipeline records.
     reviewer: CEO-Owner
     permissions: [github_read_write, crm_read_write, calendar_draft_only]
-  - id: CONTENT-01
-    name: Audience Miner
-    job: Research audience questions, search demand, content gaps, and cited sources.
-    primary_model: Google-3
-    reviewer: CONTENT-02
-    permissions: [github_read_write, web_research]
-  - id: CONTENT-02
-    name: Editorial and Longform Lead
-    job: Own the calendar, long-form drafts, themes, formats, hooks, scripts, and calls to action.
-    primary_model: Claude-3
-    reviewer: CONTENT-06
-    permissions: [github_read_write, content_write]
-  - id: CONTENT-03
-    name: Motion Code Lab
-    job: Write deterministic HTML/CSS/JavaScript/SVG/Canvas animation code, captions, render instructions, and video QA metadata.
-    primary_model: Claude-4
-    reviewer: CONTENT-06
-    permissions: [github_read_write, content_write, animation_code_write]
-  - id: CONTENT-04
-    name: Thumbnail and Visual QA
-    job: Create or review thumbnails, cover frames, diagrams, alt text, and visual packaging; never generate the actual video.
-    primary_model: MiniMax-1
-    reviewer: CONTENT-06
-    permissions: [github_read_write, media_create, visual_qa]
-  - id: CONTENT-05
+  - id: MN-03
     name: Product Workshop
-    job: Turn validated knowledge into templates, SOPs, mini-courses, checkout copy, and delivery assets.
-    primary_model: Manus-3
-    reviewer: B2B-02
+    account: Manus-3
+    schedule: ["10:05", "22:05"]
+    timezone: Asia/Kolkata
+    job: Build validated templates, SOPs, mini-courses, digital products, sales-page drafts, delivery assets, and support FAQs.
+    reviewer: GA-01
     permissions: [github_read_write, product_write]
-  - id: CONTENT-06
+  - id: MN-04
     name: Distribution Analyst
-    job: Prepare approved publishing packages, measure conversion, and recommend stop/continue/improve.
-    primary_model: Manus-4
+    account: Manus-4
+    schedule: ["10:15", "22:15"]
+    timezone: Asia/Kolkata
+    job: Package approved content for channels, prepare publishing drafts, read analytics, track tests, and recommend stop/continue/improve decisions.
     reviewer: CEO-Owner
     permissions: [github_read_write, analytics_read, publish_draft_only]
+  - id: MM-01
+    name: Thumbnail and Visual QA
+    account: MiniMax-1
+    schedule: ["10:25", "22:25"]
+    timezone: Asia/Kolkata
+    job: Create or review thumbnails, poster frames, diagrams, alt text, visual packaging, asset-rights notes, and QA for coded videos.
+    reviewer: MN-04
+    permissions: [github_read_write, media_create, visual_qa]

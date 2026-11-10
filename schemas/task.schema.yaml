@@ -1,7 +1,7 @@
-id: D17-B2B-001
+id: D17-GA-02-001
 cycle_day: 17
-owner: B2B-05
-reviewer: B2B-06
+owner: GA-02
+reviewer: MN-02
 objective: One bounded outcome
 evidence_inputs: []
 constraints: []

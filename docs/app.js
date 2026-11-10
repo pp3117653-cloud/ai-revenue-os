@@ -1,13 +1,15 @@
 const REPO = 'pp3117653-cloud/ai-revenue-os';
 const roles = [
- ['B2B-01','Signal Scout','Google-1 · research'],['B2B-02','Offer Forge','Claude-1 · strategy'],['B2B-03','Flow Architect','Claude-2 · architecture'],['B2B-04','Demo Builder','Manus-1 · build'],['B2B-05','Pipeline Scout','Google-2 · pipeline'],['B2B-06','Client Success Desk','Manus-2 · delivery'],['CONTENT-01','Audience Miner','Google-3 · research'],['CONTENT-02','Editorial and Longform Lead','Claude-3 · editorial'],['CONTENT-03','Motion Code Lab','Claude-4 · coded video'],['CONTENT-04','Thumbnail and Visual QA','MiniMax-1 · visual QA'],['CONTENT-05','Product Workshop','Manus-3 · products'],['CONTENT-06','Distribution Analyst','Manus-4 · analytics']
+ ['GA-01','Market and Offer Scout','Google-1 · research + offer'],['GA-02','Pipeline Scout','Google-2 · prospects'],['GA-03','Audience and Editorial Desk','Google-3 · research + writing'],['MN-01','Automation and Demo Builder','Manus-1 · automation + coded video'],['MN-02','Client Success Desk','Manus-2 · delivery'],['MN-03','Product Workshop','Manus-3 · products'],['MN-04','Distribution Analyst','Manus-4 · analytics'],['MM-01','Thumbnail and Visual QA','MiniMax-1 · visuals']
 ].map(([id,name,model])=>({id,name,model}));
-const tasks = JSON.parse(localStorage.getItem('aiRevenueTasks') || '[]');
+const legacyRoleMap = {'B2B-01':'GA-01','B2B-02':'GA-01','B2B-03':'MN-01','B2B-04':'MN-01','B2B-05':'GA-02','B2B-06':'MN-02','CONTENT-01':'GA-03','CONTENT-02':'GA-03','CONTENT-03':'MN-01','CONTENT-04':'MM-01','CONTENT-05':'MN-03','CONTENT-06':'MN-04'};
+const savedTasks = JSON.parse(localStorage.getItem('aiRevenueTasks') || '[]');
+const tasks = savedTasks.map(task => ({...task, owner: legacyRoleMap[task.owner] || task.owner}));
+if (JSON.stringify(tasks) !== JSON.stringify(savedTasks)) localStorage.setItem('aiRevenueTasks', JSON.stringify(tasks));
 const demoTasks = [
- {id:'D1-B2B-01',title:'Research five candidate B2B ICPs with cited evidence',owner:'B2B-01',status:'open',day:1,approval:false},
- {id:'D1-B2B-01',title:'Research five candidate B2B ICPs with cited evidence',owner:'B2B-01',status:'open',day:1,approval:false},
- {id:'D1-CONTENT-01',title:'Research five content themes with audience questions',owner:'CONTENT-01',status:'review',day:1,approval:false},
- {id:'D10-B2B-05',title:'Draft ten personalized outreach messages for review',owner:'B2B-05',status:'blocked',day:10,approval:true}
+ {id:'D1-GA-01',title:'Research candidate B2B ICPs and validate offer hypotheses',owner:'GA-01',status:'open',day:1,approval:false},
+ {id:'D1-GA-03',title:'Research audience questions and draft a sourced content theme',owner:'GA-03',status:'review',day:1,approval:false},
+ {id:'D10-GA-02',title:'Draft personalized outreach for CEO review',owner:'GA-02',status:'blocked',day:10,approval:true}
 ];
 const allTasks = [...demoTasks, ...tasks];
 const $ = s => document.querySelector(s);
@@ -39,7 +41,7 @@ $('#createIssueBtn').addEventListener('click',(e)=>{
  e.preventDefault();
  const owner=$('#taskOwner').value,title=$('#taskTitle').value.trim(),body=$('#taskBody').value.trim(),approval=$('#approvalRequired').checked;
  if(!title||!body)return;
- const r=role(owner);const issueBody=`## Assigned operator\n${r.id} — ${r.name}\n\n## Definition of done\n${body}\n\n## Controls\n- Model lane: ${r.model}\n- Approval required: ${approval?'YES — CEO review before external action':'No external side effect requested'}\n- Max retries: 2\n- Report evidence in the repository before marking accepted.`;
+ const r=role(owner);const issueBody=`## Assigned operator\n${r.id} — ${r.name}\n\n## Definition of done\n${body}\n\n## Controls\n- Account/model lane: ${r.model}\n- Approval required: ${approval?'YES — CEO review before external action':'No external side effect requested'}\n- Max retries: 2\n- Report evidence in the repository before marking accepted.`;
  const url=`https://github.com/${REPO}/issues/new?title=${encodeURIComponent(`[${owner}] ${title}`)}&body=${encodeURIComponent(issueBody)}&labels=${encodeURIComponent('task')}`;
  const saved={id:`MANUAL-${Date.now()}`,title,owner,status:'open',day:Number($('#dayNumber').textContent),approval};tasks.push(saved);localStorage.setItem('aiRevenueTasks',JSON.stringify(tasks));window.open(url,'_blank');$('#taskDialog').close();renderTasks();renderMetrics();
 });

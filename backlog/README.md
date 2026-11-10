@@ -1,18 +1,16 @@
 # Backlog
-
-Create one task file per day and role using `schemas/task.schema.yaml`. The coordinator refreshes the current day from this directory. The task files must remain finite and evidence-based.
+Create one task file per day and active role using `schemas/task.schema.yaml`. The coordinator refreshes the current day from this directory. Tasks must be finite and evidence-based. The active role IDs and account owners are defined in `agents/team.yaml`.
 
 ## D1–D10 initial task ownership
+- D1: CEO-Owner confirms repository and approval policy; all eight roles validate their role file and access.
+- D2: CEO-Owner completes account/plan capability audit; each of the eight roles reports its available functions and schedule status.
+- D3: GA-01 and GA-03 research candidate markets and themes.
+- D4: GA-01 selects a research-backed ICP and offer hypothesis; GA-03 selects a content theme and video brief direction.
+- D5: GA-01 conducts permitted research; GA-03 collects audience questions and drafts a sourced editorial outline.
+- D6: GA-01 refines the offer; MN-01 drafts workflow architecture and data boundaries.
+- D7: MN-03 drafts a digital product; GA-03 defines its buyer problem and content promise.
+- D8: MN-01 builds a synthetic-data demo and tests it; MN-02 reviews delivery and onboarding implications.
+- D9: GA-03 drafts landing copy and a sourced animation brief; MN-02 drafts discovery/onboarding; MN-01 creates animation code only for an approved brief.
+- D10: GA-03 maintains the calendar; GA-02 prepares outreach drafts; CEO approval is required before any send. MN-04 prepares publishing drafts; CEO approval is required before publication.
 
-- D1: OPS-01 repository and approval policy; all agents validate their role file.
-- D2: OPS-01 account/plan audit; every role supplies its permitted capability matrix.
-- D3: B2B-01 and CONTENT-01 candidate markets and themes.
-- D4: B2B-02 selects ICP and offer; CONTENT-02 selects content theme.
-- D5: B2B-01 runs permissioned interviews/research; CONTENT-01 collects audience questions.
-- D6: B2B-02 prices the offer; B2B-03 drafts workflow scope.
-- D7: CONTENT-05 drafts the product; CONTENT-02 defines buyer and promise.
-- D8: B2B-04 builds synthetic-data demo; B2B-03 reviews it.
-- D9: CONTENT-03 drafts landing copy; B2B-06 drafts discovery/onboarding.
-- D10: CONTENT-02 calendar; B2B-05 outreach drafts; CEO approval required before any send.
-
-The complete D1–D60 plan remains in the parent roadmap file. Copy each day into a structured task file before enabling that day.
+The complete D1–D60 plan remains in the parent roadmap file. Copy each day into a structured task file before enabling that day. The former Claude-owned editorial, offer strategy, architecture, and coded-video duties have been absorbed by the active roles above; do not assign tasks to the retired IDs.
