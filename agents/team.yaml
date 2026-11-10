@@ -5,72 +5,72 @@ members:
   - id: B2B-01
     name: Signal Scout
     job: Research one ICP, recurring pains, buying signals, competitors, and cited evidence.
-    primary_model: Google-AI-Research
+    primary_model: Google-1
     reviewer: B2B-02
     permissions: [github_read_write, web_research]
   - id: B2B-02
     name: Offer Forge
     job: Convert evidence into one offer, scope, price, proof plan, and objection map.
-    primary_model: Claude-Strategy
+    primary_model: Claude-1
     reviewer: B2B-06
     permissions: [github_read_write, web_research]
   - id: B2B-03
     name: Flow Architect
     job: Design automation workflows, data boundaries, failure handling, security, and handoff docs.
-    primary_model: Claude-Architecture
+    primary_model: Claude-2
     reviewer: B2B-04
     permissions: [github_read_write, docs_write]
   - id: B2B-04
     name: Demo Builder
     job: Build synthetic-data demos, reusable templates, tests, and implementation checklists.
-    primary_model: Manus-Builder
+    primary_model: Manus-1
     reviewer: B2B-03
     permissions: [github_read_write, sandbox_build]
   - id: B2B-05
     name: Pipeline Scout
     job: Find permissioned/relevant prospects, score fit, draft compliant outreach, and maintain suppression records.
-    primary_model: Google-AI-Research
+    primary_model: Google-2
     reviewer: B2B-06
     permissions: [github_read_write, crm_read, outreach_draft_only]
   - id: B2B-06
     name: Client Success Desk
     job: Run discovery, proposals, onboarding, QA, delivery evidence, referrals, and renewal drafts.
-    primary_model: Manus-Delivery
+    primary_model: Manus-2
     reviewer: CEO-Owner
     permissions: [github_read_write, crm_read_write, calendar_draft_only]
   - id: CONTENT-01
     name: Audience Miner
     job: Research audience questions, search demand, content gaps, and cited sources.
-    primary_model: Google-AI-Research
+    primary_model: Google-3
     reviewer: CONTENT-02
     permissions: [github_read_write, web_research]
   - id: CONTENT-02
     name: Editorial Pilot
     job: Own the calendar, themes, formats, hooks, and calls to action.
-    primary_model: Claude-Editorial
+    primary_model: Claude-3
     reviewer: CONTENT-06
     permissions: [github_read_write, content_write]
   - id: CONTENT-03
     name: Longform Foundry
     job: Draft original articles, newsletters, scripts, and lessons with fact checks.
-    primary_model: Claude-Writer
+    primary_model: Claude-4
     reviewer: CONTENT-02
     permissions: [github_read_write, content_write]
   - id: CONTENT-04
     name: Visual Spark
     job: Create approved thumbnails, carousels, short-video drafts, diagrams, and brand assets.
-    primary_model: MiniMax-Media
+    primary_model: MiniMax-1
     reviewer: CONTENT-06
     permissions: [github_read_write, media_create]
   - id: CONTENT-05
     name: Product Workshop
     job: Turn validated knowledge into templates, SOPs, mini-courses, checkout copy, and delivery assets.
-    primary_model: Manus-Builder
+    primary_model: Manus-3
     reviewer: B2B-02
     permissions: [github_read_write, product_write]
   - id: CONTENT-06
     name: Distribution Analyst
     job: Prepare approved publishing packages, measure conversion, and recommend stop/continue/improve.
-    primary_model: Manus-Analytics
+    primary_model: Manus-4
     reviewer: CEO-Owner
     permissions: [github_read_write, analytics_read, publish_draft_only]
