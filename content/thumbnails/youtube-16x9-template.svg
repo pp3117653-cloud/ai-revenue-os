@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">AI Revenue OS YouTube thumbnail template, 16 by 9</title>
+  <desc id="dsc">Landscape video thumbnail layout on a near-black background with a lime accent bar along the top edge. Upper left holds a small uppercase lime label reading AI Revenue OS, below it a large white two-line headline placeholder, a grey supporting line, a cyan accent rule and a lime rounded duration badge. The right half holds a dashed key-visual slot for a poster frame or diagram. Safe margin: keep text 96 pixels from every edge and out of the bottom-right overlay zone.</desc>
+
+  <rect width="1920" height="1080" fill="#0b0d12"/>
+  <rect x="0" y="0" width="1920" height="8" fill="#c7f36a"/>
+
+  <!-- Brand rail -->
+  <rect x="96" y="300" width="14" height="240" rx="7" fill="#c7f36a"/>
+
+  <!-- Eyebrow -->
+  <text x="150" y="252" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="34" font-weight="800" letter-spacing="7" fill="#c7f36a">AI REVENUE OS</text>
+
+  <!-- Headline placeholder -->
+  <text class="headline" x="146" y="392" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="104" font-weight="800" letter-spacing="-4" fill="#eef2f7">HEADLINE HERE</text>
+  <text class="headline" x="146" y="516" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="104" font-weight="800" letter-spacing="-4" fill="#eef2f7">SECOND LINE</text>
+
+  <!-- Supporting line -->
+  <text x="150" y="596" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="42" font-weight="500" fill="#9ca8ba">One line that earns the click</text>
+
+  <!-- Accent rule -->
+  <rect x="150" y="638" width="150" height="10" rx="5" fill="#78e0d2"/>
+
+  <!-- Duration badge -->
+  <rect x="150" y="690" width="228" height="72" rx="36" fill="#c7f36a"/>
+  <text x="264" y="740" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="40" font-weight="800" fill="#18200e">90 SEC</text>
+
+  <!-- Key visual slot -->
+  <rect x="1090" y="180" width="734" height="720" rx="28" fill="#12161e" stroke="#556378" stroke-width="4" stroke-dasharray="18 14"/>
+  <text x="1457" y="500" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="40" font-weight="700" fill="#9ca8ba">KEY VISUAL</text>
+  <text x="1457" y="554" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" fill="#9ca8ba">poster frame or diagram</text>
+  <rect x="1260" y="622" width="394" height="76" rx="38" fill="#181d27" stroke="#556378" stroke-width="3"/>
+  <text x="1457" y="672" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="28" font-weight="600" fill="#78e0d2">DROP IMAGE 16:9</text>
+
+  <!-- Footer -->
+  <rect x="96" y="944" width="1728" height="4" fill="#2a3342"/>
+  <text x="96" y="990" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="28" font-weight="600" fill="#9ca8ba">Saksham &#183; AI Revenue OS</text>
+  <text x="1500" y="990" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="28" font-weight="600" fill="#9ca8ba">MM-01 template v1</text>
+</svg>

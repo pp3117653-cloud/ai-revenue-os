@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">How work flows through AI Revenue OS</title>
+  <desc id="dsc">A six-step vertical flow diagram. Step one, GA-02 audience and prospect research, with GA-01 offer research feeding in from the left. Step two, MN-03 editorial brief and script, followed by an amber approval gate where the CEO approves the brief. Step three, GA-03 animation source, outlined in lime as the only authorised author, with MN-01 read-only render check alongside. Step four, GitHub Actions renders the MP4 and poster frames. Step five, MM-01 thumbnails, alt text and visual QA, with MN-04 publish drafts alongside. Step six, the CEO approves title and caption, then publishes. A red strip at the bottom states that only GA-03 may create or modify files under content/video/src/ and every other account is read-only there.</desc>
+
+  <rect width="1920" height="1080" fill="#0b0d12"/>
+  <rect x="0" y="0" width="1920" height="8" fill="#c7f36a"/>
+
+  <!-- Title -->
+  <text x="90" y="116" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="52" font-weight="800" letter-spacing="-1" fill="#eef2f7">How work flows through AI Revenue OS</text>
+  <text x="90" y="164" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="28" font-weight="500" fill="#9ca8ba">Eight accounts, one approval gate at every external boundary. Only GA-03 writes animation source.</text>
+
+  <!-- ============ Spine ============ -->
+  <g>
+    <!-- 1 -->
+    <rect x="600" y="200" width="620" height="96" rx="16" fill="#181d27" stroke="#556378" stroke-width="3"/>
+    <text x="632" y="242" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="800" letter-spacing="2" fill="#c7f36a">GA-02</text>
+    <text x="632" y="278" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" font-weight="700" fill="#eef2f7">Audience and prospect research</text>
+
+    <!-- 2 -->
+    <rect x="600" y="324" width="620" height="96" rx="16" fill="#181d27" stroke="#556378" stroke-width="3"/>
+    <text x="632" y="366" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="800" letter-spacing="2" fill="#c7f36a">MN-03</text>
+    <text x="632" y="402" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" font-weight="700" fill="#eef2f7">Editorial brief and script</text>
+
+    <!-- 3 : sole animation-code author -->
+    <rect x="600" y="448" width="620" height="96" rx="16" fill="#181d27" stroke="#c7f36a" stroke-width="4"/>
+    <text x="632" y="490" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="800" letter-spacing="2" fill="#c7f36a">GA-03</text>
+    <text x="632" y="526" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" font-weight="700" fill="#eef2f7">Animation source</text>
+    <rect x="1020" y="470" width="180" height="52" rx="26" fill="#c7f36a"/>
+    <text x="1110" y="504" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="22" font-weight="800" fill="#18200e">ONLY AUTHOR</text>
+
+    <!-- 4 -->
+    <rect x="600" y="572" width="620" height="96" rx="16" fill="#181d27" stroke="#556378" stroke-width="3"/>
+    <text x="632" y="614" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="800" letter-spacing="2" fill="#78e0d2">GITHUB ACTIONS</text>
+    <text x="632" y="650" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" font-weight="700" fill="#eef2f7">Render MP4 and poster frames</text>
+
+    <!-- 5 -->
+    <rect x="600" y="696" width="620" height="96" rx="16" fill="#181d27" stroke="#556378" stroke-width="3"/>
+    <text x="632" y="738" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="800" letter-spacing="2" fill="#c7f36a">MM-01</text>
+    <text x="632" y="774" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" font-weight="700" fill="#eef2f7">Thumbnails, alt text, visual QA</text>
+
+    <!-- 6 -->
+    <rect x="600" y="820" width="620" height="96" rx="16" fill="#18161e" stroke="#ffca68" stroke-width="3"/>
+    <text x="632" y="862" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="800" letter-spacing="2" fill="#ffca68">SAKSHAM</text>
+    <text x="632" y="898" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" font-weight="700" fill="#eef2f7">Approve, then publish</text>
+  </g>
+
+  <!-- ============ Spine connectors ============ -->
+  <g stroke="#556378" stroke-width="3" fill="none">
+    <path d="M910 300 L910 316"/>
+    <path d="M910 424 L910 440"/>
+    <path d="M910 548 L910 564"/>
+    <path d="M910 672 L910 688"/>
+    <path d="M910 796 L910 812"/>
+  </g>
+  <g fill="#556378">
+    <path d="M901 314 L919 314 L910 326 Z"/>
+    <path d="M901 438 L919 438 L910 450 Z"/>
+    <path d="M901 562 L919 562 L910 574 Z"/>
+    <path d="M901 686 L919 686 L910 698 Z"/>
+    <path d="M901 810 L919 810 L910 822 Z"/>
+  </g>
+
+  <!-- ============ Left chips ============ -->
+  <g>
+    <rect x="90" y="216" width="470" height="64" rx="14" fill="#12161e" stroke="#556378" stroke-width="3"/>
+    <text x="118" y="256" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="23" font-weight="600" fill="#9ca8ba">GA-01 &#183; offer research</text>
+    <path d="M568 248 L592 248" stroke="#556378" stroke-width="3" stroke-dasharray="8 8"/>
+
+    <rect x="90" y="464" width="470" height="64" rx="14" fill="#12161e" stroke="#556378" stroke-width="3"/>
+    <text x="118" y="504" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="23" font-weight="600" fill="#9ca8ba">MN-01 &#183; render check, read-only</text>
+    <path d="M568 496 L592 496" stroke="#556378" stroke-width="3" stroke-dasharray="8 8"/>
+  </g>
+
+  <!-- ============ Right chips ============ -->
+  <g>
+    <rect x="1290" y="340" width="520" height="64" rx="14" fill="#12161e" stroke="#ffca68" stroke-width="3"/>
+    <text x="1316" y="380" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="23" font-weight="700" fill="#ffca68">GATE &#183; CEO approves the brief</text>
+    <path d="M1228 372 L1282 372" stroke="#ffca68" stroke-width="3" stroke-dasharray="8 8"/>
+
+    <rect x="1290" y="712" width="520" height="64" rx="14" fill="#12161e" stroke="#556378" stroke-width="3"/>
+    <text x="1316" y="752" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="23" font-weight="600" fill="#9ca8ba">MN-04 &#183; publish drafts only</text>
+    <path d="M1228 744 L1282 744" stroke="#556378" stroke-width="3" stroke-dasharray="8 8"/>
+
+    <rect x="1290" y="836" width="520" height="64" rx="14" fill="#12161e" stroke="#ffca68" stroke-width="3"/>
+    <text x="1316" y="876" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="23" font-weight="700" fill="#ffca68">GATE &#183; CEO approves title + caption</text>
+    <path d="M1228 868 L1282 868" stroke="#ffca68" stroke-width="3" stroke-dasharray="8 8"/>
+  </g>
+
+  <!-- ============ Constraint strip ============ -->
+  <rect x="90" y="944" width="1720" height="72" rx="14" fill="#12161e" stroke="#ff8585" stroke-width="3"/>
+  <text x="950" y="989" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="27" font-weight="700" fill="#ff8585">Only GA-03 may create or modify files under content/video/src/ &#8212; every other account is read-only there.</text>
+</svg>

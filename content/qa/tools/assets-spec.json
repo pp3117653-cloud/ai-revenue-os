@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "author": "MM-01 (MiniMax-1)",
+  "notes": "Safe areas follow content/brand/brand-rules.md. Run: node content/qa/tools/visual-qa.mjs",
+  "assets": [
+    {
+      "svg": "content/thumbnails/youtube-16x9-template.svg",
+      "png": "content/thumbnails/youtube-16x9-template.png",
+      "proof": "content/qa/proof/youtube-16x9-template-proof.png",
+      "safe": { "x0": 96, "y0": 72, "x1": 1824, "y1": 1008 },
+      "exclusions": [
+        { "id": "youtube-duration-badge", "x0": 1536, "y0": 920, "x1": 1824, "y1": 1008 }
+      ],
+      "headlineClass": "headline",
+      "scaleChecks": {
+        "width": 168,
+        "minHeadlineHeightPx": 6,
+        "minHeadlineWidthSharePct": 35,
+        "maxHeadlineWidthSharePct": 80
+      },
+      "contrast": [
+        { "fg": "#eef2f7", "bg": "#0b0d12", "role": "headline text on background" },
+        { "fg": "#9ca8ba", "bg": "#0b0d12", "role": "supporting line on background" },
+        { "fg": "#c7f36a", "bg": "#0b0d12", "role": "eyebrow on background" },
+        { "fg": "#18200e", "bg": "#c7f36a", "role": "duration badge label on lime" },
+        { "fg": "#78e0d2", "bg": "#12161e", "role": "slot chip label on key-visual panel" },
+        { "fg": "#9ca8ba", "bg": "#12161e", "role": "key-visual label on key-visual panel" }
+      ]
+    },
+    {
+      "svg": "content/thumbnails/reel-9x16-template.svg",
+      "png": "content/thumbnails/reel-9x16-template.png",
+      "proof": "content/qa/proof/reel-9x16-template-proof.png",
+      "safe": { "x0": 72, "y0": 300, "x1": 1008, "y1": 1380 },
+      "exclusions": [
+        { "id": "reels-action-rail", "x0": 872, "y0": 980, "x1": 1008, "y1": 1620 },
+        { "id": "shorts-bottom-title-band", "x0": 72, "y0": 1560, "x1": 872, "y1": 1780 }
+      ],
+      "headlineClass": "headline",
+      "scaleChecks": {
+        "width": 168,
+        "minHeadlineHeightPx": 6,
+        "minHeadlineWidthSharePct": 35,
+        "maxHeadlineWidthSharePct": 85
+      },
+      "contrast": [
+        { "fg": "#eef2f7", "bg": "#0b0d12", "role": "headline text on background" },
+        { "fg": "#9ca8ba", "bg": "#0b0d12", "role": "supporting line on background" },
+        { "fg": "#c7f36a", "bg": "#0b0d12", "role": "eyebrow on background" },
+        { "fg": "#18200e", "bg": "#c7f36a", "role": "duration badge label on lime" },
+        { "fg": "#78e0d2", "bg": "#12161e", "role": "slot chip label on key-visual panel" },
+        { "fg": "#9ca8ba", "bg": "#12161e", "role": "key-visual label on key-visual panel" }
+      ]
+    },
+    {
+      "svg": "content/visual/pipeline-diagram.svg",
+      "png": "content/visual/pipeline-diagram.png",
+      "proof": "content/qa/proof/pipeline-diagram-proof.png",
+      "safe": { "x0": 60, "y0": 60, "x1": 1860, "y1": 1016 },
+      "exclusions": [],
+      "headlineClass": "no-headline-in-diagram",
+      "scaleChecks": {
+        "width": 960,
+        "minHeadlineHeightPx": 0,
+        "minHeadlineWidthSharePct": 0,
+        "maxHeadlineWidthSharePct": 100
+      },
+      "contrast": [
+        { "fg": "#eef2f7", "bg": "#0b0d12", "role": "stage titles on background" },
+        { "fg": "#c7f36a", "bg": "#181d27", "role": "role ids on stage panel" },
+        { "fg": "#78e0d2", "bg": "#181d27", "role": "coordinator role id on stage panel" },
+        { "fg": "#ffca68", "bg": "#12161e", "role": "approval gate label on gate chip" },
+        { "fg": "#9ca8ba", "bg": "#12161e", "role": "support chip label on chip" },
+        { "fg": "#ff8585", "bg": "#12161e", "role": "constraint strip text" }
+      ]
+    }
+  ]
+}

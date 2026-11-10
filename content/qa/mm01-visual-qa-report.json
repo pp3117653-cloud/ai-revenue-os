@@ -1,0 +1,767 @@
+{
+  "generated_at": "2026-11-10T09:29:17.238Z",
+  "author": "MM-01 (MiniMax-1)",
+  "assets": [
+    {
+      "svg": "content/thumbnails/youtube-16x9-template.svg",
+      "png": "content/thumbnails/youtube-16x9-template.png",
+      "proof": "content/qa/proof/youtube-16x9-template-proof.png",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080,
+        "aspect": "1920:1080"
+      },
+      "safe_area": {
+        "x0": 96,
+        "y0": 72,
+        "x1": 1824,
+        "y1": 1008
+      },
+      "exclusions": [
+        {
+          "id": "youtube-duration-badge",
+          "x0": 1536,
+          "y0": 920,
+          "x1": 1824,
+          "y1": 1008
+        }
+      ],
+      "text_boxes": [
+        {
+          "text": "AI REVENUE OS",
+          "id": null,
+          "cls": null,
+          "x": 150,
+          "y": 220,
+          "w": 385.27,
+          "h": 40,
+          "fontSize": 34,
+          "fontWeight": "800",
+          "fill": "rgb(199, 243, 106)"
+        },
+        {
+          "text": "HEADLINE HERE",
+          "id": null,
+          "cls": "headline",
+          "x": 146,
+          "y": 295,
+          "w": 881.36,
+          "h": 122,
+          "fontSize": 104,
+          "fontWeight": "800",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "SECOND LINE",
+          "id": null,
+          "cls": "headline",
+          "x": 146,
+          "y": 419,
+          "w": 739.31,
+          "h": 122,
+          "fontSize": 104,
+          "fontWeight": "800",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "One line that earns the click",
+          "id": null,
+          "cls": null,
+          "x": 150,
+          "y": 557,
+          "w": 593.42,
+          "h": 49,
+          "fontSize": 42,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "90 SEC",
+          "id": null,
+          "cls": null,
+          "x": 186.46,
+          "y": 703,
+          "w": 155.08,
+          "h": 46,
+          "fontSize": 40,
+          "fontWeight": "800",
+          "fill": "rgb(24, 32, 14)"
+        },
+        {
+          "text": "KEY VISUAL",
+          "id": null,
+          "cls": null,
+          "x": 1325.22,
+          "y": 463,
+          "w": 263.56,
+          "h": 46,
+          "fontSize": 40,
+          "fontWeight": "700",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "poster frame or diagram",
+          "id": null,
+          "cls": null,
+          "x": 1272.7,
+          "y": 526,
+          "w": 368.59,
+          "h": 35,
+          "fontSize": 30,
+          "fontWeight": "400",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "DROP IMAGE 16:9",
+          "id": null,
+          "cls": null,
+          "x": 1316.84,
+          "y": 646,
+          "w": 280.33,
+          "h": 33,
+          "fontSize": 28,
+          "fontWeight": "600",
+          "fill": "rgb(120, 224, 210)"
+        },
+        {
+          "text": "Saksham · AI Revenue OS",
+          "id": null,
+          "cls": null,
+          "x": 96,
+          "y": 964,
+          "w": 404.69,
+          "h": 33,
+          "fontSize": 28,
+          "fontWeight": "600",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "MM-01 template v1",
+          "id": null,
+          "cls": null,
+          "x": 1193.98,
+          "y": 964,
+          "w": 306.02,
+          "h": 33,
+          "fontSize": 28,
+          "fontWeight": "600",
+          "fill": "rgb(156, 168, 186)"
+        }
+      ],
+      "safe_area_violations": [],
+      "headline_native": {
+        "heightPx": 246,
+        "widthPx": 881.36,
+        "widthShareOfFrame": 45.9,
+        "lines": 2
+      },
+      "headline_at_small_scale": {
+        "heightPx": 20.85,
+        "widthPx": 77.07,
+        "widthShareOfFrame": 45.9,
+        "lines": 2
+      },
+      "legibility_checks": [
+        {
+          "check": "headline_height_at_168px",
+          "value": 20.85,
+          "min": 6,
+          "pass": true
+        },
+        {
+          "check": "headline_width_share_at_168px",
+          "value": 45.9,
+          "min": 35,
+          "max": 80,
+          "pass": true
+        }
+      ],
+      "contrast": [
+        {
+          "fg": "#eef2f7",
+          "bg": "#0b0d12",
+          "role": "headline text on background",
+          "ratio": 17.29,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#0b0d12",
+          "role": "supporting line on background",
+          "ratio": 8.07,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#c7f36a",
+          "bg": "#0b0d12",
+          "role": "eyebrow on background",
+          "ratio": 15.23,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#18200e",
+          "bg": "#c7f36a",
+          "role": "duration badge label on lime",
+          "ratio": 13.15,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#78e0d2",
+          "bg": "#12161e",
+          "role": "slot chip label on key-visual panel",
+          "ratio": 11.55,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "key-visual label on key-visual panel",
+          "ratio": 7.53,
+          "aa_text": true,
+          "aa_large_ui": true
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "svg": "content/thumbnails/reel-9x16-template.svg",
+      "png": "content/thumbnails/reel-9x16-template.png",
+      "proof": "content/qa/proof/reel-9x16-template-proof.png",
+      "dimensions": {
+        "width": 1080,
+        "height": 1920,
+        "aspect": "1080:1920"
+      },
+      "safe_area": {
+        "x0": 72,
+        "y0": 300,
+        "x1": 1008,
+        "y1": 1380
+      },
+      "exclusions": [
+        {
+          "id": "reels-action-rail",
+          "x0": 872,
+          "y0": 980,
+          "x1": 1008,
+          "y1": 1620
+        },
+        {
+          "id": "shorts-bottom-title-band",
+          "x0": 72,
+          "y0": 1560,
+          "x1": 872,
+          "y1": 1780
+        }
+      ],
+      "text_boxes": [
+        {
+          "text": "AI REVENUE OS",
+          "id": null,
+          "cls": null,
+          "x": 124,
+          "y": 344,
+          "w": 337.66,
+          "h": 35,
+          "fontSize": 30,
+          "fontWeight": "800",
+          "fill": "rgb(199, 243, 106)"
+        },
+        {
+          "text": "HEADLINE HERE",
+          "id": null,
+          "cls": "headline",
+          "x": 120,
+          "y": 411,
+          "w": 786.67,
+          "h": 107,
+          "fontSize": 92,
+          "fontWeight": "800",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "SECOND LINE",
+          "id": null,
+          "cls": "headline",
+          "x": 120,
+          "y": 523,
+          "w": 659.92,
+          "h": 107,
+          "fontSize": 92,
+          "fontWeight": "800",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "One line that earns the click",
+          "id": null,
+          "cls": null,
+          "x": 124,
+          "y": 651,
+          "w": 508.21,
+          "h": 41,
+          "fontSize": 36,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "90 SEC",
+          "id": null,
+          "cls": null,
+          "x": 158.09,
+          "y": 778,
+          "w": 131.83,
+          "h": 40,
+          "fontSize": 34,
+          "fontWeight": "800",
+          "fill": "rgb(24, 32, 14)"
+        },
+        {
+          "text": "KEY VISUAL",
+          "id": null,
+          "cls": null,
+          "x": 338.8,
+          "y": 1073,
+          "w": 250.39,
+          "h": 44,
+          "fontSize": 38,
+          "fontWeight": "700",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "poster frame or diagram",
+          "id": null,
+          "cls": null,
+          "x": 291.99,
+          "y": 1134,
+          "w": 344.02,
+          "h": 33,
+          "fontSize": 28,
+          "fontWeight": "400",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "DROP IMAGE 9:16",
+          "id": null,
+          "cls": null,
+          "x": 333.84,
+          "y": 1232,
+          "w": 260.31,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "600",
+          "fill": "rgb(120, 224, 210)"
+        }
+      ],
+      "safe_area_violations": [],
+      "headline_native": {
+        "heightPx": 219,
+        "widthPx": 786.67,
+        "widthShareOfFrame": 72.8,
+        "lines": 2
+      },
+      "headline_at_small_scale": {
+        "heightPx": 33.42,
+        "widthPx": 122.25,
+        "widthShareOfFrame": 72.8,
+        "lines": 2
+      },
+      "legibility_checks": [
+        {
+          "check": "headline_height_at_168px",
+          "value": 33.42,
+          "min": 6,
+          "pass": true
+        },
+        {
+          "check": "headline_width_share_at_168px",
+          "value": 72.8,
+          "min": 35,
+          "max": 85,
+          "pass": true
+        }
+      ],
+      "contrast": [
+        {
+          "fg": "#eef2f7",
+          "bg": "#0b0d12",
+          "role": "headline text on background",
+          "ratio": 17.29,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#0b0d12",
+          "role": "supporting line on background",
+          "ratio": 8.07,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#c7f36a",
+          "bg": "#0b0d12",
+          "role": "eyebrow on background",
+          "ratio": 15.23,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#18200e",
+          "bg": "#c7f36a",
+          "role": "duration badge label on lime",
+          "ratio": 13.15,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#78e0d2",
+          "bg": "#12161e",
+          "role": "slot chip label on key-visual panel",
+          "ratio": 11.55,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "key-visual label on key-visual panel",
+          "ratio": 7.53,
+          "aa_text": true,
+          "aa_large_ui": true
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "svg": "content/visual/pipeline-diagram.svg",
+      "png": "content/visual/pipeline-diagram.png",
+      "proof": "content/qa/proof/pipeline-diagram-proof.png",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080,
+        "aspect": "1920:1080"
+      },
+      "safe_area": {
+        "x0": 60,
+        "y0": 60,
+        "x1": 1860,
+        "y1": 1016
+      },
+      "exclusions": [],
+      "text_boxes": [
+        {
+          "text": "How work flows through AI Revenue OS",
+          "id": null,
+          "cls": null,
+          "x": 90,
+          "y": 68,
+          "w": 1128.59,
+          "h": 60,
+          "fontSize": 52,
+          "fontWeight": "800",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "Eight accounts, one approval gate at every external boundary",
+          "id": null,
+          "cls": null,
+          "x": 90,
+          "y": 138,
+          "w": 1398.69,
+          "h": 33,
+          "fontSize": 28,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "GA-02",
+          "id": null,
+          "cls": null,
+          "x": 632,
+          "y": 218,
+          "w": 98.44,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "800",
+          "fill": "rgb(199, 243, 106)"
+        },
+        {
+          "text": "Audience and prospect research",
+          "id": null,
+          "cls": null,
+          "x": 632,
+          "y": 250,
+          "w": 546.8,
+          "h": 35,
+          "fontSize": 30,
+          "fontWeight": "700",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "MN-03",
+          "id": null,
+          "cls": null,
+          "x": 632,
+          "y": 342,
+          "w": 104.61,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "800",
+          "fill": "rgb(199, 243, 106)"
+        },
+        {
+          "text": "Editorial brief and script",
+          "id": null,
+          "cls": null,
+          "x": 632,
+          "y": 374,
+          "w": 413.7,
+          "h": 35,
+          "fontSize": 30,
+          "fontWeight": "700",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "GA-03",
+          "id": null,
+          "cls": null,
+          "x": 632,
+          "y": 466,
+          "w": 98.44,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "800",
+          "fill": "rgb(199, 243, 106)"
+        },
+        {
+          "text": "Animation source",
+          "id": null,
+          "cls": null,
+          "x": 632,
+          "y": 498,
+          "w": 296.16,
+          "h": 35,
+          "fontSize": 30,
+          "fontWeight": "700",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "ONLY AUTHOR",
+          "id": null,
+          "cls": null,
+          "x": 1022.71,
+          "y": 484,
+          "w": 174.63,
+          "h": 25,
+          "fontSize": 22,
+          "fontWeight": "800",
+          "fill": "rgb(24, 32, 14)"
+        },
+        {
+          "text": "GITHUB ACTIONS",
+          "id": null,
+          "cls": null,
+          "x": 632,
+          "y": 590,
+          "w": 277.7,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "800",
+          "fill": "rgb(120, 224, 210)"
+        },
+        {
+          "text": "Render MP4 and poster frames",
+          "id": null,
+          "cls": null,
+          "x": 632,
+          "y": 622,
+          "w": 525.97,
+          "h": 35,
+          "fontSize": 30,
+          "fontWeight": "700",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "MM-01",
+          "id": null,
+          "cls": null,
+          "x": 632,
+          "y": 714,
+          "w": 108.72,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "800",
+          "fill": "rgb(199, 243, 106)"
+        },
+        {
+          "text": "Thumbnails, alt text, visual QA",
+          "id": null,
+          "cls": null,
+          "x": 632,
+          "y": 746,
+          "w": 522.84,
+          "h": 35,
+          "fontSize": 30,
+          "fontWeight": "700",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "SAKSHAM",
+          "id": null,
+          "cls": null,
+          "x": 632,
+          "y": 838,
+          "w": 159.48,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "800",
+          "fill": "rgb(255, 202, 104)"
+        },
+        {
+          "text": "Approve, then publish",
+          "id": null,
+          "cls": null,
+          "x": 632,
+          "y": 870,
+          "w": 375.25,
+          "h": 35,
+          "fontSize": 30,
+          "fontWeight": "700",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "GA-01 · offer research",
+          "id": null,
+          "cls": null,
+          "x": 118,
+          "y": 235,
+          "w": 285.47,
+          "h": 26,
+          "fontSize": 23,
+          "fontWeight": "600",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "MN-01 · render check, read-only",
+          "id": null,
+          "cls": null,
+          "x": 118,
+          "y": 483,
+          "w": 417.98,
+          "h": 26,
+          "fontSize": 23,
+          "fontWeight": "600",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "GATE · CEO approves the brief",
+          "id": null,
+          "cls": null,
+          "x": 1316,
+          "y": 359,
+          "w": 392.34,
+          "h": 26,
+          "fontSize": 23,
+          "fontWeight": "700",
+          "fill": "rgb(255, 202, 104)"
+        },
+        {
+          "text": "MN-04 · publish drafts only",
+          "id": null,
+          "cls": null,
+          "x": 1316,
+          "y": 731,
+          "w": 352.67,
+          "h": 26,
+          "fontSize": 23,
+          "fontWeight": "600",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "GATE · CEO approves title + caption",
+          "id": null,
+          "cls": null,
+          "x": 1316,
+          "y": 855,
+          "w": 464.41,
+          "h": 26,
+          "fontSize": 23,
+          "fontWeight": "700",
+          "fill": "rgb(255, 202, 104)"
+        },
+        {
+          "text": "Only GA-03 may create or modify files under content/video/sr",
+          "id": null,
+          "cls": null,
+          "x": 148.02,
+          "y": 964,
+          "w": 1603.97,
+          "h": 31,
+          "fontSize": 27,
+          "fontWeight": "700",
+          "fill": "rgb(255, 133, 133)"
+        }
+      ],
+      "safe_area_violations": [],
+      "headline_native": null,
+      "headline_at_small_scale": null,
+      "legibility_checks": [],
+      "contrast": [
+        {
+          "fg": "#eef2f7",
+          "bg": "#0b0d12",
+          "role": "stage titles on background",
+          "ratio": 17.29,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#c7f36a",
+          "bg": "#181d27",
+          "role": "role ids on stage panel",
+          "ratio": 13.23,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#78e0d2",
+          "bg": "#181d27",
+          "role": "coordinator role id on stage panel",
+          "ratio": 10.77,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#ffca68",
+          "bg": "#12161e",
+          "role": "approval gate label on gate chip",
+          "ratio": 11.99,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "support chip label on chip",
+          "ratio": 7.53,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#ff8585",
+          "bg": "#12161e",
+          "role": "constraint strip text",
+          "ratio": 7.72,
+          "aa_text": true,
+          "aa_large_ui": true
+        }
+      ],
+      "status": "PASS"
+    }
+  ]
+}
