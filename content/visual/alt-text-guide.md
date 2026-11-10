@@ -35,6 +35,18 @@ Alt text is read aloud by screen readers and shown when an image fails to load. 
 
 > Flow diagram of how work moves through AI Revenue OS. Six steps run down the centre: GA-02 audience and prospect research; MN-03 editorial brief and script; GA-03 animation source, outlined in lime and tagged "only author"; GitHub Actions rendering the MP4 and poster frames; MM-01 producing thumbnails, alt text and visual QA; and Saksham approving then publishing. GA-01 offer research feeds in from the left and MN-01 does a read-only render check beside GA-03. Amber gates mark the points where the CEO approves the brief and the title and caption. A red strip along the bottom states that only GA-03 may create or modify files under content/video/src/.
 
+### `content/products/product-cover-square.png`
+
+> Square cover template for a digital product. Inside a bordered panel on a near-black background, a lime label reads "PRODUCT · AI REVENUE OS" above the placeholder title "PRODUCT TITLE / SECOND LINE", a cyan rule and a grey line reading "One line that says what the buyer gets". Below that, "WHAT'S INSIDE" heads three lime-bulleted module lines, and a lime badge reads "STARTER KIT". Three stacked rectangles on the right are a decorative motif.
+
+### `content/visual/metrics-bar-chart.png`
+
+> Horizontal bar chart template for a metrics figure. The heading reads "Metric title goes here" with the sub-line "Reporting period · data source", and an amber badge on the right warns "SAMPLE VALUES — REPLACE FIRST". Inside the panel, five bars are labelled Category A to Category E — four teal and one lime — each with a dash where its value belongs, over a scale from 0 to 100. A note below reads "Replace every — with a verified figure, then add the source and the period."
+
+### `content/visual/article-howto-steps.png`
+
+> Three-step figure for a how-to article. Under the heading "How to ship a video in one day", three cards run left to right, joined by teal arrows: step 01 "Define the brief", owned by MN-03; step 02 "Build the scene", owned by GA-03; and step 03 "Check and ship", owned by Saksham. A note in amber reads "Replace every step with sourced content before publishing."
+
 ## Short-form alt text for a platform field
 
 Most platforms cap alt text well below what a screen reader can use. When a platform requires a short field, keep the purpose and the single most important visual fact:

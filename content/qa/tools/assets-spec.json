@@ -1,7 +1,7 @@
 {
-  "version": 1,
+  "version": 2,
   "author": "MM-01 (MiniMax-1)",
-  "notes": "Safe areas follow content/brand/brand-rules.md. Run: node content/qa/tools/visual-qa.mjs",
+  "notes": "Safe areas follow content/brand/brand-rules.md. Run: node content/qa/tools/visual-qa.mjs. Per-asset keys: minFontPx = smallest permitted text at native size; scaleChecks = the thumbnail-width legibility test (skip for doc figures by lowering the headline floor, since the 168px rule is a thumbnail rule); rasterContrast = sample the real rendered pixels behind every text run.",
   "assets": [
     {
       "svg": "content/thumbnails/youtube-16x9-template.svg",
@@ -12,6 +12,7 @@
         { "id": "youtube-duration-badge", "x0": 1536, "y0": 920, "x1": 1824, "y1": 1008 }
       ],
       "headlineClass": "headline",
+      "minFontPx": 28,
       "scaleChecks": {
         "width": 168,
         "minHeadlineHeightPx": 6,
@@ -37,6 +38,7 @@
         { "id": "shorts-bottom-title-band", "x0": 72, "y0": 1560, "x1": 872, "y1": 1780 }
       ],
       "headlineClass": "headline",
+      "minFontPx": 26,
       "scaleChecks": {
         "width": 168,
         "minHeadlineHeightPx": 6,
@@ -59,6 +61,7 @@
       "safe": { "x0": 60, "y0": 60, "x1": 1860, "y1": 1016 },
       "exclusions": [],
       "headlineClass": "no-headline-in-diagram",
+      "minFontPx": 22,
       "scaleChecks": {
         "width": 960,
         "minHeadlineHeightPx": 0,
@@ -72,6 +75,81 @@
         { "fg": "#ffca68", "bg": "#12161e", "role": "approval gate label on gate chip" },
         { "fg": "#9ca8ba", "bg": "#12161e", "role": "support chip label on chip" },
         { "fg": "#ff8585", "bg": "#12161e", "role": "constraint strip text" }
+      ]
+    },
+    {
+      "svg": "content/products/product-cover-square.svg",
+      "png": "content/products/product-cover-square.png",
+      "proof": "content/qa/proof/product-cover-square-proof.png",
+      "safe": { "x0": 72, "y0": 72, "x1": 1128, "y1": 1128 },
+      "exclusions": [],
+      "headlineClass": "headline",
+      "minFontPx": 24,
+      "scaleChecks": {
+        "width": 168,
+        "minHeadlineHeightPx": 6,
+        "minHeadlineWidthSharePct": 35,
+        "maxHeadlineWidthSharePct": 80
+      },
+      "contrast": [
+        { "fg": "#eef2f7", "bg": "#12161e", "role": "title text on product panel" },
+        { "fg": "#9ca8ba", "bg": "#12161e", "role": "supporting line on product panel" },
+        { "fg": "#c7f36a", "bg": "#12161e", "role": "eyebrow on product panel" },
+        { "fg": "#78e0d2", "bg": "#12161e", "role": "contents label on product panel" },
+        { "fg": "#eef2f7", "bg": "#12161e", "role": "module lines on product panel" },
+        { "fg": "#18200e", "bg": "#c7f36a", "role": "kit badge label on lime" },
+        { "fg": "#9ca8ba", "bg": "#12161e", "role": "footer credit on product panel" }
+      ]
+    },
+    {
+      "svg": "content/visual/metrics-bar-chart.svg",
+      "png": "content/visual/metrics-bar-chart.png",
+      "proof": "content/qa/proof/metrics-bar-chart-proof.png",
+      "safe": { "x0": 60, "y0": 60, "x1": 1860, "y1": 1016 },
+      "exclusions": [],
+      "headlineClass": "figureTitle",
+      "minFontPx": 24,
+      "scaleChecks": {
+        "width": 168,
+        "minHeadlineHeightPx": 3,
+        "minHeadlineWidthSharePct": 25,
+        "maxHeadlineWidthSharePct": 80
+      },
+      "contrast": [
+        { "fg": "#eef2f7", "bg": "#0b0d12", "role": "figure title on background" },
+        { "fg": "#9ca8ba", "bg": "#0b0d12", "role": "period and source line on background" },
+        { "fg": "#18200e", "bg": "#ffca68", "role": "sample-data badge label on amber" },
+        { "fg": "#eef2f7", "bg": "#12161e", "role": "category labels on plot panel" },
+        { "fg": "#9ca8ba", "bg": "#12161e", "role": "value placeholder on plot panel" },
+        { "fg": "#9ca8ba", "bg": "#12161e", "role": "scale labels on plot panel" },
+        { "fg": "#ffca68", "bg": "#0b0d12", "role": "replacement rule on background" },
+        { "fg": "#9ca8ba", "bg": "#0b0d12", "role": "footer credit on background" }
+      ]
+    },
+    {
+      "svg": "content/visual/article-howto-steps.svg",
+      "png": "content/visual/article-howto-steps.png",
+      "proof": "content/qa/proof/article-howto-steps-proof.png",
+      "safe": { "x0": 60, "y0": 60, "x1": 1860, "y1": 1016 },
+      "exclusions": [],
+      "headlineClass": "figureTitle",
+      "minFontPx": 24,
+      "scaleChecks": {
+        "width": 168,
+        "minHeadlineHeightPx": 3,
+        "minHeadlineWidthSharePct": 25,
+        "maxHeadlineWidthSharePct": 80
+      },
+      "contrast": [
+        { "fg": "#c7f36a", "bg": "#0b0d12", "role": "eyebrow on background" },
+        { "fg": "#eef2f7", "bg": "#0b0d12", "role": "figure title on background" },
+        { "fg": "#9ca8ba", "bg": "#0b0d12", "role": "subtitle on background" },
+        { "fg": "#eef2f7", "bg": "#12161e", "role": "step titles on card" },
+        { "fg": "#9ca8ba", "bg": "#12161e", "role": "step body on card" },
+        { "fg": "#18200e", "bg": "#c7f36a", "role": "step number on lime badge" },
+        { "fg": "#78e0d2", "bg": "#181d27", "role": "owner chip label on chip" },
+        { "fg": "#ffca68", "bg": "#0b0d12", "role": "placeholder note on background" },
+        { "fg": "#9ca8ba", "bg": "#0b0d12", "role": "footer credit on background" }
       ]
     }
   ]

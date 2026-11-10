@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">AI Revenue OS how-to figure, three numbered steps, 16 by 9</title>
+  <desc id="dsc">Three-step how-to figure for long-form articles on a near-black background with a lime rail across the top edge. A lime eyebrow reads HOW-TO GUIDE above the heading How to ship a video in one day and a grey subtitle. Three bordered cards run left to right, each with a lime number badge, a step title, two lines of supporting text and a teal owner chip, joined by teal arrows. A footer note in amber states that the steps are placeholders to be replaced with sourced content.</desc>
+
+  <rect width="1920" height="1080" fill="#0b0d12"/>
+  <rect x="0" y="0" width="1920" height="8" fill="#c7f36a"/>
+
+  <!-- Eyebrow and heading -->
+  <text x="90" y="100" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="800" letter-spacing="5" fill="#c7f36a">HOW-TO GUIDE</text>
+  <text class="figureTitle" x="90" y="170" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="46" font-weight="800" letter-spacing="-1" fill="#eef2f7">How to ship a video in one day</text>
+  <text x="90" y="214" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="500" fill="#9ca8ba">Three steps, each with one owner and one check.</text>
+
+  <!-- Cards -->
+  <rect x="90" y="270" width="540" height="520" rx="20" fill="#12161e" stroke="#556378" stroke-width="3"/>
+  <rect x="690" y="270" width="540" height="520" rx="20" fill="#12161e" stroke="#556378" stroke-width="3"/>
+  <rect x="1290" y="270" width="540" height="520" rx="20" fill="#12161e" stroke="#556378" stroke-width="3"/>
+
+  <!-- Connectors -->
+  <path d="M645 530 h28" fill="none" stroke="#78e0d2" stroke-width="6" stroke-linecap="round"/>
+  <path d="M665 520 l12 10 l-12 10" fill="none" stroke="#78e0d2" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1245 530 h28" fill="none" stroke="#78e0d2" stroke-width="6" stroke-linecap="round"/>
+  <path d="M1265 520 l12 10 l-12 10" fill="none" stroke="#78e0d2" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Step 1 -->
+  <rect x="126" y="310" width="76" height="76" rx="18" fill="#c7f36a"/>
+  <text x="164" y="362" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="34" font-weight="800" fill="#18200e">01</text>
+  <text x="126" y="470" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="32" font-weight="700" fill="#eef2f7">Define the brief</text>
+  <text x="126" y="530" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="500" fill="#9ca8ba">Write the promise and the audience,</text>
+  <text x="126" y="566" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="500" fill="#9ca8ba">then get it approved before code.</text>
+  <rect x="126" y="628" width="250" height="54" rx="27" fill="#181d27" stroke="#556378" stroke-width="3"/>
+  <text x="251" y="663" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="600" fill="#78e0d2">Owner &#183; MN-03</text>
+
+  <!-- Step 2 -->
+  <rect x="726" y="310" width="76" height="76" rx="18" fill="#c7f36a"/>
+  <text x="764" y="362" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="34" font-weight="800" fill="#18200e">02</text>
+  <text x="726" y="470" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="32" font-weight="700" fill="#eef2f7">Build the scene</text>
+  <text x="726" y="530" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="500" fill="#9ca8ba">One idea per scene, one claim per</text>
+  <text x="726" y="566" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="500" fill="#9ca8ba">scene, and a caption for each.</text>
+  <rect x="726" y="628" width="250" height="54" rx="27" fill="#181d27" stroke="#556378" stroke-width="3"/>
+  <text x="851" y="663" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="600" fill="#78e0d2">Owner &#183; GA-03</text>
+
+  <!-- Step 3 -->
+  <rect x="1326" y="310" width="76" height="76" rx="18" fill="#c7f36a"/>
+  <text x="1364" y="362" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="34" font-weight="800" fill="#18200e">03</text>
+  <text x="1326" y="470" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="32" font-weight="700" fill="#eef2f7">Check and ship</text>
+  <text x="1326" y="530" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="500" fill="#9ca8ba">Visual QA passes, then the owner</text>
+  <text x="1326" y="566" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="500" fill="#9ca8ba">approves before anything is posted.</text>
+  <rect x="1326" y="628" width="250" height="54" rx="27" fill="#181d27" stroke="#556378" stroke-width="3"/>
+  <text x="1451" y="663" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="600" fill="#78e0d2">Owner &#183; Saksham</text>
+
+  <!-- Footer note -->
+  <text x="90" y="880" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="600" fill="#ffca68">Replace every step with sourced content before publishing.</text>
+  <rect x="90" y="920" width="1740" height="2" fill="#2a3342"/>
+  <text x="90" y="970" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="600" fill="#9ca8ba">Saksham &#183; AI Revenue OS</text>
+  <text x="1830" y="970" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="600" fill="#9ca8ba">MM-01 template v1</text>
+</svg>

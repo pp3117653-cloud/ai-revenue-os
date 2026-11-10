@@ -19,8 +19,22 @@ Status values: `first-party` (authored directly, deterministic, no external inpu
 | `content/visual/pipeline-diagram.svg` | MM-01 | first-party | internal / repo license | none | no | no | cleared |
 | `content/visual/pipeline-diagram.png` | MM-01 | first-party | internal / repo license | system fonts only | no | no | cleared |
 | `content/qa/proof/*.png` | MM-01 | first-party (QA evidence) | internal / repo license | none | no | no | cleared |
+| `content/products/product-cover-square.svg` | MM-01 | first-party | internal / repo license | none | no | no | cleared |
+| `content/products/product-cover-square.png` | MM-01 | first-party | internal / repo license | system fonts only | no | no | cleared |
+| `content/visual/metrics-bar-chart.svg` | MM-01 | first-party | internal / repo license | none | no | no | cleared |
+| `content/visual/metrics-bar-chart.png` | MM-01 | first-party | internal / repo license | system fonts only | no | no | cleared |
+| `content/visual/article-howto-steps.svg` | MM-01 | first-party | internal / repo license | none | no | no | cleared |
+| `content/visual/article-howto-steps.png` | MM-01 | first-party | internal / repo license | system fonts only | no | no | cleared |
 
 ## Notes
+
+- **Placeholder assets carry no data.** `content/visual/metrics-bar-chart.svg` ships with a sample
+  scale (0–100) and an em-dash in every value slot. It contains **no measured, client or revenue
+  figure**. The amber `SAMPLE VALUES — REPLACE FIRST` badge and the amber footer rule are part of
+  the artwork so a half-filled chart cannot pass as real. Replace every em-dash with a verified
+  figure and cite the source before the chart is shown to anyone.
+- **`content/visual/article-howto-steps.svg` and `content/products/product-cover-square.svg` are
+  copy shells.** Their wording is placeholder copy marked as such, not a statement of fact.
 
 - **No webfonts are embedded.** Every asset uses a system font stack, so no font licence travels with the asset.
 - **No third-party imagery.** No stock photo, screenshot, icon pack, or scraped image is used anywhere in the MM-01 asset set.

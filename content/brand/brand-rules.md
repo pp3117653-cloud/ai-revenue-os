@@ -43,6 +43,7 @@ Author: MM-01 (MiniMax-1) · Last updated: 2026-11-10 · Owner: Saksham
 | YouTube landscape | 1920×1080 | 16:9 | x 96–1824, y 72–1008 | bottom-right badge: x 1536–1824, y 920–1008 |
 | Reel / Shorts vertical | 1080×1920 | 9:16 | x 72–1008, y 300–1380 | Reels action rail: x 872–1008, y 980–1620 · Shorts title band: x 72–872, y 1560–1780 |
 | Doc diagram | 1920×1080 | 16:9 | x 60–1860, y 60–1016 | none |
+| Product cover square | 1200×1200 | 1:1 | x 72–1128, y 72–1128 | none |
 
 Safe areas are house rules, not platform guarantees. Platform UI moves; re-verify before each publish.
 
@@ -51,6 +52,10 @@ Safe areas are house rules, not platform guarantees. Platform UI moves; re-verif
 - **Headline height at 168px width ≥ 6px.** 168px is the YouTube sidebar thumbnail width and the narrowest feed card; a headline that survives there survives everywhere. Measured: 20.85px (YouTube template), 33.42px (Reel template).
 - **Headline occupies 35–80% of frame width at 168px.** Below 35% it is decoration, not a headline. Above 80% it is at risk of clipping on narrow crops. Measured: 45.9% and 72.8%.
 - Body copy never shrinks below 3% of the canvas height (32px at 1080, 36px at 1920) in a 9:16 asset.
+- **Doc figures (1920×1080) floor: 24px.** A figure title is 44px or larger; category, axis and
+  caption labels never drop below 24px at native size, so they stay readable when the figure is
+  scaled down to article width. The 168px rule above is a *thumbnail* rule — a chart or a how-to
+  figure is read at full width, so its title is held to the 24px floor instead.
 - Never place critical text over a busy image region. If the key visual is photographic, put the headline on a solid panel.
 
 ## 5. Rights rules
@@ -75,3 +80,4 @@ Every shipped image carries alt text that describes function and content, not ke
 | Date | Change | By |
 |---|---|---|
 | 2026-11-10 | Initial proposal. Tokens derived from `docs/styles.css`; safe areas, legibility thresholds, rights and alt-text rules established. | MM-01 |
+| 2026-11-10 (evening run) | Added the product-cover square format (1200×1200), a 24px text floor for doc figures, and the em-dash placeholder convention used by the chart template. | MM-01 |

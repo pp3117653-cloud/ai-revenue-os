@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T09:29:17.238Z",
+  "generated_at": "2026-11-10T17:13:56.594Z",
   "author": "MM-01 (MiniMax-1)",
   "assets": [
     {
@@ -10,6 +10,11 @@
         "width": 1920,
         "height": 1080,
         "aspect": "1920:1080"
+      },
+      "png_export": {
+        "width": 1920,
+        "height": 1080,
+        "bytes": 75665
       },
       "safe_area": {
         "x0": 96,
@@ -149,6 +154,13 @@
         }
       ],
       "safe_area_violations": [],
+      "min_font_px": 28,
+      "min_font_required_px": 28,
+      "raster_backdrop": {
+        "status": "measured",
+        "samples": 10,
+        "min_median_ratio": 7.53
+      },
       "headline_native": {
         "heightPx": 246,
         "widthPx": 881.36,
@@ -236,6 +248,11 @@
         "width": 1080,
         "height": 1920,
         "aspect": "1080:1920"
+      },
+      "png_export": {
+        "width": 1080,
+        "height": 1920,
+        "bytes": 62454
       },
       "safe_area": {
         "x0": 72,
@@ -358,6 +375,13 @@
         }
       ],
       "safe_area_violations": [],
+      "min_font_px": 26,
+      "min_font_required_px": 26,
+      "raster_backdrop": {
+        "status": "measured",
+        "samples": 8,
+        "min_median_ratio": 7.53
+      },
       "headline_native": {
         "heightPx": 219,
         "widthPx": 786.67,
@@ -445,6 +469,11 @@
         "width": 1920,
         "height": 1080,
         "aspect": "1920:1080"
+      },
+      "png_export": {
+        "width": 1920,
+        "height": 1080,
+        "bytes": 160048
       },
       "safe_area": {
         "x0": 60,
@@ -708,6 +737,13 @@
         }
       ],
       "safe_area_violations": [],
+      "min_font_px": 22,
+      "min_font_required_px": 22,
+      "raster_backdrop": {
+        "status": "measured",
+        "samples": 21,
+        "min_median_ratio": 7.53
+      },
       "headline_native": null,
       "headline_at_small_scale": null,
       "legibility_checks": [],
@@ -757,6 +793,1020 @@
           "bg": "#12161e",
           "role": "constraint strip text",
           "ratio": 7.72,
+          "aa_text": true,
+          "aa_large_ui": true
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "svg": "content/products/product-cover-square.svg",
+      "png": "content/products/product-cover-square.png",
+      "proof": "content/qa/proof/product-cover-square-proof.png",
+      "dimensions": {
+        "width": 1200,
+        "height": 1200,
+        "aspect": "1200:1200"
+      },
+      "png_export": {
+        "width": 1200,
+        "height": 1200,
+        "bytes": 84537
+      },
+      "safe_area": {
+        "x0": 72,
+        "y0": 72,
+        "x1": 1128,
+        "y1": 1128
+      },
+      "exclusions": [],
+      "text_boxes": [
+        {
+          "text": "PRODUCT · AI REVENUE OS",
+          "id": null,
+          "cls": null,
+          "x": 120,
+          "y": 152,
+          "w": 531.7,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "800",
+          "fill": "rgb(199, 243, 106)"
+        },
+        {
+          "text": "PRODUCT TITLE",
+          "id": null,
+          "cls": "headline",
+          "x": 116,
+          "y": 224,
+          "w": 648.66,
+          "h": 90,
+          "fontSize": 78,
+          "fontWeight": "800",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "SECOND LINE",
+          "id": null,
+          "cls": "headline",
+          "x": 116,
+          "y": 324,
+          "w": 554.48,
+          "h": 90,
+          "fontSize": 78,
+          "fontWeight": "800",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "One line that says what the buyer gets",
+          "id": null,
+          "cls": null,
+          "x": 120,
+          "y": 476,
+          "w": 623.7,
+          "h": 38,
+          "fontSize": 32,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "WHAT'S INSIDE",
+          "id": null,
+          "cls": null,
+          "x": 120,
+          "y": 598,
+          "w": 256.19,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "700",
+          "fill": "rgb(120, 224, 210)"
+        },
+        {
+          "text": "Module 1 · The offer, written on one page",
+          "id": null,
+          "cls": null,
+          "x": 158,
+          "y": 658,
+          "w": 581.91,
+          "h": 33,
+          "fontSize": 28,
+          "fontWeight": "500",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "Module 2 · The outreach sequence that fills it",
+          "id": null,
+          "cls": null,
+          "x": 158,
+          "y": 738,
+          "w": 634.44,
+          "h": 33,
+          "fontSize": 28,
+          "fontWeight": "500",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "Bonus pack · SOPs, checklists and swipe files",
+          "id": null,
+          "cls": null,
+          "x": 158,
+          "y": 818,
+          "w": 631.73,
+          "h": 33,
+          "fontSize": 28,
+          "fontWeight": "500",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "STARTER KIT",
+          "id": null,
+          "cls": null,
+          "x": 157.95,
+          "y": 918,
+          "w": 214.62,
+          "h": 35,
+          "fontSize": 30,
+          "fontWeight": "800",
+          "fill": "rgb(24, 32, 14)"
+        },
+        {
+          "text": "Saksham · AI Revenue OS",
+          "id": null,
+          "cls": null,
+          "x": 120,
+          "y": 1066,
+          "w": 375.78,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "600",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "MM-01 template v1",
+          "id": null,
+          "cls": null,
+          "x": 795.84,
+          "y": 1066,
+          "w": 284.16,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "600",
+          "fill": "rgb(156, 168, 186)"
+        }
+      ],
+      "safe_area_violations": [],
+      "min_font_px": 24,
+      "min_font_required_px": 24,
+      "raster_backdrop": {
+        "status": "measured",
+        "samples": 11,
+        "min_median_ratio": 7.53
+      },
+      "headline_native": {
+        "heightPx": 190,
+        "widthPx": 648.66,
+        "widthShareOfFrame": 54.1,
+        "lines": 2
+      },
+      "headline_at_small_scale": {
+        "heightPx": 27,
+        "widthPx": 90.7,
+        "widthShareOfFrame": 54,
+        "lines": 2
+      },
+      "legibility_checks": [
+        {
+          "check": "headline_height_at_168px",
+          "value": 27,
+          "min": 6,
+          "pass": true
+        },
+        {
+          "check": "headline_width_share_at_168px",
+          "value": 54,
+          "min": 35,
+          "max": 80,
+          "pass": true
+        }
+      ],
+      "contrast": [
+        {
+          "fg": "#eef2f7",
+          "bg": "#12161e",
+          "role": "title text on product panel",
+          "ratio": 16.11,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "supporting line on product panel",
+          "ratio": 7.53,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#c7f36a",
+          "bg": "#12161e",
+          "role": "eyebrow on product panel",
+          "ratio": 14.2,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#78e0d2",
+          "bg": "#12161e",
+          "role": "contents label on product panel",
+          "ratio": 11.55,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#eef2f7",
+          "bg": "#12161e",
+          "role": "module lines on product panel",
+          "ratio": 16.11,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#18200e",
+          "bg": "#c7f36a",
+          "role": "kit badge label on lime",
+          "ratio": 13.15,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "footer credit on product panel",
+          "ratio": 7.53,
+          "aa_text": true,
+          "aa_large_ui": true
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "svg": "content/visual/metrics-bar-chart.svg",
+      "png": "content/visual/metrics-bar-chart.png",
+      "proof": "content/qa/proof/metrics-bar-chart-proof.png",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080,
+        "aspect": "1920:1080"
+      },
+      "png_export": {
+        "width": 1920,
+        "height": 1080,
+        "bytes": 76966
+      },
+      "safe_area": {
+        "x0": 60,
+        "y0": 60,
+        "x1": 1860,
+        "y1": 1016
+      },
+      "exclusions": [],
+      "text_boxes": [
+        {
+          "text": "Metric title goes here",
+          "id": null,
+          "cls": "figureTitle",
+          "x": 90,
+          "y": 81,
+          "w": 538.39,
+          "h": 54,
+          "fontSize": 46,
+          "fontWeight": "800",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "Reporting period · data source",
+          "id": null,
+          "cls": null,
+          "x": 90,
+          "y": 148,
+          "w": 395.45,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "SAMPLE VALUES — REPLACE FIRST",
+          "id": null,
+          "cls": null,
+          "x": 1312.31,
+          "y": 87,
+          "w": 525.38,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "800",
+          "fill": "rgb(24, 32, 14)"
+        },
+        {
+          "text": "Category A",
+          "id": null,
+          "cls": null,
+          "x": 267.89,
+          "y": 312,
+          "w": 162.11,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "600",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "—",
+          "id": null,
+          "cls": null,
+          "x": 788,
+          "y": 308,
+          "w": 30,
+          "h": 35,
+          "fontSize": 30,
+          "fontWeight": "700",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "Category B",
+          "id": null,
+          "cls": null,
+          "x": 268.19,
+          "y": 408,
+          "w": 161.81,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "600",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "—",
+          "id": null,
+          "cls": null,
+          "x": 968,
+          "y": 404,
+          "w": 30,
+          "h": 35,
+          "fontSize": 30,
+          "fontWeight": "700",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "Category C",
+          "id": null,
+          "cls": null,
+          "x": 268.92,
+          "y": 504,
+          "w": 161.08,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "600",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "—",
+          "id": null,
+          "cls": null,
+          "x": 1148,
+          "y": 500,
+          "w": 30,
+          "h": 35,
+          "fontSize": 30,
+          "fontWeight": "700",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "Category D",
+          "id": null,
+          "cls": null,
+          "x": 266.42,
+          "y": 600,
+          "w": 163.58,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "600",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "—",
+          "id": null,
+          "cls": null,
+          "x": 1328,
+          "y": 596,
+          "w": 30,
+          "h": 35,
+          "fontSize": 30,
+          "fontWeight": "700",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "Category E",
+          "id": null,
+          "cls": null,
+          "x": 270.25,
+          "y": 696,
+          "w": 159.75,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "600",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "—",
+          "id": null,
+          "cls": null,
+          "x": 1508,
+          "y": 692,
+          "w": 30,
+          "h": 35,
+          "fontSize": 30,
+          "fontWeight": "700",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "0",
+          "id": null,
+          "cls": null,
+          "x": 470,
+          "y": 790,
+          "w": 15.28,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "25",
+          "id": null,
+          "cls": null,
+          "x": 777,
+          "y": 790,
+          "w": 30.55,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "50",
+          "id": null,
+          "cls": null,
+          "x": 1085,
+          "y": 790,
+          "w": 30.55,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "75",
+          "id": null,
+          "cls": null,
+          "x": 1392,
+          "y": 790,
+          "w": 30.55,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "100",
+          "id": null,
+          "cls": null,
+          "x": 1700,
+          "y": 790,
+          "w": 45.81,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "Replace every — with a verified figure, then add the source ",
+          "id": null,
+          "cls": null,
+          "x": 90,
+          "y": 876,
+          "w": 1107.11,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "600",
+          "fill": "rgb(255, 202, 104)"
+        },
+        {
+          "text": "Saksham · AI Revenue OS",
+          "id": null,
+          "cls": null,
+          "x": 90,
+          "y": 962,
+          "w": 375.78,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "600",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "MM-01 template v1",
+          "id": null,
+          "cls": null,
+          "x": 1545.84,
+          "y": 962,
+          "w": 284.16,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "600",
+          "fill": "rgb(156, 168, 186)"
+        }
+      ],
+      "safe_area_violations": [],
+      "min_font_px": 24,
+      "min_font_required_px": 24,
+      "raster_backdrop": {
+        "status": "measured",
+        "samples": 21,
+        "min_median_ratio": 7.53
+      },
+      "headline_native": {
+        "heightPx": 54,
+        "widthPx": 538.39,
+        "widthShareOfFrame": 28,
+        "lines": 1
+      },
+      "headline_at_small_scale": {
+        "heightPx": 5,
+        "widthPx": 47.36,
+        "widthShareOfFrame": 28.2,
+        "lines": 1
+      },
+      "legibility_checks": [
+        {
+          "check": "headline_height_at_168px",
+          "value": 5,
+          "min": 3,
+          "pass": true
+        },
+        {
+          "check": "headline_width_share_at_168px",
+          "value": 28.2,
+          "min": 25,
+          "max": 80,
+          "pass": true
+        }
+      ],
+      "contrast": [
+        {
+          "fg": "#eef2f7",
+          "bg": "#0b0d12",
+          "role": "figure title on background",
+          "ratio": 17.29,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#0b0d12",
+          "role": "period and source line on background",
+          "ratio": 8.07,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#18200e",
+          "bg": "#ffca68",
+          "role": "sample-data badge label on amber",
+          "ratio": 11.1,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#eef2f7",
+          "bg": "#12161e",
+          "role": "category labels on plot panel",
+          "ratio": 16.11,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "value placeholder on plot panel",
+          "ratio": 7.53,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "scale labels on plot panel",
+          "ratio": 7.53,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#ffca68",
+          "bg": "#0b0d12",
+          "role": "replacement rule on background",
+          "ratio": 12.86,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#0b0d12",
+          "role": "footer credit on background",
+          "ratio": 8.07,
+          "aa_text": true,
+          "aa_large_ui": true
+        }
+      ],
+      "status": "PASS"
+    },
+    {
+      "svg": "content/visual/article-howto-steps.svg",
+      "png": "content/visual/article-howto-steps.png",
+      "proof": "content/qa/proof/article-howto-steps-proof.png",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080,
+        "aspect": "1920:1080"
+      },
+      "png_export": {
+        "width": 1920,
+        "height": 1080,
+        "bytes": 109217
+      },
+      "safe_area": {
+        "x0": 60,
+        "y0": 60,
+        "x1": 1860,
+        "y1": 1016
+      },
+      "exclusions": [],
+      "text_boxes": [
+        {
+          "text": "HOW-TO GUIDE",
+          "id": null,
+          "cls": null,
+          "x": 90,
+          "y": 78,
+          "w": 261.89,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "800",
+          "fill": "rgb(199, 243, 106)"
+        },
+        {
+          "text": "How to ship a video in one day",
+          "id": null,
+          "cls": "figureTitle",
+          "x": 90,
+          "y": 127,
+          "w": 767.25,
+          "h": 54,
+          "fontSize": 46,
+          "fontWeight": "800",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "Three steps, each with one owner and one check.",
+          "id": null,
+          "cls": null,
+          "x": 89,
+          "y": 190,
+          "w": 647.91,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "01",
+          "id": null,
+          "cls": null,
+          "x": 140.34,
+          "y": 330,
+          "w": 47.33,
+          "h": 40,
+          "fontSize": 34,
+          "fontWeight": "800",
+          "fill": "rgb(24, 32, 14)"
+        },
+        {
+          "text": "Define the brief",
+          "id": null,
+          "cls": null,
+          "x": 126,
+          "y": 440,
+          "w": 284.89,
+          "h": 38,
+          "fontSize": 32,
+          "fontWeight": "700",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "Write the promise and the audience,",
+          "id": null,
+          "cls": null,
+          "x": 126,
+          "y": 508,
+          "w": 439.41,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "then get it approved before code.",
+          "id": null,
+          "cls": null,
+          "x": 126,
+          "y": 544,
+          "w": 404.39,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "Owner · MN-03",
+          "id": null,
+          "cls": null,
+          "x": 150.53,
+          "y": 641,
+          "w": 200.94,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "600",
+          "fill": "rgb(120, 224, 210)"
+        },
+        {
+          "text": "02",
+          "id": null,
+          "cls": null,
+          "x": 740.34,
+          "y": 330,
+          "w": 47.33,
+          "h": 40,
+          "fontSize": 34,
+          "fontWeight": "800",
+          "fill": "rgb(24, 32, 14)"
+        },
+        {
+          "text": "Build the scene",
+          "id": null,
+          "cls": null,
+          "x": 726,
+          "y": 440,
+          "w": 278.28,
+          "h": 38,
+          "fontSize": 32,
+          "fontWeight": "700",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "One idea per scene, one claim per",
+          "id": null,
+          "cls": null,
+          "x": 726,
+          "y": 508,
+          "w": 413.23,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "scene, and a caption for each.",
+          "id": null,
+          "cls": null,
+          "x": 726,
+          "y": 544,
+          "w": 363.7,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "Owner · GA-03",
+          "id": null,
+          "cls": null,
+          "x": 753.38,
+          "y": 641,
+          "w": 195.23,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "600",
+          "fill": "rgb(120, 224, 210)"
+        },
+        {
+          "text": "03",
+          "id": null,
+          "cls": null,
+          "x": 1340.34,
+          "y": 330,
+          "w": 47.33,
+          "h": 40,
+          "fontSize": 34,
+          "fontWeight": "800",
+          "fill": "rgb(24, 32, 14)"
+        },
+        {
+          "text": "Check and ship",
+          "id": null,
+          "cls": null,
+          "x": 1326,
+          "y": 440,
+          "w": 273.48,
+          "h": 38,
+          "fontSize": 32,
+          "fontWeight": "700",
+          "fill": "rgb(238, 242, 247)"
+        },
+        {
+          "text": "Visual QA passes, then the owner",
+          "id": null,
+          "cls": null,
+          "x": 1326,
+          "y": 508,
+          "w": 403.22,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "approves before anything is posted.",
+          "id": null,
+          "cls": null,
+          "x": 1326,
+          "y": 544,
+          "w": 432.92,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "500",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "Owner · Saksham",
+          "id": null,
+          "cls": null,
+          "x": 1333.19,
+          "y": 641,
+          "w": 235.63,
+          "h": 28,
+          "fontSize": 24,
+          "fontWeight": "600",
+          "fill": "rgb(120, 224, 210)"
+        },
+        {
+          "text": "Replace every step with sourced content before publishing.",
+          "id": null,
+          "cls": null,
+          "x": 90,
+          "y": 856,
+          "w": 877.58,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "600",
+          "fill": "rgb(255, 202, 104)"
+        },
+        {
+          "text": "Saksham · AI Revenue OS",
+          "id": null,
+          "cls": null,
+          "x": 90,
+          "y": 946,
+          "w": 375.78,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "600",
+          "fill": "rgb(156, 168, 186)"
+        },
+        {
+          "text": "MM-01 template v1",
+          "id": null,
+          "cls": null,
+          "x": 1545.84,
+          "y": 946,
+          "w": 284.16,
+          "h": 30,
+          "fontSize": 26,
+          "fontWeight": "600",
+          "fill": "rgb(156, 168, 186)"
+        }
+      ],
+      "safe_area_violations": [],
+      "min_font_px": 24,
+      "min_font_required_px": 24,
+      "raster_backdrop": {
+        "status": "measured",
+        "samples": 21,
+        "min_median_ratio": 7.53
+      },
+      "headline_native": {
+        "heightPx": 54,
+        "widthPx": 767.25,
+        "widthShareOfFrame": 40,
+        "lines": 1
+      },
+      "headline_at_small_scale": {
+        "heightPx": 5,
+        "widthPx": 67.35,
+        "widthShareOfFrame": 40.1,
+        "lines": 1
+      },
+      "legibility_checks": [
+        {
+          "check": "headline_height_at_168px",
+          "value": 5,
+          "min": 3,
+          "pass": true
+        },
+        {
+          "check": "headline_width_share_at_168px",
+          "value": 40.1,
+          "min": 25,
+          "max": 80,
+          "pass": true
+        }
+      ],
+      "contrast": [
+        {
+          "fg": "#c7f36a",
+          "bg": "#0b0d12",
+          "role": "eyebrow on background",
+          "ratio": 15.23,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#eef2f7",
+          "bg": "#0b0d12",
+          "role": "figure title on background",
+          "ratio": 17.29,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#0b0d12",
+          "role": "subtitle on background",
+          "ratio": 8.07,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#eef2f7",
+          "bg": "#12161e",
+          "role": "step titles on card",
+          "ratio": 16.11,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "step body on card",
+          "ratio": 7.53,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#18200e",
+          "bg": "#c7f36a",
+          "role": "step number on lime badge",
+          "ratio": 13.15,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#78e0d2",
+          "bg": "#181d27",
+          "role": "owner chip label on chip",
+          "ratio": 10.77,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#ffca68",
+          "bg": "#0b0d12",
+          "role": "placeholder note on background",
+          "ratio": 12.86,
+          "aa_text": true,
+          "aa_large_ui": true
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#0b0d12",
+          "role": "footer credit on background",
+          "ratio": 8.07,
           "aa_text": true,
           "aa_large_ui": true
         }

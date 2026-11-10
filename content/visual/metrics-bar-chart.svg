@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-labelledby="ttl dsc">
+  <title id="ttl">AI Revenue OS metrics chart template, horizontal bars, 16 by 9</title>
+  <desc id="dsc">Horizontal bar chart template on a near-black background with a lime rail across the top edge. The heading reads Metric title goes here with a grey period and source line beneath it, and an amber badge on the right warns that the values are samples to be replaced. Inside a bordered panel, four teal bars and one lime bar each have a category label on the left and a dash where the value belongs, over a faint scale marked zero to one hundred. A footer note gives the replacement rule and credits the template.</desc>
+
+  <rect width="1920" height="1080" fill="#0b0d12"/>
+  <rect x="0" y="0" width="1920" height="8" fill="#c7f36a"/>
+
+  <!-- Heading -->
+  <text class="figureTitle" x="90" y="124" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="46" font-weight="800" letter-spacing="-1" fill="#eef2f7">Metric title goes here</text>
+  <text x="90" y="172" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="500" fill="#9ca8ba">Reporting period &#183; data source</text>
+
+  <!-- Sample-data warning badge -->
+  <rect x="1290" y="70" width="570" height="58" rx="29" fill="#ffca68"/>
+  <text x="1575" y="109" text-anchor="middle" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="800" letter-spacing="2" fill="#18200e">SAMPLE VALUES &#8212; REPLACE FIRST</text>
+
+  <!-- Plot panel -->
+  <rect x="90" y="230" width="1740" height="620" rx="16" fill="#12161e" stroke="#556378" stroke-width="3"/>
+
+  <!-- Gridlines (decorative hairlines, drawn behind the bars) -->
+  <rect x="470" y="286" width="2" height="470" fill="#2a3342"/>
+  <rect x="777" y="286" width="2" height="470" fill="#2a3342"/>
+  <rect x="1085" y="286" width="2" height="470" fill="#2a3342"/>
+  <rect x="1392" y="286" width="2" height="470" fill="#2a3342"/>
+  <rect x="1700" y="286" width="2" height="470" fill="#2a3342"/>
+
+  <!-- Row 1 -->
+  <text x="430" y="336" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="600" fill="#eef2f7">Category A</text>
+  <rect x="470" y="300" width="300" height="52" rx="6" fill="#78e0d2"/>
+  <text x="788" y="336" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" font-weight="700" fill="#9ca8ba">&#8212;</text>
+
+  <!-- Row 2 -->
+  <text x="430" y="432" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="600" fill="#eef2f7">Category B</text>
+  <rect x="470" y="396" width="480" height="52" rx="6" fill="#78e0d2"/>
+  <text x="968" y="432" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" font-weight="700" fill="#9ca8ba">&#8212;</text>
+
+  <!-- Row 3 -->
+  <text x="430" y="528" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="600" fill="#eef2f7">Category C</text>
+  <rect x="470" y="492" width="660" height="52" rx="6" fill="#78e0d2"/>
+  <text x="1148" y="528" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" font-weight="700" fill="#9ca8ba">&#8212;</text>
+
+  <!-- Row 4 -->
+  <text x="430" y="624" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="600" fill="#eef2f7">Category D</text>
+  <rect x="470" y="588" width="840" height="52" rx="6" fill="#78e0d2"/>
+  <text x="1328" y="624" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" font-weight="700" fill="#9ca8ba">&#8212;</text>
+
+  <!-- Row 5 (highlight) -->
+  <text x="430" y="720" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="600" fill="#eef2f7">Category E</text>
+  <rect x="470" y="684" width="1020" height="52" rx="6" fill="#c7f36a"/>
+  <text x="1508" y="720" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="30" font-weight="700" fill="#9ca8ba">&#8212;</text>
+
+  <!-- Axis and scale -->
+  <rect x="470" y="766" width="1230" height="2" fill="#556378"/>
+  <text x="470" y="812" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="500" fill="#9ca8ba">0</text>
+  <text x="777" y="812" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="500" fill="#9ca8ba">25</text>
+  <text x="1085" y="812" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="500" fill="#9ca8ba">50</text>
+  <text x="1392" y="812" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="500" fill="#9ca8ba">75</text>
+  <text x="1700" y="812" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="24" font-weight="500" fill="#9ca8ba">100</text>
+
+  <!-- Replacement rule -->
+  <text x="90" y="900" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="600" fill="#ffca68">Replace every &#8212; with a verified figure, then add the source and the period.</text>
+
+  <!-- Footer -->
+  <rect x="90" y="936" width="1740" height="2" fill="#2a3342"/>
+  <text x="90" y="986" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="600" fill="#9ca8ba">Saksham &#183; AI Revenue OS</text>
+  <text x="1830" y="986" text-anchor="end" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="600" fill="#9ca8ba">MM-01 template v1</text>
+</svg>

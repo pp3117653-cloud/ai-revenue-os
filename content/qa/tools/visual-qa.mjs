@@ -229,6 +229,14 @@ function headlineMetrics(boxes, spec, renderedW) {
 }
 
 /* ---------- clean export PNG (asset as shipped, no guides) ---------- */
+/* PNG IHDR carries the true pixel size in bytes 16..24 (big-endian uint32).
+   Used to prove the exported raster is 1:1 with the SVG viewBox — Gate 1. */
+function pngSize(buf) {
+  const sig = Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+  if (!buf || buf.length < 24 || !buf.subarray(0, 8).equals(sig)) return null;
+  return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
+}
+
 async function exportPng(page, svgPath, outPath) {
   const abs = path.resolve(REPO, svgPath);
   const svgText = await readFile(abs, 'utf8');
@@ -241,7 +249,71 @@ async function exportPng(page, svgPath, outPath) {
   await page.setContent(html, { waitUntil: 'load' });
   await page.evaluate(() => document.fonts && document.fonts.ready);
   await mkdir(path.resolve(REPO, path.dirname(outPath)), { recursive: true });
-  await page.screenshot({ path: path.resolve(REPO, outPath) });
+  const buf = await page.screenshot({ path: path.resolve(REPO, outPath) });
+  return { bytes: buf.length, png: pngSize(buf), expected: { width: w, height: h } };
+}
+
+/* ---------- raster backdrop contrast ---------- */
+/* The declared-pairs check trusts the author to name the right background.
+   This one measures the real pixels: it re-renders the same SVG with every
+   <text> hidden, then reads the actual backdrop under each text run and
+   computes contrast against the text's own colour. It catches text that
+   silently sits on a brighter panel, a gradient or a photo. */
+async function rasterBackdrops(page, svgPath, nativeW, nativeH, boxes) {
+  const abs = path.resolve(REPO, svgPath);
+  const svgText = await readFile(abs, 'utf8');
+  const hidden = svgText.replace(/<svg\b([^>]*)>/, '<svg$1><style>text{display:none}</style>');
+  await page.setViewportSize({ width: nativeW, height: nativeH });
+  return await page.evaluate(async ({ svgText, hidden, w, h, boxes }) => {
+    const srgb = (c) => { c /= 255; return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4; };
+    const lum = (r, g, b) => 0.2126 * srgb(r) + 0.7152 * srgb(g) + 0.0722 * srgb(b);
+    const ratio = (a, b) => { const hi = Math.max(a, b), lo = Math.min(a, b); return (hi + 0.05) / (lo + 0.05); };
+    const raster = async (src) => {
+      const url = URL.createObjectURL(new Blob([src], { type: 'image/svg+xml' }));
+      try {
+        const img = new Image();
+        await new Promise((res, rej) => {
+          img.onload = res;
+          img.onerror = () => rej(new Error('svg raster failed'));
+          img.src = url;
+        });
+        const c = document.createElement('canvas');
+        c.width = w; c.height = h;
+        const ctx = c.getContext('2d', { willReadFrequently: true });
+        ctx.drawImage(img, 0, 0, w, h);
+        return ctx.getImageData(0, 0, w, h).data;
+      } finally { URL.revokeObjectURL(url); }
+    };
+    let px;
+    try { px = await raster(hidden); }
+    catch (e) { return { error: String(e && e.message || e) }; }
+    const out = [];
+    for (const b of boxes) {
+      const x0 = Math.max(0, Math.round(b.x));
+      const y0 = Math.max(0, Math.round(b.y));
+      const x1 = Math.min(w, Math.round(b.x + b.w));
+      const y1 = Math.min(h, Math.round(b.y + b.h));
+      if (x1 <= x0 || y1 <= y0) continue;
+      const lums = [];
+      for (let y = y0; y < y1; y++) {
+        for (let x = x0; x < x1; x++) {
+          const i = (y * w + x) * 4;
+          lums.push(lum(px[i], px[i + 1], px[i + 2]));
+        }
+      }
+      lums.sort((a, b) => a - b);
+      const med = lums[Math.floor(lums.length / 2)];
+      const m = /rgb\((\d+),\s*(\d+),\s*(\d+)\)/.exec(b.fill || '');
+      if (!m) continue;
+      const tl = lum(+m[1], +m[2], +m[3]);
+      out.push({
+        text: b.text,
+        median_ratio: +ratio(tl, med).toFixed(2),
+        worst_ratio: +ratio(tl, tl > med ? lums[0] : lums[lums.length - 1]).toFixed(2),
+      });
+    }
+    return { samples: out };
+  }, { svgText, hidden, w: nativeW, h: nativeH, boxes });
 }
 
 /* ---------- proof PNG ---------- */
@@ -287,6 +359,31 @@ for (const a of spec.assets) {
   const violations = [...checkSafe(native.boxes, a, 1)];
   for (const o of native.occlusion) violations.push({ type: o.type, text: o.text, box: { other: o.other } });
   for (const o of native.overflow) violations.push({ type: o.type, text: o.text, box: { container: o.container, text_right: o.text_right, container_right: o.container_right } });
+
+  /* Gate 4 — minimum font size at final render size */
+  const fonts = native.boxes.map((b) => b.fontSize).filter((n) => Number.isFinite(n));
+  const minFontPx = fonts.length ? Math.min(...fonts) : null;
+  if (a.minFontPx && minFontPx !== null && minFontPx < a.minFontPx) {
+    violations.push({
+      type: 'font_too_small',
+      text: `smallest text is ${minFontPx}px`,
+      box: { min_px: minFontPx, required_px: a.minFontPx },
+    });
+  }
+
+  /* Real-pixel backdrop behind every text run */
+  const raster = await rasterBackdrops(page, a.svg, native.nativeW, native.nativeH, native.boxes);
+  const rasterSamples = raster.error ? [] : (raster.samples || []);
+  for (const s of rasterSamples) {
+    if (s.median_ratio < 4.5) {
+      violations.push({
+        type: 'raster_contrast',
+        text: s.text,
+        box: { median_ratio: s.median_ratio, worst_ratio: s.worst_ratio },
+      });
+    }
+  }
+
   const headNative = headlineMetrics(native.boxes, a, native.renderedW);
   const headSmall = headlineMetrics(small.boxes, a, small.renderedW);
 
@@ -318,17 +415,42 @@ for (const a of spec.assets) {
   const proofPath = a.proof || `content/qa/proof/${path.basename(a.svg, '.svg')}-proof.png`;
   await mkdir(path.resolve(REPO, path.dirname(proofPath)), { recursive: true });
   await proof(page, a.svg, a, native, proofPath);
-  if (a.png) await exportPng(page, a.svg, a.png);
+  let exportInfo = null;
+  if (a.png) {
+    exportInfo = await exportPng(page, a.svg, a.png);
+    if (!exportInfo.png) {
+      /* The file does not start with the PNG signature. A base64 or otherwise
+         mangled export that kept a .png name must never pass as artwork. */
+      violations.push({
+        type: 'png_not_valid',
+        text: a.png,
+        box: { expected: exportInfo.expected, note: 'file does not carry a PNG signature' },
+      });
+    } else if (exportInfo.png.width !== exportInfo.expected.width
+        || exportInfo.png.height !== exportInfo.expected.height) {
+      violations.push({
+        type: 'png_dimension_mismatch',
+        text: a.png,
+        box: { png: exportInfo.png, expected: exportInfo.expected },
+      });
+    }
+  }
 
   report.assets.push({
     svg: a.svg,
     png: a.png,
     proof: proofPath,
     dimensions: { width: native.nativeW, height: native.nativeH, aspect: `${native.nativeW}:${native.nativeH}` },
+    png_export: exportInfo ? { width: exportInfo.png && exportInfo.png.width, height: exportInfo.png && exportInfo.png.height, bytes: exportInfo.bytes } : null,
     safe_area: a.safe,
     exclusions: a.exclusions || [],
     text_boxes: native.boxes,
     safe_area_violations: violations,
+    min_font_px: minFontPx,
+    min_font_required_px: a.minFontPx || null,
+    raster_backdrop: raster.error
+      ? { status: 'unavailable', error: raster.error }
+      : { status: 'measured', samples: rasterSamples.length, min_median_ratio: rasterSamples.length ? Math.min(...rasterSamples.map((s) => s.median_ratio)) : null },
     headline_native: headNative,
     headline_at_small_scale: headSmall,
     legibility_checks: legibility,
