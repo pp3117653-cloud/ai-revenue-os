@@ -1,31 +1,53 @@
 name: AI Revenue OS Coordinator
-
 on:
   workflow_dispatch:
   schedule:
-    - cron: '15 3,15 * * *'
-      # UTC: 09:15 and 21:15 Asia/Kolkata
-
+    - cron: '45 3,15 * * *'
+      # UTC 03:45 and 15:45 = 09:15 and 21:15 Asia/Kolkata
 permissions:
-  contents: write
+  contents: read
   issues: write
-
 jobs:
   checkpoint:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - name: Validate repository and current cycle
+      - name: Validate repository configuration
         run: |
           test -f agents/team.yaml
           test -f schemas/task.schema.yaml
           test -f briefs/approval-policy.md
-          echo "Coordinator checkpoint: $(date -u)"
-      - name: Create coordinator issue
+          test -f content/qa/tools/assets-spec.json
+          echo "Repository checkpoint only; no AI provider accounts are invoked. UTC: $(date -u)"
+      - name: Validate PNG exports
         run: |
-          gh issue create --title "Coordinator checkpoint $(date -u +%F-%H%M)" \
-            --body "Read the current backlog, verify bounded tasks, update status, and escalate blocked or approval-required work. Do not send, publish, charge, or mutate client production without approval." \
-            --label "coordinator" || true
+          python3 - <<'PY'
+          import json
+          import re
+          import struct
+          from pathlib import Path
+
+          spec = json.loads(Path('content/qa/tools/assets-spec.json').read_text())
+          signature = b'\x89PNG\r\n\x1a\n'
+          for asset in spec['assets']:
+              png_path = Path(asset['png'])
+              svg_path = Path(asset['svg'])
+              data = png_path.read_bytes()
+              assert data.startswith(signature), f'{png_path}: invalid PNG signature'
+              width, height = struct.unpack('>II', data[16:24])
+              svg = svg_path.read_text()
+              match = re.search(r'viewBox="0 0 (\d+) (\d+)"', svg)
+              assert match, f'{svg_path}: missing expected viewBox'
+              expected = tuple(map(int, match.groups()))
+              assert (width, height) == expected, (
+                  f'{png_path}: {width}x{height} does not match SVG {expected[0]}x{expected[1]}'
+              )
+              print(f'PASS {png_path}: {width}x{height}')
+          PY
+      - name: Create coordinator checkpoint issue
+        run: |
+          gh issue create --title "Coordinator checkpoint $(date -u +%F-%H%M UTC)" \
+            --body "Repository configuration and PNG export checks passed. This workflow does not invoke Gemini, Manus, or MiniMax accounts and does not execute role tasks. Email sending, public posting, payments, and client production changes remain outside this workflow."
         env:
           GH_TOKEN: ${{ github.token }}

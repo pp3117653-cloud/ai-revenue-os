@@ -280,3 +280,8 @@ Google-3 remains the sole animation-code author. No animation source was read be
   machines, so legibility figures are valid for the environment the asset was exported in.
 - The chart template's 0–100 scale is a sample scale. It is not a claim about any metric.
 - `content/brand/brand-rules.md` is still a proposal awaiting Saksham's ratification.
+
+
+## Follow-up — 2026-11-11
+
+The six SVG masters were rerendered through the visual QA harness. All six delivery PNGs and all six proof PNGs now have valid PNG structure and match their SVG canvas dimensions. The rerun reports **6/6 assets PASS**. The coordinator workflow was also corrected to use UTC cron times that map to its documented 09:15 and 21:15 Asia/Kolkata schedule, to validate PNG signatures and dimensions, and to fail rather than silently suppress checkpoint-creation errors. It remains a repository-check workflow only; it does not invoke any of the eight model accounts or execute their role tasks.
