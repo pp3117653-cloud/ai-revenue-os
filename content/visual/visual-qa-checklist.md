@@ -18,6 +18,7 @@ echo "exit $?"   # 0 = every asset passed, 1 = at least one failed
 - [ ] Canvas is exactly one of the approved formats: 1920×1080 (16:9), 1080×1920 (9:16), 1200×1200 (1:1 product cover), or a documented doc size.
 - [ ] Exported raster is 1:1 with the SVG `viewBox`; no rescaling, no letterboxing.
 - [ ] File is PNG for raster delivery, and the PNG dimensions were confirmed after export. The harness reads the PNG header and fails on a mismatch.
+- [ ] The exported raster **matches a fresh render of its master**. A PNG can be the right size, carry a valid header and still be the wrong picture — a renderer that ignores `font-family` will re-type the whole kit in a serif fallback and every other check still passes. The harness compares the shipped raster against a fresh render pixel for pixel and fails above `maxExportDriftPct` (default 1%).
 
 ## Gate 2 — Contrast
 
@@ -41,6 +42,7 @@ echo "exit $?"   # 0 = every asset passed, 1 = at least one failed
 - [ ] Body copy is not smaller than 3% of canvas height.
 - [ ] No text run is smaller than the asset's `minFontPx` in `assets-spec.json` (28px for the YouTube template, 26px for the Reel template, 24px for doc figures and the product cover, 22px for the pipeline diagram badge).
 - [ ] The **real pixels** behind every text run were measured, not only the declared colour pairs. The harness re-renders the asset with the text hidden, reads the backdrop under each run and computes contrast against the text's own colour. A run whose measured median backdrop is under 4.5:1 fails.
+- [ ] The brand font stack resolves to a **sans** face in the exporting environment. The harness measures a probe string against the generic `serif` and `sans-serif` faces; a stack that lands on the serif default fails.
 
 ## Gate 5 — Asset rights
 

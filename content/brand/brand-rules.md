@@ -36,6 +36,8 @@ Author: MM-01 (MiniMax-1) · Last updated: 2026-11-10 · Owner: Saksham
 
 **Font caveat.** Text stays live in the SVG so it stays editable, translatable and readable by assistive tech. Because the stack is system-resolved, glyph metrics differ slightly between machines. If a final published asset must be pixel-identical everywhere, convert the text to outlines in the export step and keep the live-text SVG as the editable master.
 
+**Export caveat (found 2026-11-11).** A renderer that ignores `font-family` falls back to its own default, which on many systems is a **serif** face. The whole kit then re-types in serif while the SVG master, the declared contrast pairs and the PNG header all still check out. `content/qa/tools/visual-qa.mjs` therefore verifies two things before an export is trusted: that the font stack resolves to a sans face, and that the shipped raster matches a fresh render of its master pixel for pixel. **Always re-export assets with the harness — `node content/qa/tools/visual-qa.mjs` — and never with an ad-hoc renderer.**
+
 ## 3. Formats and safe margins
 
 | Format | Canvas | Aspect | Text-safe area | UI-overlay exclusions |

@@ -285,3 +285,89 @@ Google-3 remains the sole animation-code author. No animation source was read be
 ## Follow-up — 2026-11-11
 
 The six SVG masters were rerendered through the visual QA harness. All six delivery PNGs and all six proof PNGs now have valid PNG structure and match their SVG canvas dimensions. The rerun reports **6/6 assets PASS**. The coordinator workflow was also corrected to use UTC cron times that map to its documented 09:15 and 21:15 Asia/Kolkata schedule, to validate PNG signatures and dimensions, and to fail rather than silently suppress checkpoint-creation errors. It remains a repository-check workflow only; it does not invoke any of the eight model accounts or execute their role tasks.
+
+---
+
+# MM-01 run checkpoint — 2026-11-11, 10:25 Asia/Kolkata
+
+**Role:** MM-01 — Thumbnail and Visual QA · **Account:** MiniMax-1 · **Cycle day:** D1 (still the only day with evidence)
+**Issue:** https://github.com/pp3117653-cloud/ai-revenue-os/issues/1 (existing issue, commented — no duplicate opened)
+**Schedule:** every 12 hours at 10:25 and 22:25 Asia/Kolkata (cron `25 10,22 * * *`) — unchanged, not re-created
+**Model:** `minimax/MiniMax-M1` · **Run bound:** 45 min · **Retries used:** 0 (the QA harness ran twice: once to detect and repair, once to confirm)
+
+## What changed since the last run
+
+The owner restored the PNG exports on `main` (commit `c782a4b`, "Fix coordinator checks and restore PNG exports"), so the previous run's binary-export blocker is **resolved in principle**. The restored files are valid PNGs of the correct size. They are, however, **rendered in a serif face** while the brand stack in `content/brand/brand-rules.md` §2 is sans-serif. The SVG masters are unchanged and correct; the exports no longer match their masters.
+
+No approved video brief and no GA-03 animation source exist, so poster-frame work is still blocked. MN-03 and MN-02 both checkpointed as blocked today for the same underlying reason (no accepted research, no approved offer, no open task), so there is no brief-aligned visual to produce.
+
+## Final report
+
+```text
+ASSET_PATHS=content/thumbnails/youtube-16x9-template.png   (re-exported)
+            content/thumbnails/reel-9x16-template.png      (re-exported)
+            content/visual/pipeline-diagram.png            (re-exported)
+            content/visual/metrics-bar-chart.png           (re-exported)
+            content/visual/article-howto-steps.png         (re-exported)
+            content/products/product-cover-square.png       (re-exported)
+            content/qa/proof/*.png                          (6 regenerated proofs)
+            content/qa/tools/visual-qa.mjs                  (two new gates)
+            content/qa/tools/assets-spec.json               (v3)
+            content/qa/mm01-visual-qa-report.json
+            content/brand/brand-rules.md                    (export caveat)
+            content/visual/visual-qa-checklist.md           (two new gate lines)
+
+RIGHTS_NOTES=content/brand/rights-notes.md — unchanged and still current. No asset was added or re-licensed this run; the six re-exported rasters are the same first-party, deterministic SVGs re-rendered from their masters. No stock or scraped imagery, no embedded font file, no third-party logo, no real-person likeness, model-generated=no.
+
+PURPOSE=Make the visual gate able to catch an export that is the right file and the right size but the wrong picture, and put the shipped kit back in the brand typeface.
+
+REVIEW_STATUS=PASS — 6/6 assets, exit 0 on the confirming run. Dimensions, declared contrast, safe margins, UI-overlay exclusions, legibility at 168px, minimum font size, real-pixel backdrop contrast, PNG header, PNG dimensions, font-stack resolution and export drift all measured. Reviewer for completed video packages: MN-04.
+
+BLOCKERS=1) Video work still blocked: no approved brief under content/video/briefs/ and no GA-03 source, so no poster frame from a real render and no brief-alignment check against a real video asset.
+        2) The six re-exported PNGs are committed locally only. `git push` over HTTPS still fails here with `could not read Username for 'https://github.com'` — no PAT or SSH key is configured for pp3117653-cloud — and the GitHub connector's file-write path is text-only, so it cannot carry a binary PNG. The SVGs on `main` are correct and lossless; only the flat rasters are outstanding.
+        3) content/brand/brand-rules.md is still a PROPOSAL awaiting Saksham's ratification.
+
+APPROVALS=1) Saksham — ratify content/brand/brand-rules.md, now including the export caveat.
+          2) Saksham — push the six re-exported PNGs (local commit below) with a credentialed git push, or run `node content/qa/tools/visual-qa.mjs` on a machine that has one.
+          3) Saksham — any future publishing or upload (none performed).
+          4) MN-04 — reviewer on the completed video package.
+         No publishing, no upload, no outreach, no client access, no external action taken.
+
+NEXT_ACTION=Next run: re-read the brief set and the current backlog day. If content/video/briefs/ holds an approved brief and content/video/src/ holds GA-03 source, render it and produce the first real poster frame plus a brief-aligned thumbnail, routing any source defect to GA-03 via a change request. If the brief set is still empty, keep the kit honest rather than growing it: re-run the QA gate, confirm zero export drift, and add a short "how to run the visual gate" section to content/visual/README.md. Recommend to the owner that the coordinator workflow's PNG check call the MM-01 harness instead of its own header-and-size script, so drift and typeface are checked in CI too.
+```
+
+## Defect found and fixed
+
+**The restored PNG exports were re-typed in a serif face.** All six rasters on `main` carried the brand's sans-serif geometry nowhere: the text rendered in DejaVu Serif while `content/brand/brand-rules.md` §2 specifies a sans stack. Nothing in the repository's own checks could see it — the coordinator's PNG validation reads the header and the IHDR size, and the MM-01 harness checked the SVG source, so a serif export passed every gate while looking wrong.
+
+Found by adding the export-fidelity gate: the harness now renders the master, compares it pixel for pixel against the raster already on disk, and fails when they differ by more than 1%. Measured drift on the shipped files:
+
+| Asset | Drift from a fresh render of its master |
+|---|---|
+| `youtube-16x9-template.png` | 4.85% |
+| `reel-9x16-template.png` | 3.59% |
+| `pipeline-diagram.png` | 5.54% |
+| `product-cover-square.png` | 5.71% |
+| `metrics-bar-chart.png` | 2.33% |
+| `article-howto-steps.png` | 3.75% |
+
+Fixed by re-exporting all six from their masters with the harness. The confirming run measures **0.00% drift on all six**.
+
+## Two new checks added to the QA gate
+
+| Check | What it catches | How it measures |
+|---|---|---|
+| `export_drift` | a shipped raster that no longer matches its master — a different renderer, a different typeface, a hand-edited export | renders the master and compares it to the raster on disk pixel for pixel; fails above `maxExportDriftPct` (default 1%) |
+| `font_stack_resolves_to_serif` | a renderer that ignores `font-family` and silently falls back to the generic serif default | measures a probe string in the brand stack against the generic `serif` and `sans-serif` faces |
+
+The harness now also renders, compares and **only then** writes, so a shipped raster is never overwritten before it has been checked against its master.
+
+## Scope guard
+
+`content/video/src/` was **not** created, edited, patched or deleted. The path is still empty. GA-03 / Google-3 remains the sole animation-code author. No animation source was read because none exists.
+
+## Known limits of this checkpoint
+
+- Export drift compares two renders of the same SVG. It cannot tell a *better* render from a *worse* one — it only proves the shipped file is the render the harness produces. Typography judgement still needs a human eye, which is what Gate 6 of the checklist is for.
+- The font-stack probe compares against the generic faces of the machine that runs the harness. On a machine with no sans face installed it would report a false pass.
+- The brand stack resolves to DejaVu Sans in this environment; a machine with Inter installed will render slightly different glyphs, which is why the SVG masters stay the source of truth and the rasters are derived.

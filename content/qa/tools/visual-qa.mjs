@@ -237,7 +237,7 @@ function pngSize(buf) {
   return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
 }
 
-async function exportPng(page, svgPath, outPath) {
+async function exportPng(page, svgPath, outPath, write = true) {
   const abs = path.resolve(REPO, svgPath);
   const svgText = await readFile(abs, 'utf8');
   const vb = svgText.match(/viewBox="0 0 (\d+) (\d+)"/);
@@ -248,9 +248,9 @@ async function exportPng(page, svgPath, outPath) {
   await page.setViewportSize({ width: w, height: h });
   await page.setContent(html, { waitUntil: 'load' });
   await page.evaluate(() => document.fonts && document.fonts.ready);
-  await mkdir(path.resolve(REPO, path.dirname(outPath)), { recursive: true });
-  const buf = await page.screenshot({ path: path.resolve(REPO, outPath) });
-  return { bytes: buf.length, png: pngSize(buf), expected: { width: w, height: h } };
+  if (write) await mkdir(path.resolve(REPO, path.dirname(outPath)), { recursive: true });
+  const buf = await page.screenshot(write ? { path: path.resolve(REPO, outPath) } : {});
+  return { bytes: buf.length, png: pngSize(buf), expected: { width: w, height: h }, buffer: buf };
 }
 
 /* ---------- raster backdrop contrast ---------- */
@@ -314,6 +314,65 @@ async function rasterBackdrops(page, svgPath, nativeW, nativeH, boxes) {
     }
     return { samples: out };
   }, { svgText, hidden, w: nativeW, h: nativeH, boxes });
+}
+
+/* ---------- export fidelity (shipped raster vs its master) ---------- */
+/* A raster that no longer matches its SVG master is worse than a missing one:
+   it looks right and is wrong. A PNG check that only reads the header proves
+   the file is a PNG of the right size — it cannot see a renderer that swapped
+   the brand typeface for a serif fallback. This compares the raster already on
+   disk against a fresh render of the same master, pixel for pixel. */
+async function exportDrift(page, freshBytes, existingBytes, nativeW, nativeH) {
+  if (!existingBytes) return { status: 'absent' };
+  const freshB64 = Buffer.from(freshBytes).toString('base64');
+  const existB64 = Buffer.from(existingBytes).toString('base64');
+  return await page.evaluate(async ({ freshB64, existB64, w, h }) => {
+    const load = async (b64) => {
+      const img = new Image();
+      await new Promise((res, rej) => {
+        img.onload = res;
+        img.onerror = () => rej(new Error('png decode failed'));
+        img.src = 'data:image/png;base64,' + b64;
+      });
+      const c = document.createElement('canvas');
+      c.width = w; c.height = h;
+      const ctx = c.getContext('2d', { willReadFrequently: true });
+      ctx.drawImage(img, 0, 0, w, h);
+      return ctx.getImageData(0, 0, w, h).data;
+    };
+    let a, b;
+    try { a = await load(freshB64); b = await load(existB64); }
+    catch (e) { return { status: 'error', error: String((e && e.message) || e) }; }
+    let drift = 0;
+    for (let i = 0; i < a.length; i += 4) {
+      if (Math.abs(a[i] - b[i]) > 40 || Math.abs(a[i + 1] - b[i + 1]) > 40 || Math.abs(a[i + 2] - b[i + 2]) > 40) drift++;
+    }
+    const total = a.length / 4;
+    return { status: 'measured', drift_pct: +(100 * drift / total).toFixed(2), compared_px: total };
+  }, { freshB64, existB64, w: nativeW, h: nativeH });
+}
+
+/* ---------- font-stack fidelity ---------- */
+/* The brand stack must resolve to a sans face. A renderer that ignores
+   font-family falls back to its own default, often a serif, which silently
+   re-types the whole kit while every other check still passes. This measures
+   the stack against the generic serif and sans faces. */
+async function fontStackProbe(page, fontStack) {
+  return await page.evaluate((stack) => {
+    const ctx = document.createElement('canvas').getContext('2d');
+    const probe = 'Handgloves 0123 mMwW';
+    const width = (family) => { ctx.font = `100px ${family}`; return ctx.measureText(probe).width; };
+    const stackW = width(stack);
+    const serifW = width('serif');
+    const sansW = width('sans-serif');
+    const near = (x, y) => Math.abs(x - y) < 0.5;
+    return {
+      stack_width: +stackW.toFixed(2),
+      serif_width: +serifW.toFixed(2),
+      sans_width: +sansW.toFixed(2),
+      resolves_to_serif: near(stackW, serifW) && !near(stackW, sansW),
+    };
+  }, fontStack);
 }
 
 /* ---------- proof PNG ---------- */
@@ -416,8 +475,41 @@ for (const a of spec.assets) {
   await mkdir(path.resolve(REPO, path.dirname(proofPath)), { recursive: true });
   await proof(page, a.svg, a, native, proofPath);
   let exportInfo = null;
+  let driftInfo = { status: 'skipped' };
+  let fontProbe = null;
   if (a.png) {
-    exportInfo = await exportPng(page, a.svg, a.png);
+    const absPng = path.resolve(REPO, a.png);
+    let existing = null;
+    try { existing = await readFile(absPng); } catch { existing = null; }
+
+    /* Render first, compare second, write last: the shipped raster is never
+       overwritten before it has been checked against the master. */
+    exportInfo = await exportPng(page, a.svg, a.png, false);
+    driftInfo = await exportDrift(page, exportInfo.buffer, existing, native.nativeW, native.nativeH);
+    const driftLimit = a.maxExportDriftPct ?? 1;
+    if (driftInfo.status === 'measured' && driftInfo.drift_pct > driftLimit) {
+      driftInfo.repaired = true;   // the fresh render is written below, so the raster is corrected in this same run
+      violations.push({
+        type: 'export_drift',
+        text: a.png,
+        box: { drift_pct: driftInfo.drift_pct, limit_pct: driftLimit, repaired: true, note: 'shipped raster did not match a fresh render of its master; it has been re-exported from the master' },
+      });
+    }
+
+    const svgText = await readFile(path.resolve(REPO, a.svg), 'utf8');
+    const fm = /font-family="([^"]+)"/.exec(svgText);
+    fontProbe = await fontStackProbe(page, fm ? fm[1] : 'sans-serif');
+    if (fontProbe.resolves_to_serif) {
+      violations.push({
+        type: 'font_stack_resolves_to_serif',
+        text: a.svg,
+        box: { ...fontProbe, note: 'the brand font stack resolves to the generic serif face' },
+      });
+    }
+
+    await mkdir(path.dirname(absPng), { recursive: true });
+    await writeFile(absPng, exportInfo.buffer);
+
     if (!exportInfo.png) {
       /* The file does not start with the PNG signature. A base64 or otherwise
          mangled export that kept a .png name must never pass as artwork. */
@@ -451,6 +543,8 @@ for (const a of spec.assets) {
     raster_backdrop: raster.error
       ? { status: 'unavailable', error: raster.error }
       : { status: 'measured', samples: rasterSamples.length, min_median_ratio: rasterSamples.length ? Math.min(...rasterSamples.map((s) => s.median_ratio)) : null },
+    export_drift: driftInfo,
+    font_stack: fontProbe,
     headline_native: headNative,
     headline_at_small_scale: headSmall,
     legibility_checks: legibility,

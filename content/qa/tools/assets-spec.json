@@ -1,15 +1,26 @@
 {
-  "version": 2,
+  "version": 3,
   "author": "MM-01 (MiniMax-1)",
-  "notes": "Safe areas follow content/brand/brand-rules.md. Run: node content/qa/tools/visual-qa.mjs. Per-asset keys: minFontPx = smallest permitted text at native size; scaleChecks = the thumbnail-width legibility test (skip for doc figures by lowering the headline floor, since the 168px rule is a thumbnail rule); rasterContrast = sample the real rendered pixels behind every text run.",
+  "notes": "Safe areas follow content/brand/brand-rules.md. Run: node content/qa/tools/visual-qa.mjs. Per-asset keys: minFontPx = smallest permitted text at native size; scaleChecks = the thumbnail-width legibility test (skip for doc figures by lowering the headline floor, since the 168px rule is a thumbnail rule); maxExportDriftPct = how far the shipped raster may differ from a fresh render of its master before the build fails (default 1%).",
   "assets": [
     {
       "svg": "content/thumbnails/youtube-16x9-template.svg",
       "png": "content/thumbnails/youtube-16x9-template.png",
       "proof": "content/qa/proof/youtube-16x9-template-proof.png",
-      "safe": { "x0": 96, "y0": 72, "x1": 1824, "y1": 1008 },
+      "safe": {
+        "x0": 96,
+        "y0": 72,
+        "x1": 1824,
+        "y1": 1008
+      },
       "exclusions": [
-        { "id": "youtube-duration-badge", "x0": 1536, "y0": 920, "x1": 1824, "y1": 1008 }
+        {
+          "id": "youtube-duration-badge",
+          "x0": 1536,
+          "y0": 920,
+          "x1": 1824,
+          "y1": 1008
+        }
       ],
       "headlineClass": "headline",
       "minFontPx": 28,
@@ -20,22 +31,63 @@
         "maxHeadlineWidthSharePct": 80
       },
       "contrast": [
-        { "fg": "#eef2f7", "bg": "#0b0d12", "role": "headline text on background" },
-        { "fg": "#9ca8ba", "bg": "#0b0d12", "role": "supporting line on background" },
-        { "fg": "#c7f36a", "bg": "#0b0d12", "role": "eyebrow on background" },
-        { "fg": "#18200e", "bg": "#c7f36a", "role": "duration badge label on lime" },
-        { "fg": "#78e0d2", "bg": "#12161e", "role": "slot chip label on key-visual panel" },
-        { "fg": "#9ca8ba", "bg": "#12161e", "role": "key-visual label on key-visual panel" }
+        {
+          "fg": "#eef2f7",
+          "bg": "#0b0d12",
+          "role": "headline text on background"
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#0b0d12",
+          "role": "supporting line on background"
+        },
+        {
+          "fg": "#c7f36a",
+          "bg": "#0b0d12",
+          "role": "eyebrow on background"
+        },
+        {
+          "fg": "#18200e",
+          "bg": "#c7f36a",
+          "role": "duration badge label on lime"
+        },
+        {
+          "fg": "#78e0d2",
+          "bg": "#12161e",
+          "role": "slot chip label on key-visual panel"
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "key-visual label on key-visual panel"
+        }
       ]
     },
     {
       "svg": "content/thumbnails/reel-9x16-template.svg",
       "png": "content/thumbnails/reel-9x16-template.png",
       "proof": "content/qa/proof/reel-9x16-template-proof.png",
-      "safe": { "x0": 72, "y0": 300, "x1": 1008, "y1": 1380 },
+      "safe": {
+        "x0": 72,
+        "y0": 300,
+        "x1": 1008,
+        "y1": 1380
+      },
       "exclusions": [
-        { "id": "reels-action-rail", "x0": 872, "y0": 980, "x1": 1008, "y1": 1620 },
-        { "id": "shorts-bottom-title-band", "x0": 72, "y0": 1560, "x1": 872, "y1": 1780 }
+        {
+          "id": "reels-action-rail",
+          "x0": 872,
+          "y0": 980,
+          "x1": 1008,
+          "y1": 1620
+        },
+        {
+          "id": "shorts-bottom-title-band",
+          "x0": 72,
+          "y0": 1560,
+          "x1": 872,
+          "y1": 1780
+        }
       ],
       "headlineClass": "headline",
       "minFontPx": 26,
@@ -46,19 +98,48 @@
         "maxHeadlineWidthSharePct": 85
       },
       "contrast": [
-        { "fg": "#eef2f7", "bg": "#0b0d12", "role": "headline text on background" },
-        { "fg": "#9ca8ba", "bg": "#0b0d12", "role": "supporting line on background" },
-        { "fg": "#c7f36a", "bg": "#0b0d12", "role": "eyebrow on background" },
-        { "fg": "#18200e", "bg": "#c7f36a", "role": "duration badge label on lime" },
-        { "fg": "#78e0d2", "bg": "#12161e", "role": "slot chip label on key-visual panel" },
-        { "fg": "#9ca8ba", "bg": "#12161e", "role": "key-visual label on key-visual panel" }
+        {
+          "fg": "#eef2f7",
+          "bg": "#0b0d12",
+          "role": "headline text on background"
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#0b0d12",
+          "role": "supporting line on background"
+        },
+        {
+          "fg": "#c7f36a",
+          "bg": "#0b0d12",
+          "role": "eyebrow on background"
+        },
+        {
+          "fg": "#18200e",
+          "bg": "#c7f36a",
+          "role": "duration badge label on lime"
+        },
+        {
+          "fg": "#78e0d2",
+          "bg": "#12161e",
+          "role": "slot chip label on key-visual panel"
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "key-visual label on key-visual panel"
+        }
       ]
     },
     {
       "svg": "content/visual/pipeline-diagram.svg",
       "png": "content/visual/pipeline-diagram.png",
       "proof": "content/qa/proof/pipeline-diagram-proof.png",
-      "safe": { "x0": 60, "y0": 60, "x1": 1860, "y1": 1016 },
+      "safe": {
+        "x0": 60,
+        "y0": 60,
+        "x1": 1860,
+        "y1": 1016
+      },
       "exclusions": [],
       "headlineClass": "no-headline-in-diagram",
       "minFontPx": 22,
@@ -69,19 +150,48 @@
         "maxHeadlineWidthSharePct": 100
       },
       "contrast": [
-        { "fg": "#eef2f7", "bg": "#0b0d12", "role": "stage titles on background" },
-        { "fg": "#c7f36a", "bg": "#181d27", "role": "role ids on stage panel" },
-        { "fg": "#78e0d2", "bg": "#181d27", "role": "coordinator role id on stage panel" },
-        { "fg": "#ffca68", "bg": "#12161e", "role": "approval gate label on gate chip" },
-        { "fg": "#9ca8ba", "bg": "#12161e", "role": "support chip label on chip" },
-        { "fg": "#ff8585", "bg": "#12161e", "role": "constraint strip text" }
+        {
+          "fg": "#eef2f7",
+          "bg": "#0b0d12",
+          "role": "stage titles on background"
+        },
+        {
+          "fg": "#c7f36a",
+          "bg": "#181d27",
+          "role": "role ids on stage panel"
+        },
+        {
+          "fg": "#78e0d2",
+          "bg": "#181d27",
+          "role": "coordinator role id on stage panel"
+        },
+        {
+          "fg": "#ffca68",
+          "bg": "#12161e",
+          "role": "approval gate label on gate chip"
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "support chip label on chip"
+        },
+        {
+          "fg": "#ff8585",
+          "bg": "#12161e",
+          "role": "constraint strip text"
+        }
       ]
     },
     {
       "svg": "content/products/product-cover-square.svg",
       "png": "content/products/product-cover-square.png",
       "proof": "content/qa/proof/product-cover-square-proof.png",
-      "safe": { "x0": 72, "y0": 72, "x1": 1128, "y1": 1128 },
+      "safe": {
+        "x0": 72,
+        "y0": 72,
+        "x1": 1128,
+        "y1": 1128
+      },
       "exclusions": [],
       "headlineClass": "headline",
       "minFontPx": 24,
@@ -92,20 +202,53 @@
         "maxHeadlineWidthSharePct": 80
       },
       "contrast": [
-        { "fg": "#eef2f7", "bg": "#12161e", "role": "title text on product panel" },
-        { "fg": "#9ca8ba", "bg": "#12161e", "role": "supporting line on product panel" },
-        { "fg": "#c7f36a", "bg": "#12161e", "role": "eyebrow on product panel" },
-        { "fg": "#78e0d2", "bg": "#12161e", "role": "contents label on product panel" },
-        { "fg": "#eef2f7", "bg": "#12161e", "role": "module lines on product panel" },
-        { "fg": "#18200e", "bg": "#c7f36a", "role": "kit badge label on lime" },
-        { "fg": "#9ca8ba", "bg": "#12161e", "role": "footer credit on product panel" }
+        {
+          "fg": "#eef2f7",
+          "bg": "#12161e",
+          "role": "title text on product panel"
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "supporting line on product panel"
+        },
+        {
+          "fg": "#c7f36a",
+          "bg": "#12161e",
+          "role": "eyebrow on product panel"
+        },
+        {
+          "fg": "#78e0d2",
+          "bg": "#12161e",
+          "role": "contents label on product panel"
+        },
+        {
+          "fg": "#eef2f7",
+          "bg": "#12161e",
+          "role": "module lines on product panel"
+        },
+        {
+          "fg": "#18200e",
+          "bg": "#c7f36a",
+          "role": "kit badge label on lime"
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "footer credit on product panel"
+        }
       ]
     },
     {
       "svg": "content/visual/metrics-bar-chart.svg",
       "png": "content/visual/metrics-bar-chart.png",
       "proof": "content/qa/proof/metrics-bar-chart-proof.png",
-      "safe": { "x0": 60, "y0": 60, "x1": 1860, "y1": 1016 },
+      "safe": {
+        "x0": 60,
+        "y0": 60,
+        "x1": 1860,
+        "y1": 1016
+      },
       "exclusions": [],
       "headlineClass": "figureTitle",
       "minFontPx": 24,
@@ -116,21 +259,58 @@
         "maxHeadlineWidthSharePct": 80
       },
       "contrast": [
-        { "fg": "#eef2f7", "bg": "#0b0d12", "role": "figure title on background" },
-        { "fg": "#9ca8ba", "bg": "#0b0d12", "role": "period and source line on background" },
-        { "fg": "#18200e", "bg": "#ffca68", "role": "sample-data badge label on amber" },
-        { "fg": "#eef2f7", "bg": "#12161e", "role": "category labels on plot panel" },
-        { "fg": "#9ca8ba", "bg": "#12161e", "role": "value placeholder on plot panel" },
-        { "fg": "#9ca8ba", "bg": "#12161e", "role": "scale labels on plot panel" },
-        { "fg": "#ffca68", "bg": "#0b0d12", "role": "replacement rule on background" },
-        { "fg": "#9ca8ba", "bg": "#0b0d12", "role": "footer credit on background" }
+        {
+          "fg": "#eef2f7",
+          "bg": "#0b0d12",
+          "role": "figure title on background"
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#0b0d12",
+          "role": "period and source line on background"
+        },
+        {
+          "fg": "#18200e",
+          "bg": "#ffca68",
+          "role": "sample-data badge label on amber"
+        },
+        {
+          "fg": "#eef2f7",
+          "bg": "#12161e",
+          "role": "category labels on plot panel"
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "value placeholder on plot panel"
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "scale labels on plot panel"
+        },
+        {
+          "fg": "#ffca68",
+          "bg": "#0b0d12",
+          "role": "replacement rule on background"
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#0b0d12",
+          "role": "footer credit on background"
+        }
       ]
     },
     {
       "svg": "content/visual/article-howto-steps.svg",
       "png": "content/visual/article-howto-steps.png",
       "proof": "content/qa/proof/article-howto-steps-proof.png",
-      "safe": { "x0": 60, "y0": 60, "x1": 1860, "y1": 1016 },
+      "safe": {
+        "x0": 60,
+        "y0": 60,
+        "x1": 1860,
+        "y1": 1016
+      },
       "exclusions": [],
       "headlineClass": "figureTitle",
       "minFontPx": 24,
@@ -141,15 +321,51 @@
         "maxHeadlineWidthSharePct": 80
       },
       "contrast": [
-        { "fg": "#c7f36a", "bg": "#0b0d12", "role": "eyebrow on background" },
-        { "fg": "#eef2f7", "bg": "#0b0d12", "role": "figure title on background" },
-        { "fg": "#9ca8ba", "bg": "#0b0d12", "role": "subtitle on background" },
-        { "fg": "#eef2f7", "bg": "#12161e", "role": "step titles on card" },
-        { "fg": "#9ca8ba", "bg": "#12161e", "role": "step body on card" },
-        { "fg": "#18200e", "bg": "#c7f36a", "role": "step number on lime badge" },
-        { "fg": "#78e0d2", "bg": "#181d27", "role": "owner chip label on chip" },
-        { "fg": "#ffca68", "bg": "#0b0d12", "role": "placeholder note on background" },
-        { "fg": "#9ca8ba", "bg": "#0b0d12", "role": "footer credit on background" }
+        {
+          "fg": "#c7f36a",
+          "bg": "#0b0d12",
+          "role": "eyebrow on background"
+        },
+        {
+          "fg": "#eef2f7",
+          "bg": "#0b0d12",
+          "role": "figure title on background"
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#0b0d12",
+          "role": "subtitle on background"
+        },
+        {
+          "fg": "#eef2f7",
+          "bg": "#12161e",
+          "role": "step titles on card"
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#12161e",
+          "role": "step body on card"
+        },
+        {
+          "fg": "#18200e",
+          "bg": "#c7f36a",
+          "role": "step number on lime badge"
+        },
+        {
+          "fg": "#78e0d2",
+          "bg": "#181d27",
+          "role": "owner chip label on chip"
+        },
+        {
+          "fg": "#ffca68",
+          "bg": "#0b0d12",
+          "role": "placeholder note on background"
+        },
+        {
+          "fg": "#9ca8ba",
+          "bg": "#0b0d12",
+          "role": "footer credit on background"
+        }
       ]
     }
   ]
