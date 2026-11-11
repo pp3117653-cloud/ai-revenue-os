@@ -47,7 +47,7 @@ jobs:
           PY
       - name: Create coordinator checkpoint issue
         run: |
-          gh issue create --title "Coordinator checkpoint $(date -u +%F-%H%M UTC)" \
+          gh issue create --title "Coordinator checkpoint $(date -u '+%F-%H%M UTC')" \
             --body "Repository configuration and PNG export checks passed. This workflow does not invoke Gemini, Manus, or MiniMax accounts and does not execute role tasks. Email sending, public posting, payments, and client production changes remain outside this workflow."
         env:
           GH_TOKEN: ${{ github.token }}
