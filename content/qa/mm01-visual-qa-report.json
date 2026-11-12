@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-12T16:57:47.213Z",
+  "generated_at": "2026-11-12T16:59:23.203Z",
   "author": "MM-01 (MiniMax-1)",
   "assets": [
     {
@@ -1898,11 +1898,6 @@
       "status": "PASS"
     }
   ],
-  "exporter": {
-    "chromium": "153.0.8010.12",
-    "platform": "linux",
-    "stack_width": 1271,
-    "sans_width": 1139.36,
-    "serif_width": 1060.99
-  }
+  "exporter": null,
+  "exporter_note": "the rasters were not produced in this run; no environment is declared as their exporter"
 }

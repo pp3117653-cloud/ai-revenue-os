@@ -72,12 +72,16 @@ by this harness — the run repairs it, and the next run must come back clean.
 
 ### Publishing a re-export
 
-**The designated exporter is CI.** `.github/workflows/export-assets.yml` runs the same harness on
-a GitHub runner, re-exports the rasters and commits them with the built-in token. Dispatch it from
-the Actions tab, or:
+**The designated exporter is CI.** The workflow file lives at `content/qa/tools/export-assets.yml`
+until someone with push access installs it, because the API path used by MM-01 refuses to write
+files under `.github/workflows/`. Install and run it with:
 
 ```bash
-gh workflow run export-assets.yml -f reason="scheduled MM-01 export"
+cp content/qa/tools/export-assets.yml .github/workflows/export-assets.yml
+git add .github/workflows/export-assets.yml
+git commit -m "Add MM-01 asset export workflow"
+git push
+gh workflow run export-assets.yml -f reason="MM-01 asset export"
 ```
 
 It is manual-dispatch only, it never publishes or uploads anything, and it writes only under

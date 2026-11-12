@@ -1,0 +1,89 @@
+name: Export MM-01 visual assets
+
+# The rasters under content/ are derived files. The SVG masters are the source
+# of truth, and one designated renderer must own the rasters. This workflow is
+# that renderer: it runs the MM-01 visual QA harness, which measures every
+# asset, re-exports it from its master, and refuses to pass on a raster that
+# does not match its master.
+#
+# Manual dispatch only. It never runs on a schedule, never publishes, never
+# uploads and never touches anything outside the repository. It commits the
+# re-exported rasters and the QA report with the built-in GITHUB_TOKEN.
+on:
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Why this export is being run'
+        required: false
+        default: 'MM-01 asset export'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mm01-export-assets
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install the brand-safe fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-dejavu-core fonts-liberation
+          fc-list : family | sort -u | head -20
+
+      - name: Install the renderer
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+
+      - name: Export and repair (first pass)
+        run: |
+          # The first pass measures the shipped rasters against a fresh render
+          # of their masters, re-exports what does not match, and exits
+          # non-zero when it found something. That is expected on a repair run.
+          node content/qa/tools/visual-qa.mjs || echo "First pass reported drift and re-exported; the second pass must be clean."
+
+      - name: Verify (second pass)
+        # The second pass must be clean. If it is not, the assets do not meet
+        # the gate and nothing is committed.
+        run: node content/qa/tools/visual-qa.mjs
+
+      - name: Commit the re-exported assets
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/thumbnails content/visual content/products content/qa/proof content/qa/mm01-visual-qa-report.json
+          if git diff --cached --quiet; then
+            echo "No asset changes to commit."
+          else
+            git commit -m "MM-01 assets: re-export from SVG masters via the visual QA harness"
+            git push
+          fi
+
+      - name: Summarise
+        run: |
+          {
+            echo "### MM-01 asset export"
+            echo
+            echo "Reason: ${{ github.event.inputs.reason }}"
+            echo
+            echo '```text'
+            echo "COMMIT=$(git rev-parse --short HEAD)"
+            echo "```"
+            echo
+            echo "Per asset: drift against a fresh render of the master, and the verdict."
+            echo
+            echo '```text'
+            node -e "const r=require('./content/qa/mm01-visual-qa-report.json');for(const a of r.assets){const d=a.export_drift||{};console.log((a.svg+'  drift='+(d.drift_vs_brand_pct??'-')+'%  verdict='+(d.verdict??'-')+'  status='+a.status).padEnd(110))}"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -470,8 +470,9 @@ const sameEnvironment = !previousExporter
   || (previousExporter.chromium === exporter.chromium
       && previousExporter.platform === exporter.platform
       && previousExporter.stack_width === exporter.stack_width);
-report.exporter = exporter;
 
+
+const produced = [];
 for (const a of spec.assets) {
   const native = await measure(page, a.svg, a, null);
   const small = await measure(page, a.svg, a, a.scaleChecks.width);
@@ -607,6 +608,7 @@ for (const a of spec.assets) {
       await writeFile(absPng, exportInfo.buffer);
     }
     driftInfo.rewritten = mustRewrite;
+    produced.push(mustRewrite);
   }
 
   report.assets.push({
@@ -634,6 +636,16 @@ for (const a of spec.assets) {
     status: violations.length === 0 && contrastFail.length === 0 && contrastUiFail.length === 0
       && legibility.every((l) => l.pass) ? 'PASS' : 'FAIL',
   });
+}
+report.exporter = exporter;
+const producedAll = produced.length === spec.assets.length && produced.every(Boolean);
+if (!producedAll) {
+  /* This run verified the rasters but did not produce them, so it cannot
+     claim to be the exporter. Leaving the exporter undeclared keeps the
+     branch in the state where any environment treats drift as a real
+     difference and re-exports, instead of deferring to a stale owner. */
+  report.exporter = null;
+  report.exporter_note = 'the rasters were not produced in this run; no environment is declared as their exporter';
 }
 await browser.close();
 

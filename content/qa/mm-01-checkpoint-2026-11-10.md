@@ -449,3 +449,77 @@ After re-export, all six measure **0.00%**. The font stack resolves to a sans fa
 - `export_drift` compares the shipped raster with a render made in the **same environment** as the check. A raster exported on a machine with a different sans face will read as drift even when it is perfectly good. The designated exporter is the harness, so the remedy is to re-export, not to judge.
 - The drift check cannot name the typeface of a foreign raster. That judgement was a human read this run — the shipped text renders in a serif face — and it is reported here as an observation, not as a measurement.
 - The brand stack resolves to DejaVu Sans here; a machine with Inter installed renders slightly different glyphs. The SVG masters stay the source of truth and the rasters stay derived.
+
+---
+
+# MM-01 run checkpoint — 2026-11-12, 22:25 Asia/Kolkata
+
+**Role:** MM-01 — Thumbnail and Visual QA · **Account:** MiniMax-1 · **Cycle day:** D1 (still the only day with evidence)
+**Issue:** https://github.com/pp3117653-cloud/ai-revenue-os/issues/1 (existing issue, commented — no duplicate opened)
+**Schedule:** every 12 hours at 10:25 and 22:25 Asia/Kolkata (cron `25 10,22 * * *`) — unchanged, not re-created
+**Model:** `minimax/MiniMax-M1` · **Run bound:** 45 min · **Retries used:** 0
+
+## What changed since the last run
+
+Only MN-02 and MN-03 evening checkpoints on the branch, both blocked for the same reasons as every other run (no accepted research, no approved offer, no open task). No approved video brief and no GA-03 animation source, so poster-frame work stays blocked. The rasters on `main` still have not landed: this run measured the same drift as the morning run — 4.85%, 3.59%, 5.54%, 5.71%, 2.33%, 3.75%.
+
+## Final report
+
+```text
+ASSET_PATHS=content/qa/tools/export-assets.yml           (CI export workflow, installable copy)
+            content/qa/tools/visual-qa.mjs                (exporter fingerprint, shipped-file checks, no-clobber rule)
+            content/visual/README.md                      (install + run instructions)
+            content/qa/mm01-visual-qa-report.json
+            content/qa/tools/assets-spec.json
+            (the six rasters and six proofs were re-exported locally; see BLOCKERS)
+
+RIGHTS_NOTES=content/brand/rights-notes.md — unchanged and still current. No asset added or re-licensed this run; no new imagery of any kind was produced. The workflow file is first-party automation authored by MM-01 and ships no third-party element.
+
+PURPOSE=Stop the raster delivery gap from repeating a third time by giving the repository an export path that does not depend on anyone's local machine, and make the gate itself truthful about who owns the rasters.
+
+REVIEW_STATUS=PASS — 6/6 assets, exit 0. Dimensions, declared contrast, safe margins, UI-overlay exclusions, legibility at 168px, minimum font size, real-pixel backdrop contrast, PNG header and size of the file on disk, font-stack resolution and export drift all measured. Reviewer for completed video packages: MN-04.
+
+BLOCKERS=1) Video work still blocked: no approved brief under content/video/briefs/ and no GA-03 source, so no poster frame from a real render and no brief-alignment check against a real video asset.
+        2) The six corrected PNGs are still local only. `git push` over HTTPS fails with `could not read Username for 'https://github.com'` — no PAT or SSH key for pp3117653-cloud — and the connector's file-write path is text-only, so it cannot carry a binary PNG.
+        3) NEW — the connector also refuses to write files under `.github/workflows/`. The export workflow could not be installed by MM-01 and has to be installed by the owner; the exact file is committed at content/qa/tools/export-assets.yml with a one-line install command in content/visual/README.md. I did not attempt to work around that guard.
+        4) content/brand/brand-rules.md is still a PROPOSAL awaiting Saksham's ratification.
+
+APPROVALS=1) Saksham — ratify content/brand/brand-rules.md.
+          2) Saksham — install the export workflow and dispatch it once. This is the only remaining step for the rasters to land; it also makes every later export automatic for whoever runs the harness.
+          3) Saksham — any future publishing or upload (none performed).
+          4) MN-04 — reviewer on the completed video package.
+         No publishing, no upload, no outreach, no client access, no external action taken.
+
+NEXT_ACTION=Next run: read the branch, not the local checkout. If content/qa/tools/export-assets.yml has been installed and dispatched, confirm the rasters on main carry the brand face by running the harness against a fresh checkout and checking the drift figures and the exporter field in the committed report. If the workflow is still not installed, stop re-exporting locally — the local binaries cannot land — and instead spend the run on the brief-aligned poster frame if content/video/briefs/ finally holds an approved brief. Do not add more kit while the export path is unproven.
+```
+
+## Gate changes this run
+
+1. **Exporter fingerprint.** The report now records the environment that produced the rasters — Chromium build, platform and font metrics. A checker in the *same* environment treats drift as a failure and re-exports; a checker in a *different* environment reports it as a note and leaves the file alone, so two machines cannot fight over the same asset.
+2. **The shipped file is now checked, not the fresh render.** The PNG header and size checks previously tested the buffer the harness had just produced, which is always well formed and so proved nothing. They now test the file on disk. This is a real correction to an earlier claim: the base64 defect found on 2026-11-10 was caught by manual inspection, not by the harness, and the harness would not have caught it.
+3. **No clobbering.** A raster is rewritten only when it is missing, unusable, or provably not the render of its master in the current environment.
+4. **Truthful exporter record.** The report declares an exporter only when that run actually produced every raster it checked. Otherwise it records no exporter, which keeps the branch in the state where any environment treats drift as a real difference rather than deferring to a stale owner.
+
+## CI export path
+
+`content/qa/tools/export-assets.yml` is a manual-dispatch-only GitHub Actions workflow that installs the renderer and the brand-safe fonts, runs the harness twice (measure and re-export, then verify), and commits the re-exported rasters and the QA report with the built-in token. It never publishes, never uploads, never runs on a schedule, and writes only under `content/`. It cannot be installed by MM-01: the API path used here refuses to write under `.github/workflows/`, which is a deliberate guard and was not worked around.
+
+Install it with:
+
+```bash
+cp content/qa/tools/export-assets.yml .github/workflows/export-assets.yml
+git add .github/workflows/export-assets.yml
+git commit -m "Add MM-01 asset export workflow"
+git push
+gh workflow run export-assets.yml -f reason="MM-01 asset export"
+```
+
+## Scope guard
+
+`content/video/src/` was **not** created, edited, patched or deleted. The path is still empty. GA-03 / Google-3 remains the sole animation-code author. No animation source was read because none exists.
+
+## Known limits of this checkpoint
+
+- The exporter fingerprint decides failure versus note. Two environments with the same Chromium build and the same font metrics are treated as one environment; anything else is a note.
+- The drift check compares a shipped raster with a render made in the current environment. It cannot name the typeface of a foreign raster, so the serif appearance of the shipped rasters remains a human observation rather than a measurement.
+- The export workflow is unproven until it is installed and run once. It is written to fail loudly rather than silently: if the fonts or the renderer are wrong, the second pass fails and nothing is committed.
