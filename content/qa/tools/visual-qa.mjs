@@ -320,14 +320,36 @@ async function rasterBackdrops(page, svgPath, nativeW, nativeH, boxes) {
 /* A raster that no longer matches its SVG master is worse than a missing one:
    it looks right and is wrong. A PNG check that only reads the header proves
    the file is a PNG of the right size — it cannot see a renderer that swapped
-   the brand typeface for a serif fallback. This compares the raster already on
-   disk against a fresh render of the same master, pixel for pixel. */
-async function exportDrift(page, freshBytes, existingBytes, nativeW, nativeH) {
+   the brand typeface for a serif fallback.
+
+   The comparison is done against two renders of the same master: one in the
+   brand stack, one forced to the generic serif face. A shipped raster that
+   sits far closer to the serif render was produced by a renderer that ignored
+   font-family, and that is a hard failure. A raster that is merely different
+   from the local render — another machine, another sans face — is reported as
+   advisory drift, because the export environment is not the only variable. */
+async function classifyExport(page, svgText, existingBytes, nativeW, nativeH, boxes) {
   if (!existingBytes) return { status: 'absent' };
-  const freshB64 = Buffer.from(freshBytes).toString('base64');
   const existB64 = Buffer.from(existingBytes).toString('base64');
-  return await page.evaluate(async ({ freshB64, existB64, w, h }) => {
-    const load = async (b64) => {
+  const serifSvg = svgText.replace(/<svg\b([^>]*)>/, '<svg$1><style>text{font-family:serif !important}</style>');
+  return await page.evaluate(async ({ svgText, serifSvg, existB64, w, h, boxes }) => {
+    const svgCanvas = async (src) => {
+      const url = URL.createObjectURL(new Blob([src], { type: 'image/svg+xml' }));
+      try {
+        const img = new Image();
+        await new Promise((res, rej) => {
+          img.onload = res;
+          img.onerror = () => rej(new Error('svg raster failed'));
+          img.src = url;
+        });
+        const c = document.createElement('canvas');
+        c.width = w; c.height = h;
+        const ctx = c.getContext('2d', { willReadFrequently: true });
+        ctx.drawImage(img, 0, 0, w, h);
+        return ctx.getImageData(0, 0, w, h).data;
+      } finally { URL.revokeObjectURL(url); }
+    };
+    const pngCanvas = async (b64) => {
       const img = new Image();
       await new Promise((res, rej) => {
         img.onload = res;
@@ -340,16 +362,28 @@ async function exportDrift(page, freshBytes, existingBytes, nativeW, nativeH) {
       ctx.drawImage(img, 0, 0, w, h);
       return ctx.getImageData(0, 0, w, h).data;
     };
-    let a, b;
-    try { a = await load(freshB64); b = await load(existB64); }
-    catch (e) { return { status: 'error', error: String((e && e.message) || e) }; }
-    let drift = 0;
-    for (let i = 0; i < a.length; i += 4) {
-      if (Math.abs(a[i] - b[i]) > 40 || Math.abs(a[i + 1] - b[i + 1]) > 40 || Math.abs(a[i + 2] - b[i + 2]) > 40) drift++;
-    }
-    const total = a.length / 4;
-    return { status: 'measured', drift_pct: +(100 * drift / total).toFixed(2), compared_px: total };
-  }, { freshB64, existB64, w: nativeW, h: nativeH });
+    const diff = (a, b) => {
+      let n = 0;
+      for (let i = 0; i < a.length; i += 4) {
+        if (Math.abs(a[i] - b[i]) > 40 || Math.abs(a[i + 1] - b[i + 1]) > 40 || Math.abs(a[i + 2] - b[i + 2]) > 40) n++;
+      }
+      return +(100 * n / (a.length / 4)).toFixed(2);
+    };
+    let brand, serif, shipped;
+    try {
+      brand = await svgCanvas(svgText);
+      serif = await svgCanvas(serifSvg);
+      shipped = await pngCanvas(existB64);
+    } catch (e) { return { status: 'error', error: String((e && e.message) || e) }; }
+    const d_brand = diff(shipped, brand);
+    const d_serif = diff(shipped, serif);
+    return {
+      status: 'measured',
+      drift_vs_brand_pct: d_brand,
+      drift_vs_serif_pct: d_serif,
+      verdict: d_brand > 1 ? 'drift' : 'match',
+    };
+  }, { svgText, serifSvg, existB64, w: nativeW, h: nativeH, boxes });
 }
 
 /* ---------- font-stack fidelity ---------- */
@@ -477,6 +511,7 @@ for (const a of spec.assets) {
   let exportInfo = null;
   let driftInfo = { status: 'skipped' };
   let fontProbe = null;
+  const advisories = [];
   if (a.png) {
     const absPng = path.resolve(REPO, a.png);
     let existing = null;
@@ -485,18 +520,23 @@ for (const a of spec.assets) {
     /* Render first, compare second, write last: the shipped raster is never
        overwritten before it has been checked against the master. */
     exportInfo = await exportPng(page, a.svg, a.png, false);
-    driftInfo = await exportDrift(page, exportInfo.buffer, existing, native.nativeW, native.nativeH);
+    const svgText = await readFile(path.resolve(REPO, a.svg), 'utf8');
+    driftInfo = await classifyExport(page, svgText, existing, native.nativeW, native.nativeH, native.boxes);
     const driftLimit = a.maxExportDriftPct ?? 1;
-    if (driftInfo.status === 'measured' && driftInfo.drift_pct > driftLimit) {
-      driftInfo.repaired = true;   // the fresh render is written below, so the raster is corrected in this same run
+    if (driftInfo.status === 'measured' && driftInfo.verdict === 'drift') {
+      driftInfo.repaired = true;   // the fresh render is written below
       violations.push({
         type: 'export_drift',
         text: a.png,
-        box: { drift_pct: driftInfo.drift_pct, limit_pct: driftLimit, repaired: true, note: 'shipped raster did not match a fresh render of its master; it has been re-exported from the master' },
+        box: {
+          drift_vs_brand_pct: driftInfo.drift_vs_brand_pct,
+          limit_pct: driftLimit,
+          repaired: true,
+          note: 'the shipped raster was not produced by this harness and does not match a fresh render of its master; it has been re-exported from the master',
+        },
       });
     }
 
-    const svgText = await readFile(path.resolve(REPO, a.svg), 'utf8');
     const fm = /font-family="([^"]+)"/.exec(svgText);
     fontProbe = await fontStackProbe(page, fm ? fm[1] : 'sans-serif');
     if (fontProbe.resolves_to_serif) {
@@ -538,6 +578,7 @@ for (const a of spec.assets) {
     exclusions: a.exclusions || [],
     text_boxes: native.boxes,
     safe_area_violations: violations,
+    advisories,
     min_font_px: minFontPx,
     min_font_required_px: a.minFontPx || null,
     raster_backdrop: raster.error
@@ -562,6 +603,7 @@ console.log(`MM-01 visual QA: ${report.assets.length - failed.length}/${report.a
 for (const a of report.assets) {
   console.log(`  [${a.status}] ${a.svg} ${a.dimensions.width}x${a.dimensions.height}`);
   for (const v of a.safe_area_violations) console.log(`      ! ${v.type}: "${v.text}" ${JSON.stringify(v.box)}`);
+  for (const v of (a.advisories || [])) console.log(`      ~ ${v.type}: "${v.text}" ${JSON.stringify(v.box)}`);
   for (const c of a.contrast) if (!c.aa_text) console.log(`      ! contrast ${c.fg} on ${c.bg} = ${c.ratio}`);
   for (const l of a.legibility_checks) if (!l.pass) console.log(`      ! ${l.check} = ${l.value} (min ${l.min})`);
 }

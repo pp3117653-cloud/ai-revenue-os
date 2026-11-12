@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-11T17:00:36.658Z",
+  "generated_at": "2026-11-12T05:01:15.208Z",
   "author": "MM-01 (MiniMax-1)",
   "assets": [
     {
@@ -154,6 +154,7 @@
         }
       ],
       "safe_area_violations": [],
+      "advisories": [],
       "min_font_px": 28,
       "min_font_required_px": 28,
       "raster_backdrop": {
@@ -163,8 +164,9 @@
       },
       "export_drift": {
         "status": "measured",
-        "drift_pct": 0,
-        "compared_px": 2073600
+        "drift_vs_brand_pct": 0,
+        "drift_vs_serif_pct": 4.83,
+        "verdict": "match"
       },
       "font_stack": {
         "stack_width": 1271,
@@ -386,6 +388,7 @@
         }
       ],
       "safe_area_violations": [],
+      "advisories": [],
       "min_font_px": 26,
       "min_font_required_px": 26,
       "raster_backdrop": {
@@ -395,8 +398,9 @@
       },
       "export_drift": {
         "status": "measured",
-        "drift_pct": 0,
-        "compared_px": 2073600
+        "drift_vs_brand_pct": 0,
+        "drift_vs_serif_pct": 3.61,
+        "verdict": "match"
       },
       "font_stack": {
         "stack_width": 1271,
@@ -759,6 +763,7 @@
         }
       ],
       "safe_area_violations": [],
+      "advisories": [],
       "min_font_px": 22,
       "min_font_required_px": 22,
       "raster_backdrop": {
@@ -768,8 +773,9 @@
       },
       "export_drift": {
         "status": "measured",
-        "drift_pct": 0,
-        "compared_px": 2073600
+        "drift_vs_brand_pct": 0,
+        "drift_vs_serif_pct": 5.1,
+        "verdict": "match"
       },
       "font_stack": {
         "stack_width": 1271,
@@ -988,6 +994,7 @@
         }
       ],
       "safe_area_violations": [],
+      "advisories": [],
       "min_font_px": 24,
       "min_font_required_px": 24,
       "raster_backdrop": {
@@ -997,8 +1004,9 @@
       },
       "export_drift": {
         "status": "measured",
-        "drift_pct": 0,
-        "compared_px": 1440000
+        "drift_vs_brand_pct": 0,
+        "drift_vs_serif_pct": 5.39,
+        "verdict": "match"
       },
       "font_stack": {
         "stack_width": 1271,
@@ -1369,6 +1377,7 @@
         }
       ],
       "safe_area_violations": [],
+      "advisories": [],
       "min_font_px": 24,
       "min_font_required_px": 24,
       "raster_backdrop": {
@@ -1378,8 +1387,9 @@
       },
       "export_drift": {
         "status": "measured",
-        "drift_pct": 0,
-        "compared_px": 2073600
+        "drift_vs_brand_pct": 0,
+        "drift_vs_serif_pct": 2.15,
+        "verdict": "match"
       },
       "font_stack": {
         "stack_width": 1271,
@@ -1758,6 +1768,7 @@
         }
       ],
       "safe_area_violations": [],
+      "advisories": [],
       "min_font_px": 24,
       "min_font_required_px": 24,
       "raster_backdrop": {
@@ -1767,8 +1778,9 @@
       },
       "export_drift": {
         "status": "measured",
-        "drift_pct": 0,
-        "compared_px": 2073600
+        "drift_vs_brand_pct": 0,
+        "drift_vs_serif_pct": 3.42,
+        "verdict": "match"
       },
       "font_stack": {
         "stack_width": 1271,

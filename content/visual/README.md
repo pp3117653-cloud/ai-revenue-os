@@ -51,3 +51,35 @@ source, write a change request and route it to GA-03.
 
 Every asset here is first-party: deterministic SVG, system fonts, geometric shapes, no third-party
 imagery, no embedded font file, no real person's likeness. See `content/brand/rights-notes.md`.
+
+## How to run the visual gate
+
+The rasters in this repository are **derived** files. The SVG masters are the source of truth, and
+only the MM-01 harness may produce the rasters from them.
+
+```bash
+# 1. one-time, on a machine with Node 22
+npm install --no-save playwright && npx playwright install chromium
+
+# 2. re-export and re-check every asset
+node content/qa/tools/visual-qa.mjs
+echo "exit $?"   # 0 = every asset passed, 1 = at least one failed
+```
+
+The harness renders each master, compares it against the raster already on disk, and **only then
+writes** the new raster. A run that reports `export_drift` means the file on disk was not produced
+by this harness — the run repairs it, and the next run must come back clean.
+
+To publish a re-export:
+
+```bash
+node content/qa/tools/visual-qa.mjs && node content/qa/tools/visual-qa.mjs   # detect+repair, then confirm
+git add content/thumbnails content/visual content/products content/qa/proof content/qa/mm01-visual-qa-report.json
+git commit -m "MM-01 assets: re-export from SVG masters via the visual QA harness"
+git push
+```
+
+**Do not export these assets with any other renderer.** A renderer that ignores `font-family`
+re-types the whole kit in a serif fallback while every other check — PNG header, size, contrast,
+safe area, legibility — still passes. The two checks that catch it are `export_drift` and
+`font_stack_resolves_to_serif`.

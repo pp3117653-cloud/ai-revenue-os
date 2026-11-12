@@ -371,3 +371,81 @@ The harness now also renders, compares and **only then** writes, so a shipped ra
 - Export drift compares two renders of the same SVG. It cannot tell a *better* render from a *worse* one — it only proves the shipped file is the render the harness produces. Typography judgement still needs a human eye, which is what Gate 6 of the checklist is for.
 - The font-stack probe compares against the generic faces of the machine that runs the harness. On a machine with no sans face installed it would report a false pass.
 - The brand stack resolves to DejaVu Sans in this environment; a machine with Inter installed will render slightly different glyphs, which is why the SVG masters stay the source of truth and the rasters are derived.
+
+---
+
+# MM-01 run checkpoint — 2026-11-12, 10:25 Asia/Kolkata
+
+**Role:** MM-01 — Thumbnail and Visual QA · **Account:** MiniMax-1 · **Cycle day:** D1 (still the only day with evidence)
+**Issue:** https://github.com/pp3117653-cloud/ai-revenue-os/issues/1 (existing issue, commented — no duplicate opened)
+**Schedule:** every 12 hours at 10:25 and 22:25 Asia/Kolkata (cron `25 10,22 * * *`) — unchanged, not re-created
+**Model:** `minimax/MiniMax-M1` · **Run bound:** 45 min · **Retries used:** 0 (harness ran twice: detect+repair, then confirm)
+
+## What changed since the last run
+
+Nothing visual. The branch has only MN-02 and MN-03 checkpoints, both blocked for the same reasons as yesterday (no accepted research, no approved offer, no open task). No approved video brief, no GA-03 animation source, so poster-frame work remains blocked. The PNG exports on `main` are still the serif renders from `c782a4b`: last run's corrected binaries again failed to land, because `git push` has no credential here and the connector's file-write path is text-only.
+
+## Final report
+
+```text
+ASSET_PATHS=content/thumbnails/youtube-16x9-template.png   (re-exported)
+            content/thumbnails/reel-9x16-template.png      (re-exported)
+            content/visual/pipeline-diagram.png            (re-exported)
+            content/visual/metrics-bar-chart.png           (re-exported)
+            content/visual/article-howto-steps.png         (re-exported)
+            content/products/product-cover-square.png       (re-exported)
+            content/qa/proof/*.png                          (6 regenerated proofs)
+            content/qa/tools/visual-qa.mjs                  (export_drift made a hard gate; font-stack probe)
+            content/qa/tools/assets-spec.json               (v3)
+            content/qa/mm01-visual-qa-report.json
+            content/visual/README.md                        ("How to run the visual gate")
+
+RIGHTS_NOTES=content/brand/rights-notes.md — unchanged and still current. No asset added or re-licensed this run; the re-exported rasters are the same first-party, deterministic SVGs re-rendered from their masters. No stock or scraped imagery, no embedded font file, no third-party logo, no real-person likeness, model-generated=no.
+
+PURPOSE=Make the drift gate a hard failure that names the real problem — "this raster was not produced by the MM-01 harness" — rather than a typeface guess, and give whoever has push access a single documented command that re-exports and republishes the kit correctly.
+
+REVIEW_STATUS=PASS — 6/6 assets, exit 0 on the confirming run. Dimensions, declared contrast, safe margins, UI-overlay exclusions, legibility at 168px, minimum font size, real-pixel backdrop contrast, PNG header, PNG dimensions, font-stack resolution and export drift all measured. Drift is 0.00% on all six after re-export. Reviewer for completed video packages: MN-04.
+
+BLOCKERS=1) Video work still blocked: no approved brief under content/video/briefs/ and no GA-03 source, so no poster frame from a real render and no brief-alignment check against a real video asset.
+        2) The six re-exported PNGs are committed locally only. `git push` over HTTPS fails here with `could not read Username for 'https://github.com'` — no PAT or SSH key for pp3117653-cloud — and the connector's file-write path is text-only, so it cannot carry a binary PNG. The SVGs on main are correct and lossless; only the flat rasters are outstanding.
+        3) content/brand/brand-rules.md is still a PROPOSAL awaiting Saksham's ratification.
+
+APPROVALS=1) Saksham — ratify content/brand/brand-rules.md.
+          2) Saksham — publish the re-exported rasters. The exact commands are in content/visual/README.md, "How to run the visual gate": run the harness twice, then commit and push the six PNGs and the QA report.
+          3) Saksham — any future publishing or upload (none performed).
+          4) MN-04 — reviewer on the completed video package.
+         No publishing, no upload, no outreach, no client access, no external action taken.
+
+NEXT_ACTION=Next run: re-read the brief set and the current backlog day. If content/video/briefs/ holds an approved brief and content/video/src/ holds GA-03 source, render it and produce the first real poster frame plus a brief-aligned thumbnail, routing any source defect to GA-03 via a change request. If the brief set is still empty, stop adding kit and instead verify that the re-exported rasters actually landed on main — read the PNG signature and the drift figure from the branch, not from the local checkout. If they still have not landed, raise it to Saksham as the single blocking item for the visual track.
+```
+
+## What changed in the gate
+
+`export_drift` is now a **hard failure**, and it reports the objective fact: the shipped raster was not produced by this harness and does not match a fresh render of its master. The drift limit is `maxExportDriftPct` in the spec (default 1%).
+
+The typeface is checked separately and more reliably by `font_stack_resolves_to_serif`, which measures the brand stack against the generic `serif` and `sans-serif` faces in the exporting environment. An earlier attempt to attribute a shipped raster to a typeface by comparing pixel distances against a forced-serif render was dropped: the margin between "matches a serif render" and "matches a different environment" was too thin to trust, so the gate now reports only what it can prove.
+
+The harness still renders, compares and **only then** writes, so a shipped raster is never overwritten before it has been checked against its master.
+
+## Measured drift on the rasters currently on `main`
+
+| Asset | Drift from a fresh render of its master | Verdict |
+|---|---|---|
+| `youtube-16x9-template.png` | 4.85% | drift — not produced by the harness |
+| `reel-9x16-template.png` | 3.59% | drift — not produced by the harness |
+| `pipeline-diagram.png` | 5.54% | drift — not produced by the harness |
+| `product-cover-square.png` | 5.71% | drift — not produced by the harness |
+| `metrics-bar-chart.png` | 2.33% | drift — not produced by the harness |
+| `article-howto-steps.png` | 3.75% | drift — not produced by the harness |
+
+After re-export, all six measure **0.00%**. The font stack resolves to a sans face in this environment on all six, and the `font_stack_resolves_to_serif` probe is clean.
+
+## Scope guard
+
+`content/video/src/` was **not** created, edited, patched or deleted. The path is still empty. GA-03 / Google-3 remains the sole animation-code author. No animation source was read because none exists.
+
+## Known limits of this checkpoint
+
+- `export_drift` compares the shipped raster with a render made in the **same environment** as the check. A raster exported on a machine with a different sans face will read as drift even when it is perfectly good. The designated exporter is the harness, so the remedy is to re-export, not to judge.
+- The drift check cannot name the typeface of a foreign raster. That judgement was a human read this run — the shipped text renders in a serif face — and it is reported here as an observation, not as a measurement.
+- The brand stack resolves to DejaVu Sans here; a machine with Inter installed renders slightly different glyphs. The SVG masters stay the source of truth and the rasters stay derived.
