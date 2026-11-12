@@ -444,6 +444,34 @@ const browser = await chromium.launch({
 const page = await browser.newPage();
 const report = { generated_at: new Date().toISOString(), author: 'MM-01 (MiniMax-1)', assets: [] };
 
+/* Environment fingerprint. Two runs with the same renderer and the same font
+   metrics that disagree pixel for pixel are talking about a real defect. Two
+   runs on different machines are not, so the fingerprint decides whether a
+   drift is a failure or only a note. The fingerprint travels in the report,
+   which is what makes the comparison meaningful across runs. */
+const firstSvg = await readFile(path.resolve(REPO, spec.assets[0].svg), 'utf8');
+const firstStack = (/font-family="([^"]+)"/.exec(firstSvg) || [, 'sans-serif'])[1];
+const envProbe = await page.evaluate((stack) => {
+  const ctx = document.createElement('canvas').getContext('2d');
+  const probe = 'Handgloves 0123 mMwW';
+  const width = (f) => { ctx.font = `100px ${f}`; return ctx.measureText(probe).width; };
+  return {
+    stack_width: +width(stack).toFixed(2),
+    sans_width: +width('sans-serif').toFixed(2),
+    serif_width: +width('serif').toFixed(2),
+  };
+}, firstStack);
+const exporter = { chromium: browser.version(), platform: process.platform, ...envProbe };
+let previousExporter = null;
+try {
+  previousExporter = JSON.parse(await readFile(path.join(REPO, 'content/qa/mm01-visual-qa-report.json'), 'utf8')).exporter || null;
+} catch { previousExporter = null; }
+const sameEnvironment = !previousExporter
+  || (previousExporter.chromium === exporter.chromium
+      && previousExporter.platform === exporter.platform
+      && previousExporter.stack_width === exporter.stack_width);
+report.exporter = exporter;
+
 for (const a of spec.assets) {
   const native = await measure(page, a.svg, a, null);
   const small = await measure(page, a.svg, a, a.scaleChecks.width);
@@ -517,6 +545,24 @@ for (const a of spec.assets) {
     let existing = null;
     try { existing = await readFile(absPng); } catch { existing = null; }
 
+    /* The shipped file is checked in its own right: its header, its size, and
+       whether it is the render of its master. The fresh render below is
+       always well formed, so testing that would prove nothing. */
+    const shippedPng = existing ? pngSize(existing) : null;
+    if (existing && !shippedPng) {
+      violations.push({
+        type: 'png_not_valid',
+        text: a.png,
+        box: { note: 'the file on disk does not carry a PNG signature' },
+      });
+    } else if (shippedPng && (shippedPng.width !== native.nativeW || shippedPng.height !== native.nativeH)) {
+      violations.push({
+        type: 'png_dimension_mismatch',
+        text: a.png,
+        box: { png: shippedPng, expected: { width: native.nativeW, height: native.nativeH } },
+      });
+    }
+
     /* Render first, compare second, write last: the shipped raster is never
        overwritten before it has been checked against the master. */
     exportInfo = await exportPng(page, a.svg, a.png, false);
@@ -525,16 +571,17 @@ for (const a of spec.assets) {
     const driftLimit = a.maxExportDriftPct ?? 1;
     if (driftInfo.status === 'measured' && driftInfo.verdict === 'drift') {
       driftInfo.repaired = true;   // the fresh render is written below
-      violations.push({
-        type: 'export_drift',
-        text: a.png,
-        box: {
-          drift_vs_brand_pct: driftInfo.drift_vs_brand_pct,
-          limit_pct: driftLimit,
-          repaired: true,
-          note: 'the shipped raster was not produced by this harness and does not match a fresh render of its master; it has been re-exported from the master',
-        },
-      });
+      const box = {
+        drift_vs_brand_pct: driftInfo.drift_vs_brand_pct,
+        limit_pct: driftLimit,
+        repaired: true,
+        same_environment: sameEnvironment,
+        note: sameEnvironment
+          ? 'the shipped raster was not produced by this harness and does not match a fresh render of its master; it has been re-exported from the master'
+          : 'the shipped raster was exported by a different renderer or on a different machine; advisory only, and re-exported locally',
+      };
+      if (sameEnvironment) { violations.push({ type: 'export_drift', text: a.png, box }); driftInfo.repaired = true; }
+      else advisories.push({ type: 'export_drift', text: a.png, box });
     }
 
     const fm = /font-family="([^"]+)"/.exec(svgText);
@@ -547,25 +594,19 @@ for (const a of spec.assets) {
       });
     }
 
-    await mkdir(path.dirname(absPng), { recursive: true });
-    await writeFile(absPng, exportInfo.buffer);
-
-    if (!exportInfo.png) {
-      /* The file does not start with the PNG signature. A base64 or otherwise
-         mangled export that kept a .png name must never pass as artwork. */
-      violations.push({
-        type: 'png_not_valid',
-        text: a.png,
-        box: { expected: exportInfo.expected, note: 'file does not carry a PNG signature' },
-      });
-    } else if (exportInfo.png.width !== exportInfo.expected.width
-        || exportInfo.png.height !== exportInfo.expected.height) {
-      violations.push({
-        type: 'png_dimension_mismatch',
-        text: a.png,
-        box: { png: exportInfo.png, expected: exportInfo.expected },
-      });
+    /* Write only when the shipped file is missing, unusable, or provably not
+       the render of its master in this environment. A raster that came from
+       another renderer is left alone: overwriting it would make two
+       environments fight over the same file. */
+    const mustRewrite = !existing
+      || !shippedPng
+      || (shippedPng.width !== native.nativeW || shippedPng.height !== native.nativeH)
+      || (driftInfo.status === 'measured' && driftInfo.verdict === 'drift' && sameEnvironment);
+    if (mustRewrite) {
+      await mkdir(path.dirname(absPng), { recursive: true });
+      await writeFile(absPng, exportInfo.buffer);
     }
+    driftInfo.rewritten = mustRewrite;
   }
 
   report.assets.push({

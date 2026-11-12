@@ -70,7 +70,20 @@ The harness renders each master, compares it against the raster already on disk,
 writes** the new raster. A run that reports `export_drift` means the file on disk was not produced
 by this harness — the run repairs it, and the next run must come back clean.
 
-To publish a re-export:
+### Publishing a re-export
+
+**The designated exporter is CI.** `.github/workflows/export-assets.yml` runs the same harness on
+a GitHub runner, re-exports the rasters and commits them with the built-in token. Dispatch it from
+the Actions tab, or:
+
+```bash
+gh workflow run export-assets.yml -f reason="scheduled MM-01 export"
+```
+
+It is manual-dispatch only, it never publishes or uploads anything, and it writes only under
+`content/`.
+
+To publish from a machine that already has push access, run the harness twice and commit:
 
 ```bash
 node content/qa/tools/visual-qa.mjs && node content/qa/tools/visual-qa.mjs   # detect+repair, then confirm
@@ -78,6 +91,11 @@ git add content/thumbnails content/visual content/products content/qa/proof cont
 git commit -m "MM-01 assets: re-export from SVG masters via the visual QA harness"
 git push
 ```
+
+**One renderer owns the rasters.** The report records the fingerprint of the environment that made
+them — Chromium build, platform and font metrics. A checker running in a different environment
+reports drift as a note rather than a failure, and leaves the file alone, so two machines cannot
+fight over the same asset.
 
 **Do not export these assets with any other renderer.** A renderer that ignores `font-family`
 re-types the whole kit in a serif fallback while every other check — PNG header, size, contrast,
