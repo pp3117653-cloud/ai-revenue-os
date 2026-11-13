@@ -19,6 +19,9 @@ Status values: `first-party` (authored directly, deterministic, no external inpu
 | `content/visual/pipeline-diagram.svg` | MM-01 | first-party | internal / repo license | none | no | no | cleared |
 | `content/visual/pipeline-diagram.png` | MM-01 | first-party | internal / repo license | system fonts only | no | no | cleared |
 | `content/qa/proof/*.png` | MM-01 | first-party (QA evidence) | internal / repo license | none | no | no | cleared |
+| `content/visual/index.html` | MM-01 | first-party | internal / repo license | renders the first-party SVG masters; system fonts only | no | no | cleared |
+| `content/qa/tools/build-visual-index.mjs` | MM-01 | first-party | internal / repo license | none | no | no | cleared |
+| `content/qa/tools/install-export-workflow.sh` | MM-01 | first-party | internal / repo license | none | no | no | cleared |
 | `content/products/product-cover-square.svg` | MM-01 | first-party | internal / repo license | none | no | no | cleared |
 | `content/products/product-cover-square.png` | MM-01 | first-party | internal / repo license | system fonts only | no | no | cleared |
 | `content/visual/metrics-bar-chart.svg` | MM-01 | first-party | internal / repo license | none | no | no | cleared |

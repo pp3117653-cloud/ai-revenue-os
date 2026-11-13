@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Revenue OS — visual index</title>
+<meta name="description" content="Contact sheet for the AI Revenue OS visual kit: every MM-01 asset rendered from its SVG master, with its measured contrast, safe area, alt text and rights status.">
+<style>
+  :root {
+    --bg: #0b0d12; --panel: #12161e; --panel2: #181d27; --line: #2a3342; --line-strong: #556378;
+    --text: #eef2f7; --muted: #9ca8ba; --lime: #c7f36a; --cyan: #78e0d2; --amber: #ffca68; --red: #ff8585;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    line-height: 1.55;
+  }
+  header { border-bottom: 1px solid var(--line); padding: 40px 32px 28px; }
+  .wrap { max-width: 1280px; margin: 0 auto; }
+  .eyebrow { color: var(--lime); font-weight: 800; letter-spacing: .18em; font-size: 13px; text-transform: uppercase; margin: 0 0 10px; }
+  h1 { font-size: 40px; font-weight: 800; letter-spacing: -.03em; margin: 0 0 8px; }
+  .lede { color: var(--muted); margin: 0; max-width: 70ch; }
+  main { padding: 32px; }
+  .strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 0 0 28px; }
+  .stat { background: var(--panel); border: 1px solid var(--line-strong); border-radius: 12px; padding: 14px 16px; }
+  .stat .k { color: var(--muted); font-size: 13px; letter-spacing: .04em; }
+  .stat .v { font-size: 24px; font-weight: 800; letter-spacing: -.01em; }
+  .ok { color: var(--lime); } .bad { color: var(--red); } .warn { color: var(--amber); }
+  .note { border: 1px solid var(--amber); border-left-width: 5px; border-radius: 10px; background: #1d1a10; padding: 16px 18px; margin: 0 0 28px; }
+  .note h2 { font-size: 17px; margin: 0 0 6px; color: var(--amber); }
+  .note p { margin: 0 0 8px; color: var(--text); }
+  .note pre { margin: 8px 0 0; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; overflow-x: auto; font-size: 14px; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .card { background: var(--panel); border: 1px solid var(--line-strong); border-radius: 14px; margin: 0 0 24px; overflow: hidden; }
+  .frame { background: var(--bg); border-bottom: 1px solid var(--line); padding: 16px; display: flex; justify-content: center; }
+  .frame img { max-width: 100%; height: auto; display: block; border-radius: 6px; }
+  .meta { padding: 20px 24px 24px; }
+  .meta h3 { margin: 0 0 4px; font-size: 20px; }
+  .path { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px 22px; margin: 0 0 16px; }
+  .facts dt { color: var(--muted); font-size: 13px; letter-spacing: .04em; }
+  .facts dd { margin: 2px 0 0; font-weight: 600; }
+  .alt, .rights { color: var(--muted); font-size: 15px; margin: 0 0 8px; }
+  .label { display: inline-block; color: var(--cyan); font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; margin-right: 8px; }
+  .links { margin: 12px 0 0; font-size: 15px; }
+  a { color: var(--cyan); }
+  footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; padding: 22px 32px 40px; }
+  @media (prefers-color-scheme: light) { /* the kit is dark-only by design */ }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">AI Revenue OS</p>
+    <h1>Visual index</h1>
+    <p class="lede">Every asset MM-01 has shipped, rendered from its SVG master — the source of truth. The flat PNG exports are derived files; when they disagree with the master, the master is right. All figures below are read from the QA report, the asset spec, the alt-text guide and the rights register, so this page cannot drift from what was measured.</p>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <div class="strip">
+      <div class="stat"><div class="k">Assets passing QA</div><div class="v ok">6 / 6</div></div>
+      <div class="stat"><div class="k">Lowest measured contrast</div><div class="v ok">7.53:1</div></div>
+      <div class="stat"><div class="k">Exported by</div><div class="v" style="font-size:15px">153.0.8010.12 · linux</div></div>
+      <div class="stat"><div class="k">Brand face</div><div class="v ok" style="font-size:15px">sans resolved</div></div>
+    </div>
+
+    <div class="note">
+      <h2>The flat PNG exports are derived files and can lag behind the master</h2>
+      <p>These pages render the <strong>SVG masters</strong>, so what you see above is always correct — the master is the deliverable. The flat PNG exports are rendered from them, and on the branch they were last produced by a renderer that ignored <code>font-family</code> and fell back to a serif face. This checkout measures zero drift against a fresh render; the branch may still hold an older export.</p>
+      <p>To bring the branch back in line, run one command on a machine that can push:</p>
+      <pre><code>bash content/qa/tools/install-export-workflow.sh</code></pre>
+      <p>It installs the export workflow, pushes it and dispatches it once; the export then finishes itself.</p>
+    </div>
+
+    
+    <article class="card" id="youtube-16x9-template">
+      <div class="frame">
+        <img src="../thumbnails/youtube-16x9-template.svg" alt="Thumbnail template for a 16 by 9 video. On the left, a lime label reading &quot;AI Revenue OS&quot; above the placeholder headline &quot;HEADLINE HERE / SECOND LINE&quot;, a grey line reading &quot;One line that earns the click&quot;, and a lime badge reading &quot;90 SEC&quot;. On the right, a dashed empty frame marked &quot;KEY VISUAL&quot; for a poster frame or diagram." width="1920" height="1080">
+      </div>
+      <div class="meta">
+        <h3>youtube-16x9-template</h3>
+        <p class="path"><code>content/thumbnails/youtube-16x9-template.svg</code></p>
+        <dl class="facts">
+          <div><dt>Canvas</dt><dd>1920×1080 · 1920:1080</dd></div>
+          <div><dt>Text safe area</dt><dd>x 96–1824, y 72–1008</dd></div>
+          <div><dt>UI exclusions</dt><dd>youtube-duration-badge</dd></div>
+          <div><dt>Min contrast</dt><dd>7.53:1 <span class="ok">≥ 4.5</span></dd></div>
+          <div><dt>Min font</dt><dd>28px <span class="ok">≥ 28px</span></dd></div>
+          <div><dt>Headline @168px</dt><dd>20.85px tall · 45.9% of frame</dd></div>
+          <div><dt>QA status</dt><dd class="ok">PASS</dd></div>
+        </dl>
+        <p class="alt"><span class="label">Alt text</span> Thumbnail template for a 16 by 9 video. On the left, a lime label reading &quot;AI Revenue OS&quot; above the placeholder headline &quot;HEADLINE HERE / SECOND LINE&quot;, a grey line reading &quot;One line that earns the click&quot;, and a lime badge reading &quot;90 SEC&quot;. On the right, a dashed empty frame marked &quot;KEY VISUAL&quot; for a poster frame or diagram.</p>
+        <p class="rights"><span class="label">Rights</span> MM-01 · first-party · internal / repo license · third party: none · model-generated: no · likeness: no · <span class="ok">cleared</span></p>
+        <p class="links"><a href="../thumbnails/youtube-16x9-template.svg">SVG master</a> · <a href="../thumbnails/youtube-16x9-template.png">PNG export</a> · <a href="../qa/proof/youtube-16x9-template-proof.png">QA proof</a></p>
+      </div>
+    </article>
+
+    <article class="card" id="reel-9x16-template">
+      <div class="frame">
+        <img src="../thumbnails/reel-9x16-template.svg" alt="Vertical video thumbnail template for Reels and Shorts. A lime label reading &quot;AI Revenue OS&quot; sits above the placeholder headline &quot;HEADLINE HERE / SECOND LINE&quot;, a grey line reading &quot;One line that earns the click&quot;, and a lime badge reading &quot;90 SEC&quot;. The lower half holds a dashed empty frame marked &quot;KEY VISUAL&quot;, kept clear of the right-hand action rail. The bottom of the frame is left empty for the caption and interface overlay." width="1080" height="1920">
+      </div>
+      <div class="meta">
+        <h3>reel-9x16-template</h3>
+        <p class="path"><code>content/thumbnails/reel-9x16-template.svg</code></p>
+        <dl class="facts">
+          <div><dt>Canvas</dt><dd>1080×1920 · 1080:1920</dd></div>
+          <div><dt>Text safe area</dt><dd>x 72–1008, y 300–1380</dd></div>
+          <div><dt>UI exclusions</dt><dd>reels-action-rail, shorts-bottom-title-band</dd></div>
+          <div><dt>Min contrast</dt><dd>7.53:1 <span class="ok">≥ 4.5</span></dd></div>
+          <div><dt>Min font</dt><dd>26px <span class="ok">≥ 26px</span></dd></div>
+          <div><dt>Headline @168px</dt><dd>33.42px tall · 72.8% of frame</dd></div>
+          <div><dt>QA status</dt><dd class="ok">PASS</dd></div>
+        </dl>
+        <p class="alt"><span class="label">Alt text</span> Vertical video thumbnail template for Reels and Shorts. A lime label reading &quot;AI Revenue OS&quot; sits above the placeholder headline &quot;HEADLINE HERE / SECOND LINE&quot;, a grey line reading &quot;One line that earns the click&quot;, and a lime badge reading &quot;90 SEC&quot;. The lower half holds a dashed empty frame marked &quot;KEY VISUAL&quot;, kept clear of the right-hand action rail. The bottom of the frame is left empty for the caption and interface overlay.</p>
+        <p class="rights"><span class="label">Rights</span> MM-01 · first-party · internal / repo license · third party: none · model-generated: no · likeness: no · <span class="ok">cleared</span></p>
+        <p class="links"><a href="../thumbnails/reel-9x16-template.svg">SVG master</a> · <a href="../thumbnails/reel-9x16-template.png">PNG export</a> · <a href="../qa/proof/reel-9x16-template-proof.png">QA proof</a></p>
+      </div>
+    </article>
+
+    <article class="card" id="pipeline-diagram">
+      <div class="frame">
+        <img src="../visual/pipeline-diagram.svg" alt="Flow diagram of how work moves through AI Revenue OS. Six steps run down the centre: GA-02 audience and prospect research; MN-03 editorial brief and script; GA-03 animation source, outlined in lime and tagged &quot;only author&quot;; GitHub Actions rendering the MP4 and poster frames; MM-01 producing thumbnails, alt text and visual QA; and Saksham approving then publishing. GA-01 offer research feeds in from the left and MN-01 does a read-only render check beside GA-03. Amber gates mark the points where the CEO approves the brief and the title and caption. A red strip along the bottom states that only GA-03 may create or modify files under content/video/src/." width="1920" height="1080">
+      </div>
+      <div class="meta">
+        <h3>pipeline-diagram</h3>
+        <p class="path"><code>content/visual/pipeline-diagram.svg</code></p>
+        <dl class="facts">
+          <div><dt>Canvas</dt><dd>1920×1080 · 1920:1080</dd></div>
+          <div><dt>Text safe area</dt><dd>x 60–1860, y 60–1016</dd></div>
+          <div><dt>UI exclusions</dt><dd>none</dd></div>
+          <div><dt>Min contrast</dt><dd>7.53:1 <span class="ok">≥ 4.5</span></dd></div>
+          <div><dt>Min font</dt><dd>22px <span class="ok">≥ 22px</span></dd></div>
+          <div><dt>Headline @168px</dt><dd>not a thumbnail — figure title held to the 24px floor</dd></div>
+          <div><dt>QA status</dt><dd class="ok">PASS</dd></div>
+        </dl>
+        <p class="alt"><span class="label">Alt text</span> Flow diagram of how work moves through AI Revenue OS. Six steps run down the centre: GA-02 audience and prospect research; MN-03 editorial brief and script; GA-03 animation source, outlined in lime and tagged &quot;only author&quot;; GitHub Actions rendering the MP4 and poster frames; MM-01 producing thumbnails, alt text and visual QA; and Saksham approving then publishing. GA-01 offer research feeds in from the left and MN-01 does a read-only render check beside GA-03. Amber gates mark the points where the CEO approves the brief and the title and caption. A red strip along the bottom states that only GA-03 may create or modify files under content/video/src/.</p>
+        <p class="rights"><span class="label">Rights</span> MM-01 · first-party · internal / repo license · third party: none · model-generated: no · likeness: no · <span class="ok">cleared</span></p>
+        <p class="links"><a href="../visual/pipeline-diagram.svg">SVG master</a> · <a href="../visual/pipeline-diagram.png">PNG export</a> · <a href="../qa/proof/pipeline-diagram-proof.png">QA proof</a></p>
+      </div>
+    </article>
+
+    <article class="card" id="product-cover-square">
+      <div class="frame">
+        <img src="../products/product-cover-square.svg" alt="Square cover template for a digital product. Inside a bordered panel on a near-black background, a lime label reads &quot;PRODUCT · AI REVENUE OS&quot; above the placeholder title &quot;PRODUCT TITLE / SECOND LINE&quot;, a cyan rule and a grey line reading &quot;One line that says what the buyer gets&quot;. Below that, &quot;WHAT'S INSIDE&quot; heads three lime-bulleted module lines, and a lime badge reads &quot;STARTER KIT&quot;. Three stacked rectangles on the right are a decorative motif." width="1200" height="1200">
+      </div>
+      <div class="meta">
+        <h3>product-cover-square</h3>
+        <p class="path"><code>content/products/product-cover-square.svg</code></p>
+        <dl class="facts">
+          <div><dt>Canvas</dt><dd>1200×1200 · 1200:1200</dd></div>
+          <div><dt>Text safe area</dt><dd>x 72–1128, y 72–1128</dd></div>
+          <div><dt>UI exclusions</dt><dd>none</dd></div>
+          <div><dt>Min contrast</dt><dd>7.53:1 <span class="ok">≥ 4.5</span></dd></div>
+          <div><dt>Min font</dt><dd>24px <span class="ok">≥ 24px</span></dd></div>
+          <div><dt>Headline @168px</dt><dd>27px tall · 54% of frame</dd></div>
+          <div><dt>QA status</dt><dd class="ok">PASS</dd></div>
+        </dl>
+        <p class="alt"><span class="label">Alt text</span> Square cover template for a digital product. Inside a bordered panel on a near-black background, a lime label reads &quot;PRODUCT · AI REVENUE OS&quot; above the placeholder title &quot;PRODUCT TITLE / SECOND LINE&quot;, a cyan rule and a grey line reading &quot;One line that says what the buyer gets&quot;. Below that, &quot;WHAT'S INSIDE&quot; heads three lime-bulleted module lines, and a lime badge reads &quot;STARTER KIT&quot;. Three stacked rectangles on the right are a decorative motif.</p>
+        <p class="rights"><span class="label">Rights</span> MM-01 · first-party · internal / repo license · third party: none · model-generated: no · likeness: no · <span class="ok">cleared</span></p>
+        <p class="links"><a href="../products/product-cover-square.svg">SVG master</a> · <a href="../products/product-cover-square.png">PNG export</a> · <a href="../qa/proof/product-cover-square-proof.png">QA proof</a></p>
+      </div>
+    </article>
+
+    <article class="card" id="metrics-bar-chart">
+      <div class="frame">
+        <img src="../visual/metrics-bar-chart.svg" alt="Horizontal bar chart template for a metrics figure. The heading reads &quot;Metric title goes here&quot; with the sub-line &quot;Reporting period · data source&quot;, and an amber badge on the right warns &quot;SAMPLE VALUES — REPLACE FIRST&quot;. Inside the panel, five bars are labelled Category A to Category E — four teal and one lime — each with a dash where its value belongs, over a scale from 0 to 100. A note below reads &quot;Replace every — with a verified figure, then add the source and the period.&quot;" width="1920" height="1080">
+      </div>
+      <div class="meta">
+        <h3>metrics-bar-chart</h3>
+        <p class="path"><code>content/visual/metrics-bar-chart.svg</code></p>
+        <dl class="facts">
+          <div><dt>Canvas</dt><dd>1920×1080 · 1920:1080</dd></div>
+          <div><dt>Text safe area</dt><dd>x 60–1860, y 60–1016</dd></div>
+          <div><dt>UI exclusions</dt><dd>none</dd></div>
+          <div><dt>Min contrast</dt><dd>7.53:1 <span class="ok">≥ 4.5</span></dd></div>
+          <div><dt>Min font</dt><dd>24px <span class="ok">≥ 24px</span></dd></div>
+          <div><dt>Headline @168px</dt><dd>5px tall · 28.2% of frame</dd></div>
+          <div><dt>QA status</dt><dd class="ok">PASS</dd></div>
+        </dl>
+        <p class="alt"><span class="label">Alt text</span> Horizontal bar chart template for a metrics figure. The heading reads &quot;Metric title goes here&quot; with the sub-line &quot;Reporting period · data source&quot;, and an amber badge on the right warns &quot;SAMPLE VALUES — REPLACE FIRST&quot;. Inside the panel, five bars are labelled Category A to Category E — four teal and one lime — each with a dash where its value belongs, over a scale from 0 to 100. A note below reads &quot;Replace every — with a verified figure, then add the source and the period.&quot;</p>
+        <p class="rights"><span class="label">Rights</span> MM-01 · first-party · internal / repo license · third party: none · model-generated: no · likeness: no · <span class="ok">cleared</span></p>
+        <p class="links"><a href="../visual/metrics-bar-chart.svg">SVG master</a> · <a href="../visual/metrics-bar-chart.png">PNG export</a> · <a href="../qa/proof/metrics-bar-chart-proof.png">QA proof</a></p>
+      </div>
+    </article>
+
+    <article class="card" id="article-howto-steps">
+      <div class="frame">
+        <img src="../visual/article-howto-steps.svg" alt="Three-step figure for a how-to article. Under the heading &quot;How to ship a video in one day&quot;, three cards run left to right, joined by teal arrows: step 01 &quot;Define the brief&quot;, owned by MN-03; step 02 &quot;Build the scene&quot;, owned by GA-03; and step 03 &quot;Check and ship&quot;, owned by Saksham. A note in amber reads &quot;Replace every step with sourced content before publishing.&quot;" width="1920" height="1080">
+      </div>
+      <div class="meta">
+        <h3>article-howto-steps</h3>
+        <p class="path"><code>content/visual/article-howto-steps.svg</code></p>
+        <dl class="facts">
+          <div><dt>Canvas</dt><dd>1920×1080 · 1920:1080</dd></div>
+          <div><dt>Text safe area</dt><dd>x 60–1860, y 60–1016</dd></div>
+          <div><dt>UI exclusions</dt><dd>none</dd></div>
+          <div><dt>Min contrast</dt><dd>7.53:1 <span class="ok">≥ 4.5</span></dd></div>
+          <div><dt>Min font</dt><dd>24px <span class="ok">≥ 24px</span></dd></div>
+          <div><dt>Headline @168px</dt><dd>5px tall · 40.1% of frame</dd></div>
+          <div><dt>QA status</dt><dd class="ok">PASS</dd></div>
+        </dl>
+        <p class="alt"><span class="label">Alt text</span> Three-step figure for a how-to article. Under the heading &quot;How to ship a video in one day&quot;, three cards run left to right, joined by teal arrows: step 01 &quot;Define the brief&quot;, owned by MN-03; step 02 &quot;Build the scene&quot;, owned by GA-03; and step 03 &quot;Check and ship&quot;, owned by Saksham. A note in amber reads &quot;Replace every step with sourced content before publishing.&quot;</p>
+        <p class="rights"><span class="label">Rights</span> MM-01 · first-party · internal / repo license · third party: none · model-generated: no · likeness: no · <span class="ok">cleared</span></p>
+        <p class="links"><a href="../visual/article-howto-steps.svg">SVG master</a> · <a href="../visual/article-howto-steps.png">PNG export</a> · <a href="../qa/proof/article-howto-steps-proof.png">QA proof</a></p>
+      </div>
+    </article>
+  </div>
+</main>
+<footer>
+  <div class="wrap">Generated by <code>node content/qa/tools/build-visual-index.mjs</code> · author MM-01 (MiniMax-1) · first-party assets, no third-party imagery, no real-person likeness · report: <code>content/qa/mm01-visual-qa-report.json</code></div>
+</footer>
+</body>
+</html>

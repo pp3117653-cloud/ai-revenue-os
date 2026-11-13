@@ -605,3 +605,110 @@ The installer copies `content/qa/tools/export-assets.yml` to `.github/workflows/
 - The rehearsal ran the same steps on the same kind of machine as the workflow, but not on a GitHub runner. The runner's fonts and Chromium build may differ from this sandbox's, which would change the exported bytes — not the pass/fail behaviour.
 - The exporter fingerprint decides failure versus note. Two environments with the same Chromium build and the same font metrics are treated as one environment; anything else is a note.
 - The drift check compares a shipped raster with a render made in the current environment. It cannot name the typeface of a foreign raster, so the serif appearance of the shipped rasters remains a human observation rather than a measurement.
+
+---
+
+# MM-01 run checkpoint — 2026-11-13, 22:25 Asia/Kolkata
+
+**Role:** MM-01 — Thumbnail and Visual QA · **Account:** MiniMax-1 · **Cycle day:** D1 (still the only day with evidence)
+**Issue:** https://github.com/pp3117653-cloud/ai-revenue-os/issues/1 (existing issue, commented — no duplicate opened)
+**Schedule:** every 12 hours at 10:25 and 22:25 Asia/Kolkata (cron `25 10,22 * * *`) — unchanged, not re-created
+**Model:** `minimax/MiniMax-M1` · **Run bound:** 45 min · **Retries used:** 0 (harness ran twice: detect and repair, then confirm)
+
+## What changed since the last run
+
+The export workflow was **not** installed — `.github/workflows/` still holds only the four original workflows — and the branch has only MN-02 and MN-03 evening checkpoints, both blocked for the same reasons as every other run. No approved video brief and no GA-03 animation source, so poster-frame work remains blocked. The rasters on `main` are still the serif renders.
+
+That is now the fourth run blocked on the same single action, so this run stopped escalating and delivered something instead: a visual index that needs no install to see.
+
+## Final report
+
+```text
+ASSET_PATHS=content/visual/index.html                   (visual index — renders every master in any browser)
+            content/qa/tools/build-visual-index.mjs      (generator; reads report, spec, alt guide, rights register)
+            content/qa/proof/visual-index-proof.png      (QA proof of the index page)
+            content/visual/README.md                     (index documented)
+            content/brand/rights-notes.md                (3 new rows)
+            content/qa/mm01-visual-qa-report.json
+            (the six rasters and six proof renders were re-exported locally; see BLOCKERS)
+
+RIGHTS_NOTES=content/brand/rights-notes.md — three new rows, all first-party: the index page renders only the
+            first-party SVG masters with system fonts and no third-party element, and the two new scripts are
+            MM-01's own code. No stock or scraped imagery, no embedded font file, no third-party logo, no
+            real-person likeness, model-generated=no. The index is registered before commit.
+
+PURPOSE=Give the owner a correct view of the whole kit without installing anything, and make the numbers on it
+         impossible to get wrong — the page is generated from the QA report, the asset spec, the alt-text guide
+         and the rights register, so it cannot show a figure the harness did not measure.
+
+REVIEW_STATUS=PASS — 6/6 assets, exit 0 on the confirming run; the index page's own text pairs measured at
+         7.53:1 minimum against a 4.5:1 floor, and the six embedded masters render at their native sizes
+         (1920×1080, 1080×1920, 1200×1200) with no broken assets. Reviewer for completed video packages: MN-04.
+
+BLOCKERS=1) Video work still blocked: no approved brief under content/video/briefs/ and no GA-03 source, so no poster frame from a real render and no brief-alignment check against a real video asset.
+        2) The rasters on main are still the serif renders. `git push` over HTTPS fails with `could not read Username for 'https://github.com'` — no PAT or SSH key for pp3117653-cloud — and the connector's file-write path is text-only, so the corrected binaries cannot land from this sandbox.
+        3) The connector refuses to write files under `.github/workflows/`, so MM-01 cannot install the export workflow. That guard was not worked around; the file and a one-command installer are committed under content/qa/tools/.
+        4) content/brand/brand-rules.md is still a PROPOSAL awaiting Saksham's ratification.
+
+APPROVALS=1) Saksham — ratify content/brand/brand-rules.md.
+          2) Saksham — open content/visual/index.html to review the kit, and run bash content/qa/tools/install-export-workflow.sh to bring the branch's PNG exports back in line.
+          3) Saksham — any future publishing or upload (none performed).
+          4) MN-04 — reviewer on the completed video package.
+         No publishing, no upload, no outreach, no client access, no external action taken.
+
+NEXT_ACTION=Next run: read the branch, not the local checkout. If the export workflow has been installed and dispatched, confirm the rasters on main carry the brand face by running the harness against a fresh checkout and checking the drift figures and the exporter field in the committed report. If it is still not installed, do not re-export locally and do not add kit — the local binaries cannot land and the kit is not the problem. Spend the run on the brief-aligned poster frame if content/video/briefs/ finally holds an approved brief, otherwise report the single blocked action and stop.
+```
+
+## What shipped
+
+`content/visual/index.html` — a contact sheet of the whole kit that opens in any browser with no build step and no dependencies. It renders each asset from its **SVG master**, so it shows the brand face even while the exported PNGs on the branch are stale, and it carries the measured facts for each asset: canvas and aspect, text-safe rectangle, UI-overlay exclusions, lowest contrast, minimum font size, headline legibility at 168px, QA status, alt text, rights status, and links to the master, the export and the QA proof.
+
+The page is generated, never hand-edited:
+
+```bash
+node content/qa/tools/build-visual-index.mjs
+```
+
+It reads `content/qa/mm01-visual-qa-report.json`, `content/qa/tools/assets-spec.json`, the alt-text guide and the rights register, so a figure on the page cannot disagree with what the harness measured, and an asset cannot appear without its alt text and rights row. All six assets came through with alt text and rights present.
+
+## Defect found and fixed this run
+
+**The index shipped with broken image paths.** The generator built each asset URL as `../` + the repo
+path, which from `content/visual/` resolved to `content/content/...` — every asset rendered as a
+broken image with its alt text beside it. Caught by screenshotting the page and measuring
+`naturalWidth` on each embedded image, which returned 0 for all six. Fixed by stripping the leading
+`content/` before going up one level; the images now report their native widths (1920, 1080, 1200).
+
+A second defect was caught in the same pass: the first build showed "0 passing" because it was
+generated from the report of the *detecting* run, which is a failure report by design. The index is
+now built from the confirming run's report.
+
+## Measured contrast on the index page itself
+
+Every text pair on the page was measured in the browser, not assumed:
+
+| Element | Ratio | Size |
+|---|---|---|
+| h1 | 17.29:1 | 40px |
+| lede | 8.07:1 | 16px |
+| eyebrow | 15.23:1 | 13px |
+| stat label | 7.53:1 | 13px |
+| stat value | 14.2:1 | 24px |
+| facts dt | 7.53:1 | 13px |
+| facts dd | 16.11:1 | 16px |
+| alt text | 7.53:1 | 15px |
+| link | 11.55:1 | 15px |
+| note heading | 11.51:1 | 17px |
+| footer | 8.07:1 | 14px |
+
+Minimum **7.53:1** against the 4.5:1 floor. Proof render: `content/qa/proof/visual-index-proof.png`.
+
+## Scope guard
+
+`content/video/src/` was **not** created, edited, patched or deleted. The path is still empty. GA-03 / Google-3 remains the sole animation-code author. No animation source was read because none exists.
+
+## Known limits of this checkpoint
+
+- The index renders the SVG masters through relative paths, so it must be opened from inside the repository rather than copied elsewhere.
+- It describes the checkout it was generated in. The branch's PNG exports can still differ from it — which is exactly what the notice at the top of the page says.
+- The drift check still compares a shipped raster with a render made in the current environment. It cannot name the typeface of a foreign raster, so the serif appearance of the shipped rasters remains a human observation rather than a measurement.

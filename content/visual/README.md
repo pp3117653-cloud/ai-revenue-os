@@ -52,6 +52,23 @@ source, write a change request and route it to GA-03.
 Every asset here is first-party: deterministic SVG, system fonts, geometric shapes, no third-party
 imagery, no embedded font file, no real person's likeness. See `content/brand/rights-notes.md`.
 
+## The visual index
+
+`content/visual/index.html` is a contact sheet of the whole kit. Open it in any browser — no build
+step, no dependencies — and it renders every asset from its SVG master with its measured contrast,
+safe area, alt text and rights status.
+
+It is generated, never hand-edited:
+
+```bash
+node content/qa/tools/build-visual-index.mjs
+```
+
+The generator reads the QA report, the asset spec, the alt-text guide and the rights register, so
+the page cannot show a number that the harness did not measure. Because it renders the masters
+directly, the index is the one view of the kit that is correct even when the exported PNGs on the
+branch are stale.
+
 ## How to run the visual gate
 
 The rasters in this repository are **derived** files. The SVG masters are the source of truth, and
