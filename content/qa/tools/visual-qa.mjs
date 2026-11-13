@@ -603,12 +603,13 @@ for (const a of spec.assets) {
       || !shippedPng
       || (shippedPng.width !== native.nativeW || shippedPng.height !== native.nativeH)
       || (driftInfo.status === 'measured' && driftInfo.verdict === 'drift' && sameEnvironment);
+    const matchesHere = driftInfo.status === 'measured' && driftInfo.verdict === 'match';
     if (mustRewrite) {
       await mkdir(path.dirname(absPng), { recursive: true });
       await writeFile(absPng, exportInfo.buffer);
     }
     driftInfo.rewritten = mustRewrite;
-    produced.push(mustRewrite);
+    produced.push(matchesHere || mustRewrite);
   }
 
   report.assets.push({
@@ -638,14 +639,18 @@ for (const a of spec.assets) {
   });
 }
 report.exporter = exporter;
-const producedAll = produced.length === spec.assets.length && produced.every(Boolean);
-if (!producedAll) {
-  /* This run verified the rasters but did not produce them, so it cannot
-     claim to be the exporter. Leaving the exporter undeclared keeps the
-     branch in the state where any environment treats drift as a real
-     difference and re-exports, instead of deferring to a stale owner. */
+const ownsAll = produced.length === spec.assets.length && produced.every(Boolean);
+if (!ownsAll) {
+  /* This environment owns the rasters when the file on disk is exactly what
+     this environment renders, or when this run replaced it. In both cases the
+     shipped bytes came from here, and the fingerprint is worth recording.
+     Otherwise the rasters belong to some other renderer and this run has no
+     standing to declare an owner — it only reports the difference. */
+  const untouched = spec.assets.length - produced.filter(Boolean).length;
   report.exporter = null;
-  report.exporter_note = 'the rasters were not produced in this run; no environment is declared as their exporter';
+  report.exporter_note = untouched
+    ? `${untouched} raster(s) were not produced in this run; no environment is declared as their exporter`
+    : 'no environment is declared as their exporter';
 }
 await browser.close();
 

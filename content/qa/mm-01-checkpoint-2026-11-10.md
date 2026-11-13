@@ -523,3 +523,85 @@ gh workflow run export-assets.yml -f reason="MM-01 asset export"
 - The exporter fingerprint decides failure versus note. Two environments with the same Chromium build and the same font metrics are treated as one environment; anything else is a note.
 - The drift check compares a shipped raster with a render made in the current environment. It cannot name the typeface of a foreign raster, so the serif appearance of the shipped rasters remains a human observation rather than a measurement.
 - The export workflow is unproven until it is installed and run once. It is written to fail loudly rather than silently: if the fonts or the renderer are wrong, the second pass fails and nothing is committed.
+
+---
+
+# MM-01 run checkpoint — 2026-11-13, 10:25 Asia/Kolkata
+
+**Role:** MM-01 — Thumbnail and Visual QA · **Account:** MiniMax-1 · **Cycle day:** D1 (still the only day with evidence)
+**Issue:** https://github.com/pp3117653-cloud/ai-revenue-os/issues/1 (existing issue, commented — no duplicate opened)
+**Schedule:** every 12 hours at 10:25 and 22:25 Asia/Kolkata (cron `25 10,22 * * *`) — unchanged, not re-created
+**Model:** `minimax/MiniMax-M1` · **Run bound:** 45 min · **Retries used:** 0
+
+## What changed since the last run
+
+The export workflow was **not** installed — `.github/workflows/` still holds only the four original workflows, and the branch has only MN-02 and MN-03 checkpoints, both blocked. No approved video brief and no GA-03 animation source, so poster-frame work remains blocked. The rasters on `main` are still the serif renders.
+
+So this run did not re-export for the fourth time. It **rehearsed the export workflow that MM-01 shipped**, against a fresh clone of `main`, so that the one action being asked of the owner is known to work.
+
+## Final report
+
+```text
+ASSET_PATHS=content/qa/tools/install-export-workflow.sh    (one-command installer for the owner)
+            content/qa/tools/export-assets.yml              (CI export workflow)
+            content/qa/tools/visual-qa.mjs                   (exporter ownership rule fixed)
+            content/visual/README.md                         (installer instructions)
+            content/qa/mm01-visual-qa-report.json
+            content/qa/mm-01-checkpoint-2026-11-10.md
+
+RIGHTS_NOTES=content/brand/rights-notes.md — unchanged and still current. No asset was added, re-licensed or re-imaged this run; no new imagery of any kind was produced. The installer and the workflow are first-party automation authored by MM-01 and carry no third-party element.
+
+PURPOSE=Prove, rather than assert, that the export path MM-01 shipped works end to end against the real branch, fix the one rule that rehearsal exposed, and reduce the owner's remaining action to a single command.
+
+REVIEW_STATUS=PASS — the export workflow was rehearsed against a fresh clone of main: first pass detected the drift on all six rasters and re-exported them, second pass came back 6/6 PASS with exit 0, and the commit it would produce contains exactly 13 files — the six rasters, the six proof renders and the QA report — with nothing outside content/. The MM-01 gate itself: 6/6 PASS, exit 0.
+
+BLOCKERS=1) Video work still blocked: no approved brief under content/video/briefs/ and no GA-03 source, so no poster frame from a real render and no brief-alignment check against a real video asset.
+        2) The rasters on main are still the serif renders. The rehearsal proved the fix works; it could not be applied, because `git push` over HTTPS fails with `could not read Username for 'https://github.com'` — no PAT or SSH key for pp3117653-cloud — and the connector's file-write path is text-only.
+        3) The connector also refuses to write files under `.github/workflows/`, so MM-01 cannot install the workflow. That guard was not worked around; the file is committed at content/qa/tools/export-assets.yml with a one-command installer.
+        4) content/brand/brand-rules.md is still a PROPOSAL awaiting Saksham's ratification.
+
+APPROVALS=1) Saksham — ratify content/brand/brand-rules.md.
+          2) Saksham — run one command: bash content/qa/tools/install-export-workflow.sh. It installs the workflow, pushes it and dispatches it once. The export then completes itself.
+          3) Saksham — any future publishing or upload (none performed).
+          4) MN-04 — reviewer on the completed video package.
+         No publishing, no upload, no outreach, no client access, no external action taken.
+
+NEXT_ACTION=Next run: read the branch, not the local checkout. If the workflow is installed and dispatched, confirm the rasters on main carry the brand face by running the harness against a fresh checkout and checking the drift figures and the exporter field in the committed report. If it is still not installed, do not re-export locally and do not add kit — the local binaries cannot land and the kit is not the problem. Spend the run on the brief-aligned poster frame if content/video/briefs/ finally holds an approved brief, otherwise report the single blocked action and stop.
+```
+
+## What the rehearsal proved
+
+Against a fresh clone of `main`, running exactly the steps the workflow runs:
+
+| Step | Result |
+|---|---|
+| First pass — measure the shipped rasters against a fresh render of their masters | drift found on all six (4.85%, 3.59%, 5.54%, 5.71%, 2.33%, 3.75%), each re-exported, exit 1 as designed |
+| Second pass — verify | **6/6 PASS, exit 0** |
+| Staged for commit | exactly 13 files: 6 rasters, 6 proof renders, 1 QA report — nothing outside `content/` |
+| Typography | the re-exported rasters differ from the shipped ones across 4.73%–5.16% of pixels, all inside the text regions — the brand face is restored |
+
+The rehearsal also caught a flaw in MM-01's own code, which is the reason it was worth running.
+
+## Defect found and fixed
+
+**The exporter fingerprint was never recorded.** The rule said an environment may declare itself the exporter only when that run *wrote* every raster. The verifying pass never writes anything — it only confirms what the repairing pass produced — so the fingerprint stayed empty and the environment comparison was dead code. The rule is now: an environment owns the rasters when the file on disk is exactly what that environment renders, or when the run replaced it. After the fix, the verifying pass records the fingerprint (`chromium 153.0.8010.12 · linux · stack 1271`), and a later run in a different environment reports drift as a note instead of a failure.
+
+A second rehearsal attempt initially reported a false clean result, because `git checkout -- <paths>` restores from the index and the index still held the re-exported rasters from an earlier step. The rehearsal was reset with `git reset --hard HEAD` and repeated; the numbers above are from the corrected run.
+
+## The owner's remaining action
+
+```bash
+bash content/qa/tools/install-export-workflow.sh
+```
+
+The installer copies `content/qa/tools/export-assets.yml` to `.github/workflows/export-assets.yml`, commits and pushes it, dispatches it once, and prints the command to verify the result. It needs `git` with push access and the GitHub CLI. Nothing else in the repository is touched.
+
+## Scope guard
+
+`content/video/src/` was **not** created, edited, patched or deleted. The path is still empty. GA-03 / Google-3 remains the sole animation-code author. No animation source was read because none exists.
+
+## Known limits of this checkpoint
+
+- The rehearsal ran the same steps on the same kind of machine as the workflow, but not on a GitHub runner. The runner's fonts and Chromium build may differ from this sandbox's, which would change the exported bytes — not the pass/fail behaviour.
+- The exporter fingerprint decides failure versus note. Two environments with the same Chromium build and the same font metrics are treated as one environment; anything else is a note.
+- The drift check compares a shipped raster with a render made in the current environment. It cannot name the typeface of a foreign raster, so the serif appearance of the shipped rasters remains a human observation rather than a measurement.
