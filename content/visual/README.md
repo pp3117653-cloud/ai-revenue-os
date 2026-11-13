@@ -74,7 +74,15 @@ by this harness — the run repairs it, and the next run must come back clean.
 
 **The designated exporter is CI.** The workflow file lives at `content/qa/tools/export-assets.yml`
 until someone with push access installs it, because the API path used by MM-01 refuses to write
-files under `.github/workflows/`. Install and run it with:
+files under `.github/workflows/`. Install and run it with one command:
+
+```bash
+bash content/qa/tools/install-export-workflow.sh
+```
+
+The installer copies the workflow into place, commits and pushes it, dispatches it once, and prints the
+command to verify the result. It needs `git` with push access and the GitHub CLI. The individual steps,
+if you would rather run them by hand, are:
 
 ```bash
 cp content/qa/tools/export-assets.yml .github/workflows/export-assets.yml
